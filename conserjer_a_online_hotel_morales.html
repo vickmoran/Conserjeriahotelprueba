@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Conserjería Online – Hotel Morales</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#FDFBF7',      // Warm sand/white background
+                            sand: '#F2EBE1',    // Slightly darker sand for cards
+                            text: '#4A4238',    // Warm dark grey for high legibility
+                            blue: '#7293A0',    // Soft blue accent
+                            green: '#86A789',   // Soft green accent
+                            primary: '#B68D6D', // Warm earth tone for primary actions
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'nav': '0 -4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #4A4238;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Smooth transitions for sections */
+        .view-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        .view-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hide scrollbar for clean app feel */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        /* Accordion transition */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-brand-text flex justify-center w-full min-h-screen">
+
+    <!-- App Container (Mobile constrained for better UX on desktop) -->
+    <div class="w-full max-w-md bg-brand-bg min-h-screen relative shadow-2xl overflow-x-hidden flex flex-col">
+        
+        <!-- Header -->
+        <header class="bg-white/90 backdrop-blur-md sticky top-0 z-40 shadow-soft px-6 py-4 flex items-center justify-center">
+            <div class="text-center">
+                <h1 class="text-2xl font-bold text-brand-text tracking-tight">Hotel Morales</h1>
+                <p class="text-xs text-brand-primary font-medium tracking-widest uppercase mt-0.5">Desde 1941</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow pb-28 px-5 pt-6 relative" id="app-main">
+            
+            <!-- VIEW: HOME -->
+            <div id="view-home" class="view-section active">
+                <div class="bg-brand-sand rounded-3xl p-6 mb-8 text-center shadow-soft">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-brand-blue">
+                        <i class="fa-solid fa-bell-concierge text-2xl"></i>
+                    </div>
+                    <h2 class="text-xl font-bold mb-3">¡Hola! Te damos la bienvenida a la Conserjería Online del Hotel Morales.</h2>
+                    <p class="text-sm text-brand-text/80 leading-relaxed">
+                        Estamos acá para acompañarte antes y durante tu estadía. Encontrá toda la información que necesitás y resolvé tus consultas fácilmente.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <button onclick="navigate('precheckin')" class="w-full bg-brand-blue text-white rounded-2xl p-5 flex items-center justify-between shadow-soft active:scale-95 transition-transform">
+                        <div class="flex items-center gap-4">
+                            <i class="fa-solid fa-suitcase-rolling text-xl w-6"></i>
+                            <div class="text-left">
+                                <span class="block font-semibold text-lg">Estoy por viajar</span>
+                                <span class="block text-white/80 text-sm mt-1">Hacer pre-check-in y ver preparativos</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right opacity-70"></i>
+                    </button>
+
+                    <button onclick="navigate('instay')" class="w-full bg-brand-green text-white rounded-2xl p-5 flex items-center justify-between shadow-soft active:scale-95 transition-transform">
+                        <div class="flex items-center gap-4">
+                            <i class="fa-solid fa-key text-xl w-6"></i>
+                            <div class="text-left">
+                                <span class="block font-semibold text-lg">Ya estoy en el hotel</span>
+                                <span class="block text-white/80 text-sm mt-1">Servicios, pedidos y asistencia</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right opacity-70"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- VIEW: PRE-CHECK-IN -->
+            <div id="view-precheckin" class="view-section">
+                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('home')">
+                    <i class="fa-solid fa-arrow-left text-brand-primary"></i>
+                    <h2 class="text-2xl font-bold">Pre-check-in Digital</h2>
+                </div>
+                <p class="mb-6 text-sm text-brand-text/80">Completá tus datos anticipadamente para agilizar tu ingreso al hotel. Es rápido y sencillo.</p>
+                
+                <form id="form-precheckin" class="space-y-4" onsubmit="handlePreCheckin(event)">
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 ml-1">Nombre y Apellido</label>
+                        <input type="text" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors" placeholder="Ej: Juan Pérez">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 ml-1">DNI o Documento</label>
+                        <input type="number" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors" placeholder="Sin puntos ni espacios">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 ml-1">Llegada</label>
+                            <input type="date" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 ml-1">Salida</label>
+                            <input type="date" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 ml-1">Teléfono</label>
+                            <input type="tel" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 ml-1">Cant. Huéspedes</label>
+                            <input type="number" required min="1" max="6" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 ml-1">Email</label>
+                        <input type="email" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 ml-1">Observaciones (Opcional)</label>
+                        <textarea class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors h-24 resize-none" placeholder="¿Necesitás cuna? ¿Llegás tarde?"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-brand-primary text-white font-bold text-lg rounded-xl py-4 mt-4 active:scale-95 transition-transform shadow-soft">
+                        Completar mi pre-check-in
+                    </button>
+                </form>
+
+                <!-- Success State -->
+                <div id="success-precheckin" class="hidden text-center py-10">
+                    <div class="w-20 h-20 bg-brand-green/20 text-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa-solid fa-check text-4xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">¡Datos recibidos!</h3>
+                    <p class="text-brand-text/80 mb-8">Tu pre-check-in se completó con éxito. Nuestro personal de recepción te asistirá rápidamente al llegar.</p>
+                    <button onclick="navigate('home')" class="bg-brand-sand text-brand-text font-bold rounded-xl py-3 px-8">Volver al inicio</button>
+                </div>
+            </div>
+
+            <!-- VIEW: INFO -->
+            <div id="view-info" class="view-section">
+                <h2 class="text-2xl font-bold mb-6">Información del Hotel</h2>
+                
+                <div class="space-y-4">
+                    <!-- Info Card 1 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-regular fa-clock text-brand-blue w-5"></i> Horarios
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                        </button>
+                        <div class="px-5 pb-4 hidden info-content text-sm text-brand-text/80">
+                            <p><strong>Check-in:</strong> A partir de las 14:00 hs.<br>
+                            <strong>Check-out:</strong> Hasta las 10:00 hs.</p>
+                            <p class="mt-2 text-xs italic">*Horarios sujetos a disponibilidad, consultanos por late check-out.</p>
+                        </div>
+                    </div>
+
+                    <!-- Info Card 2 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-mug-hot text-brand-primary w-5"></i> Desayuno Buffet
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                        </button>
+                        <div class="px-5 pb-4 hidden info-content text-sm text-brand-text/80">
+                            <p>Servicio diario en nuestro salón comedor.<br>
+                            <strong>Horario:</strong> 08:00 hs a 10:30 hs.</p>
+                            <p class="mt-2">Contamos con opciones sin TACC (avisar con anticipación en recepción).</p>
+                        </div>
+                    </div>
+
+                    <!-- Info Card 3 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-martini-glass-citrus text-brand-blue w-5"></i> Bar 24 Horas
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                        </button>
+                        <div class="px-5 pb-4 hidden info-content text-sm text-brand-text/80">
+                            <p>Nuestro bar en el lobby está disponible las 24 horas para disfrutar de cafetería, bebidas frescas y snacks.</p>
+                        </div>
+                    </div>
+
+                    <!-- Info Card 4 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-water-ladder text-brand-blue w-5"></i> Pileta Climatizada
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                        </button>
+                        <div class="px-5 pb-4 hidden info-content text-sm text-brand-text/80">
+                            <p>Ubicada en planta baja. <br>
+                            <strong>Temporada:</strong> Noviembre a Marzo.<br>
+                            <strong>Horario:</strong> 10:00 a 20:00 hs.</p>
+                            <p class="mt-2 text-xs">Por favor, solicitar toallas exclusivas para la pileta en recepción.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Info Card 5 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-car text-brand-blue w-5"></i> Estacionamiento
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                        </button>
+                        <div class="px-5 pb-4 hidden info-content text-sm text-brand-text/80">
+                            <p>Contamos con estacionamiento gratuito para nuestros huéspedes (sujeto a disponibilidad al momento de llegada).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-brand-sand rounded-2xl p-5 text-center">
+                    <h3 class="font-bold text-lg mb-2">¿Querés salir a pasear?</h3>
+                    <p class="text-sm mb-4">Descubrí las mejores atracciones de San Clemente.</p>
+                    <button onclick="navigate('recomendaciones')" class="bg-brand-primary text-white px-6 py-2 rounded-xl font-semibold shadow-sm active:scale-95 transition-transform">Ver Recomendaciones</button>
+                </div>
+            </div>
+
+            <!-- VIEW: RECOMENDACIONES -->
+            <div id="view-recomendaciones" class="view-section">
+                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('info')">
+                    <i class="fa-solid fa-arrow-left text-brand-primary"></i>
+                    <h2 class="text-2xl font-bold">Paseos y Gastronomía</h2>
+                </div>
+                
+                <div class="space-y-5">
+                    <!-- Rec Card -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-soft border border-brand-sand">
+                        <img src="https://placehold.co/400x200/F2EBE1/4A4238?text=Termas+Marinas" alt="Termas Marinas" class="w-full h-36 object-cover">
+                        <div class="p-4">
+                            <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">Actividades</span>
+                            <h3 class="text-lg font-bold mt-1 mb-2">Termas Marinas Park</h3>
+                            <p class="text-sm text-brand-text/80 mb-3">Parque termal con piletas de agua salada a diferentes temperaturas. Ideal para relajarse en familia.</p>
+                            <a href="#" class="text-brand-primary font-semibold text-sm flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Ver en mapa</a>
+                        </div>
+                    </div>
+
+                    <!-- Rec Card -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-soft border border-brand-sand">
+                        <img src="https://placehold.co/400x200/F2EBE1/4A4238?text=Mundo+Marino" alt="Mundo Marino" class="w-full h-36 object-cover">
+                        <div class="p-4">
+                            <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">Entretenimiento</span>
+                            <h3 class="text-lg font-bold mt-1 mb-2">Mundo Marino</h3>
+                            <p class="text-sm text-brand-text/80 mb-3">El oceanario más grande de Sudamérica, un clásico imperdible de San Clemente.</p>
+                            <a href="#" class="text-brand-primary font-semibold text-sm flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Ver en mapa</a>
+                        </div>
+                    </div>
+
+                    <!-- Rec Card -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-soft border border-brand-sand">
+                        <img src="https://placehold.co/400x200/F2EBE1/4A4238?text=Puerto+y+Ria" alt="Gastronomía" class="w-full h-36 object-cover">
+                        <div class="p-4">
+                            <span class="text-xs font-bold text-brand-primary uppercase tracking-wider">Gastronomía</span>
+                            <h3 class="text-lg font-bold mt-1 mb-2">Puerto y Ría</h3>
+                            <p class="text-sm text-brand-text/80 mb-3">Zona portuaria ideal para disfrutar de mariscos frescos, pesca del día y vistas hermosas al atardecer.</p>
+                            <a href="#" class="text-brand-primary font-semibold text-sm flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Ver en mapa</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: FAQ -->
+            <div id="view-faq" class="view-section">
+                <h2 class="text-2xl font-bold mb-4">Preguntas Frecuentes</h2>
+                
+                <!-- Search bar -->
+                <div class="relative mb-6">
+                    <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" id="faq-search" placeholder="Buscar consulta..." class="w-full bg-white border-2 border-brand-sand rounded-xl pl-11 pr-4 py-3 outline-none focus:border-brand-blue transition-colors" onkeyup="filterFAQ()">
+                </div>
+
+                <div class="space-y-3" id="faq-list">
+                    <!-- FAQ Item -->
+                    <div class="faq-item bg-white rounded-xl shadow-sm border border-brand-sand overflow-hidden">
+                        <button class="faq-btn w-full px-4 py-4 flex items-center justify-between text-left font-medium">
+                            <span>¿Cuáles son los medios de pago aceptados?</span>
+                            <i class="fa-solid fa-plus text-brand-primary text-sm transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-4 pb-4 hidden text-sm text-brand-text/80">
+                            Aceptamos efectivo, tarjetas de débito, crédito (Visa, Mastercard, Amex) y transferencias bancarias.
+                        </div>
+                    </div>
+                    <!-- FAQ Item -->
+                    <div class="faq-item bg-white rounded-xl shadow-sm border border-brand-sand overflow-hidden">
+                        <button class="faq-btn w-full px-4 py-4 flex items-center justify-between text-left font-medium">
+                            <span>¿Aceptan mascotas?</span>
+                            <i class="fa-solid fa-plus text-brand-primary text-sm transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-4 pb-4 hidden text-sm text-brand-text/80">
+                            No, lamentablemente por políticas del hotel no podemos alojar mascotas.
+                        </div>
+                    </div>
+                    <!-- FAQ Item -->
+                    <div class="faq-item bg-white rounded-xl shadow-sm border border-brand-sand overflow-hidden">
+                        <button class="faq-btn w-full px-4 py-4 flex items-center justify-between text-left font-medium">
+                            <span>¿Tienen servicio de lavandería?</span>
+                            <i class="fa-solid fa-plus text-brand-primary text-sm transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-4 pb-4 hidden text-sm text-brand-text/80">
+                            Ofrecemos servicio de lavandería tercerizado. Por favor, consultá las tarifas y tiempos en la recepción.
+                        </div>
+                    </div>
+                    <!-- FAQ Item -->
+                    <div class="faq-item bg-white rounded-xl shadow-sm border border-brand-sand overflow-hidden">
+                        <button class="faq-btn w-full px-4 py-4 flex items-center justify-between text-left font-medium">
+                            <span>¿El estacionamiento se reserva?</span>
+                            <i class="fa-solid fa-plus text-brand-primary text-sm transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-4 pb-4 hidden text-sm text-brand-text/80">
+                            El estacionamiento es por orden de llegada y no se reserva previamente. Si está lleno, te indicaremos dónde estacionar cerca de forma segura.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: IN-STAY -->
+            <div id="view-instay" class="view-section">
+                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('home')">
+                    <i class="fa-solid fa-arrow-left text-brand-primary"></i>
+                    <h2 class="text-2xl font-bold">Asistencia al Huésped</h2>
+                </div>
+                <p class="mb-6 text-sm text-brand-text/80">¿Estás alojado en el hotel? Realizá tu solicitud por acá y nuestro equipo te asistirá a la brevedad.</p>
+                
+                <form id="form-instay" class="space-y-4" onsubmit="handleInStayRequest(event)">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 ml-1">Tu Nombre</label>
+                            <input type="text" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 ml-1">Nº Habitación</label>
+                            <input type="number" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 ml-1">Tipo de Solicitud</label>
+                        <select required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors">
+                            <option value="" disabled selected>Seleccioná una opción...</option>
+                            <option value="limpieza">Servicio de limpieza</option>
+                            <option value="toallas">Recambio de toallas</option>
+                            <option value="mantenimiento">Aviso de mantenimiento</option>
+                            <option value="bar">Pedido al Bar</option>
+                            <option value="otro">Otra consulta</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 ml-1">Detalle de tu solicitud</label>
+                        <textarea required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors h-28 resize-none" placeholder="Por favor, detallanos en qué podemos ayudarte..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-brand-green text-white font-bold text-lg rounded-xl py-4 mt-4 active:scale-95 transition-transform shadow-soft flex items-center justify-center gap-2">
+                        <i class="fa-regular fa-paper-plane"></i> Enviar solicitud
+                    </button>
+                </form>
+
+                <!-- Success State -->
+                <div id="success-instay" class="hidden text-center py-10">
+                    <div class="w-20 h-20 bg-brand-blue/20 text-brand-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa-solid fa-thumbs-up text-4xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">¡Solicitud enviada!</h3>
+                    <p class="text-brand-text/80 mb-8">Recepción ya recibió tu mensaje. Estamos trabajando para asistirte pronto.</p>
+                    <button onclick="navigate('home')" class="bg-brand-sand text-brand-text font-bold rounded-xl py-3 px-8">Volver al inicio</button>
+                </div>
+            </div>
+
+            <!-- VIEW: CONTACTO -->
+            <div id="view-contacto" class="view-section">
+                <h2 class="text-2xl font-bold mb-6">Contacto Directo</h2>
+                
+                <div class="bg-brand-blue text-white rounded-3xl p-6 text-center mb-6 shadow-soft">
+                    <i class="fa-regular fa-face-smile text-4xl mb-3 opacity-90"></i>
+                    <p class="text-lg font-medium leading-tight mb-2">¿No encontraste lo que buscabas?</p>
+                    <p class="text-sm opacity-90">¡Estamos para ayudarte! Comunicate con nuestro equipo y te vamos a acompañar.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <a href="tel:02252421234" class="block bg-white rounded-2xl p-5 border border-brand-sand shadow-sm flex items-center gap-4 active:bg-gray-50">
+                        <div class="w-12 h-12 bg-brand-sand rounded-full flex items-center justify-center text-brand-primary text-xl">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-lg">Llamar por teléfono</span>
+                            <span class="text-sm text-gray-500">(02252) 42-1234</span>
+                        </div>
+                    </a>
+
+                    <a href="mailto:recepcion@hotelmorales.com.ar" class="block bg-white rounded-2xl p-5 border border-brand-sand shadow-sm flex items-center gap-4 active:bg-gray-50">
+                        <div class="w-12 h-12 bg-brand-sand rounded-full flex items-center justify-center text-brand-primary text-xl">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-lg">Enviar un correo</span>
+                            <span class="text-sm text-gray-500">recepcion@hotelmorales.com.ar</span>
+                        </div>
+                    </a>
+
+                    <div class="bg-brand-sand rounded-2xl p-5 mt-4">
+                        <h4 class="font-bold text-sm uppercase tracking-wider mb-2">Ubicación</h4>
+                        <p class="text-sm">Calle 1 N° 1234, San Clemente del Tuyú, Buenos Aires, Argentina.</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Floating WhatsApp Button -->
+        <a href="#" onclick="event.preventDefault();" class="absolute bottom-24 right-5 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-transform z-50">
+            <i class="fa-brands fa-whatsapp text-3xl"></i>
+        </a>
+
+        <!-- Bottom Navigation -->
+        <nav class="bg-white border-t border-gray-100 shadow-nav absolute bottom-0 w-full z-40 rounded-t-3xl pb-safe">
+            <div class="flex justify-around items-center h-20 px-2">
+                <button onclick="navigate('home')" class="nav-item active flex flex-col items-center justify-center w-1/4 gap-1 text-gray-400" data-target="home">
+                    <i class="fa-solid fa-house text-xl mb-0.5"></i>
+                    <span class="text-[10px] font-semibold uppercase tracking-wide">Inicio</span>
+                </button>
+                <button onclick="navigate('info')" class="nav-item flex flex-col items-center justify-center w-1/4 gap-1 text-gray-400" data-target="info">
+                    <i class="fa-solid fa-circle-info text-xl mb-0.5"></i>
+                    <span class="text-[10px] font-semibold uppercase tracking-wide">Info</span>
+                </button>
+                <button onclick="navigate('faq')" class="nav-item flex flex-col items-center justify-center w-1/4 gap-1 text-gray-400" data-target="faq">
+                    <i class="fa-solid fa-clipboard-question text-xl mb-0.5"></i>
+                    <span class="text-[10px] font-semibold uppercase tracking-wide">FAQ</span>
+                </button>
+                <button onclick="navigate('contacto')" class="nav-item flex flex-col items-center justify-center w-1/4 gap-1 text-gray-400" data-target="contacto">
+                    <i class="fa-solid fa-address-book text-xl mb-0.5"></i>
+                    <span class="text-[10px] font-semibold uppercase tracking-wide">Contacto</span>
+                </button>
+            </div>
+        </nav>
+
+    </div>
+
+    <script>
+        // --- Navigation Logic ---
+        function navigate(targetId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.view-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            // Show target section
+            const target = document.getElementById('view-' + targetId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo(0, 0); // scroll to top on nav
+            }
+
+            // Update bottom nav UI
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                // Reset styling
+                item.classList.remove('text-brand-primary');
+                item.classList.add('text-gray-400');
+                
+                // Set active styling if it matches main tabs
+                if (item.dataset.target === targetId) {
+                    item.classList.remove('text-gray-400');
+                    item.classList.add('text-brand-primary');
+                }
+            });
+        }
+
+        // Initialize first active nav state
+        document.querySelector('.nav-item[data-target="home"]').classList.add('text-brand-primary');
+        document.querySelector('.nav-item[data-target="home"]').classList.remove('text-gray-400');
+
+        // --- Info Cards Accordion Logic ---
+        const infoToggles = document.querySelectorAll('.info-toggle');
+        infoToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('.fa-chevron-down');
+                
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    content.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+
+        // --- FAQ Accordion Logic ---
+        const faqBtns = document.querySelectorAll('.faq-btn');
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus');
+                } else {
+                    content.classList.add('hidden');
+                    icon.classList.remove('fa-minus');
+                    icon.classList.add('fa-plus');
+                }
+            });
+        });
+
+        // --- FAQ Search Filter Logic ---
+        function filterFAQ() {
+            const input = document.getElementById('faq-search').value.toLowerCase();
+            const items = document.querySelectorAll('.faq-item');
+
+            items.forEach(item => {
+                const questionText = item.querySelector('.faq-btn span').innerText.toLowerCase();
+                if (questionText.includes(input)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // --- Form Submissions (Simulated Demo) ---
+        function handlePreCheckin(e) {
+            e.preventDefault();
+            document.getElementById('form-precheckin').classList.add('hidden');
+            document.getElementById('success-precheckin').classList.remove('hidden');
+            document.getElementById('success-precheckin').classList.add('block');
+        }
+
+        function handleInStayRequest(e) {
+            e.preventDefault();
+            document.getElementById('form-instay').classList.add('hidden');
+            document.getElementById('success-instay').classList.remove('hidden');
+            document.getElementById('success-instay').classList.add('block');
+        }
+
+        // Reset forms when navigating back to home (optional cleanup for demo)
+        document.querySelector('.nav-item[data-target="home"]').addEventListener('click', () => {
+            // Reset precheckin
+            document.getElementById('form-precheckin').reset();
+            document.getElementById('form-precheckin').classList.remove('hidden');
+            document.getElementById('success-precheckin').classList.add('hidden');
+            
+            // Reset instay
+            document.getElementById('form-instay').reset();
+            document.getElementById('form-instay').classList.remove('hidden');
+            document.getElementById('success-instay').classList.add('hidden');
+        });
+
+    </script>
+</body>
+</html>
