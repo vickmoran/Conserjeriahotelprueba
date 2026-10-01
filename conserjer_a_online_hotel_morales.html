@@ -18,12 +18,12 @@
                     },
                     colors: {
                         brand: {
-                            bg: '#FDFBF7',      // Warm sand/white background
-                            sand: '#F2EBE1',    // Slightly darker sand for cards
-                            text: '#4A4238',    // Warm dark grey for high legibility
-                            blue: '#7293A0',    // Soft blue accent
-                            green: '#86A789',   // Soft green accent
-                            primary: '#B68D6D', // Warm earth tone for primary actions
+                            bg: '#FDFBF7',      
+                            sand: '#F2EBE1',    
+                            text: '#4A4238',    
+                            blue: '#7293A0',    
+                            green: '#86A789',   
+                            primary: '#B68D6D', 
                         }
                     },
                     boxShadow: {
@@ -41,7 +41,6 @@
             -webkit-tap-highlight-color: transparent;
         }
         
-        /* Smooth transitions for sections */
         .view-section {
             display: none;
             animation: fadeIn 0.3s ease-in-out;
@@ -56,13 +55,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Hide scrollbar for clean app feel */
         ::-webkit-scrollbar {
             width: 0px;
             background: transparent;
         }
 
-        /* Accordion transition */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
@@ -72,10 +69,8 @@
 </head>
 <body class="font-sans antialiased text-brand-text flex justify-center w-full min-h-screen">
 
-    <!-- App Container (Mobile constrained for better UX on desktop) -->
     <div class="w-full max-w-md bg-brand-bg min-h-screen relative shadow-2xl overflow-x-hidden flex flex-col">
         
-        <!-- Header -->
         <header class="bg-white/90 backdrop-blur-md sticky top-0 z-40 shadow-soft px-6 py-4 flex items-center justify-center">
             <div class="text-center">
                 <h1 class="text-2xl font-bold text-brand-text tracking-tight">Hotel Morales</h1>
@@ -83,7 +78,6 @@
             </div>
         </header>
 
-        <!-- Main Content -->
         <main class="flex-grow pb-28 px-5 pt-6 relative" id="app-main">
             
             <!-- VIEW: HOME -->
@@ -132,44 +126,78 @@
                 <p class="mb-6 text-sm text-brand-text/80">Completá tus datos anticipadamente para agilizar tu ingreso al hotel. Es rápido y sencillo.</p>
                 
                 <form id="form-precheckin" class="space-y-4" onsubmit="handlePreCheckin(event)">
+                    <!-- Mensaje de Error Oculto -->
+                    <div id="error-precheckin" class="hidden bg-red-100 text-red-700 p-3 rounded-xl text-sm font-medium text-center border border-red-200">
+                        Hubo un error al enviar los datos. Por favor, intentá nuevamente.
+                    </div>
+
                     <div>
                         <label class="block text-sm font-semibold mb-1 ml-1">Nombre y Apellido</label>
-                        <input type="text" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors" placeholder="Ej: Juan Pérez">
+                        <input type="text" name="nombre" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors" placeholder="Ej: Juan Pérez">
                     </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 ml-1">DNI o Documento</label>
+                            <input type="number" name="dni" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors" placeholder="Sin puntos">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 ml-1">Teléfono</label>
+                            <input type="tel" name="telefono" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors" placeholder="Ej: 011 4123 4567">
+                        </div>
+                    </div>
+
                     <div>
-                        <label class="block text-sm font-semibold mb-1 ml-1">DNI o Documento</label>
-                        <input type="number" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors" placeholder="Sin puntos ni espacios">
+                        <label class="block text-sm font-semibold mb-1 ml-1">Domicilio</label>
+                        <input type="text" name="domicilio" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors" placeholder="Ej: Av. San Martín 123, CABA">
                     </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 ml-1">Estado Civil</label>
+                            <select name="estado_civil" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm">
+                                <option value="" disabled selected>Seleccionar...</option>
+                                <option value="Soltero/a">Soltero/a</option>
+                                <option value="Casado/a">Casado/a</option>
+                                <option value="Divorciado/a">Divorciado/a</option>
+                                <option value="Viudo/a">Viudo/a</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 ml-1">Patente Auto</label>
+                            <input type="text" name="patente" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm" placeholder="Dejar vacío si no aplica">
+                        </div>
+                    </div>
+
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-semibold mb-1 ml-1">Llegada</label>
-                            <input type="date" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm">
+                            <input type="date" name="llegada" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold mb-1 ml-1">Salida</label>
-                            <input type="date" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm">
+                            <input type="date" name="salida" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm">
                         </div>
                     </div>
+                    
                     <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1">Teléfono</label>
-                            <input type="tel" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors">
+                        <div class="col-span-1">
+                            <label class="block text-sm font-semibold mb-1 ml-1">Huéspedes</label>
+                            <input type="number" name="huespedes" required min="1" max="6" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors">
                         </div>
-                        <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1">Cant. Huéspedes</label>
-                            <input type="number" required min="1" max="6" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors">
+                        <div class="col-span-1">
+                            <label class="block text-sm font-semibold mb-1 ml-1">Email</label>
+                            <input type="email" name="email" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors">
                         </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-semibold mb-1 ml-1">Email</label>
-                        <input type="email" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors">
-                    </div>
+
                     <div>
                         <label class="block text-sm font-semibold mb-1 ml-1">Observaciones (Opcional)</label>
-                        <textarea class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors h-24 resize-none" placeholder="¿Necesitás cuna? ¿Llegás tarde?"></textarea>
+                        <textarea name="observaciones" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors h-24 resize-none" placeholder="¿Necesitás cuna? ¿Llegás tarde?"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-brand-primary text-white font-bold text-lg rounded-xl py-4 mt-4 active:scale-95 transition-transform shadow-soft">
-                        Completar mi pre-check-in
+                    <button type="submit" id="btn-submit-precheckin" class="w-full bg-brand-primary text-white font-bold text-lg rounded-xl py-4 mt-4 active:scale-95 transition-all shadow-soft flex justify-center items-center gap-2">
+                        <span>Completar mi pre-check-in</span>
                     </button>
                 </form>
 
@@ -491,33 +519,44 @@
     <script>
         // --- Navigation Logic ---
         function navigate(targetId) {
-            // Hide all sections
             const sections = document.querySelectorAll('.view-section');
             sections.forEach(sec => sec.classList.remove('active'));
             
-            // Show target section
             const target = document.getElementById('view-' + targetId);
             if (target) {
                 target.classList.add('active');
-                window.scrollTo(0, 0); // scroll to top on nav
+                window.scrollTo(0, 0); 
             }
 
-            // Update bottom nav UI
             const navItems = document.querySelectorAll('.nav-item');
             navItems.forEach(item => {
-                // Reset styling
                 item.classList.remove('text-brand-primary');
                 item.classList.add('text-gray-400');
                 
-                // Set active styling if it matches main tabs
                 if (item.dataset.target === targetId) {
                     item.classList.remove('text-gray-400');
                     item.classList.add('text-brand-primary');
                 }
             });
+
+            // LÓGICA DE PRE-CHECK-IN ÚNICO
+            if (targetId === 'precheckin') {
+                const isCompleted = localStorage.getItem('precheckin_completado');
+                const form = document.getElementById('form-precheckin');
+                const successDiv = document.getElementById('success-precheckin');
+                
+                if (isCompleted === 'true') {
+                    form.classList.add('hidden');
+                    successDiv.classList.remove('hidden');
+                    successDiv.classList.add('block');
+                } else {
+                    form.classList.remove('hidden');
+                    successDiv.classList.add('hidden');
+                    successDiv.classList.remove('block');
+                }
+            }
         }
 
-        // Initialize first active nav state
         document.querySelector('.nav-item[data-target="home"]').classList.add('text-brand-primary');
         document.querySelector('.nav-item[data-target="home"]').classList.remove('text-gray-400');
 
@@ -572,12 +611,50 @@
             });
         }
 
-        // --- Form Submissions (Simulated Demo) ---
-        function handlePreCheckin(e) {
+        // --- Form Submissions ---
+
+        // URL actualizada de tu Web App de Google Apps Script
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzkUW1bX9VyvtG7Kk_4WLHkzvzEwiQUsuvJIvGFuk3DF7E0SzWykxau-nG7ciGDE2N2UQ/exec';
+
+        async function handlePreCheckin(e) {
             e.preventDefault();
-            document.getElementById('form-precheckin').classList.add('hidden');
-            document.getElementById('success-precheckin').classList.remove('hidden');
-            document.getElementById('success-precheckin').classList.add('block');
+            
+            const form = e.target;
+            const btnSubmit = document.getElementById('btn-submit-precheckin');
+            const errorDiv = document.getElementById('error-precheckin');
+            
+            const originalBtnHtml = btnSubmit.innerHTML;
+            btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Enviando datos...</span>';
+            btnSubmit.disabled = true;
+            btnSubmit.classList.add('opacity-80', 'cursor-not-allowed');
+            errorDiv.classList.add('hidden'); 
+
+            const formData = new FormData(form);
+
+            try {
+                // Se agregó mode: 'no-cors' para evitar el bloqueo del navegador
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+
+                localStorage.setItem('precheckin_completado', 'true');
+                
+                form.classList.add('hidden');
+                const successDiv = document.getElementById('success-precheckin');
+                successDiv.classList.remove('hidden');
+                successDiv.classList.add('block');
+                window.scrollTo(0, 0);
+
+            } catch (error) {
+                console.error('Error al enviar:', error);
+                errorDiv.classList.remove('hidden');
+            } finally {
+                btnSubmit.innerHTML = originalBtnHtml;
+                btnSubmit.disabled = false;
+                btnSubmit.classList.remove('opacity-80', 'cursor-not-allowed');
+            }
         }
 
         function handleInStayRequest(e) {
@@ -587,14 +664,7 @@
             document.getElementById('success-instay').classList.add('block');
         }
 
-        // Reset forms when navigating back to home (optional cleanup for demo)
         document.querySelector('.nav-item[data-target="home"]').addEventListener('click', () => {
-            // Reset precheckin
-            document.getElementById('form-precheckin').reset();
-            document.getElementById('form-precheckin').classList.remove('hidden');
-            document.getElementById('success-precheckin').classList.add('hidden');
-            
-            // Reset instay
             document.getElementById('form-instay').reset();
             document.getElementById('form-instay').classList.remove('hidden');
             document.getElementById('success-instay').classList.add('hidden');
