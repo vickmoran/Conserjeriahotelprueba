@@ -34,37 +34,27 @@
             }
         }
     </script>
-    <style>
-        body {
-            background-color: #FDFBF7;
-            color: #4A4238;
-            -webkit-tap-highlight-color: transparent;
-        }
+<style>
+        .step-hidden { display: none; }
         
-        .view-section {
-            display: none;
-            animation: fadeIn 0.3s ease-in-out;
-        }
+        /* --- NUEVA PALETA HOTEL MORALES --- */
+        /* Fondo general (Blanco cálido) */
+        .bg-arena { background-color: #FBF8F3; } 
         
-        .view-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        ::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
+        /* Títulos y textos destacados (Azul noche) */
+        .text-morales { color: #0A3C59; } 
+        
+        /* Botones principales (Azul noche) */
+        .btn-primary { background-color: #0A3C59; color: white; border-radius: 0.5rem; padding: 0.75rem 1.5rem; font-weight: 600; width: 100%; transition: all 0.3s;}
+        
+        /* Botones principales deshabilitados (Azul suave) */
+        .btn-primary:disabled { background-color: #567D9B; cursor: not-allowed; }
+        
+        /* Botones secundarios (Arena) */
+        .btn-secondary { background-color: #E3D3B8; color: #0A3C59; border-radius: 0.5rem; padding: 0.75rem 1.5rem; font-weight: 600; width: 100%; transition: all 0.3s;}
+        
+        .faq-answer { display: none; }
+        .faq-answer.open { display: block; }
     </style>
 </head>
 <body class="font-sans antialiased text-brand-text flex justify-center w-full min-h-screen">
