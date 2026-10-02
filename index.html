@@ -2,57 +2,17 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Conserjería Online – Hotel Morales</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conserjería Online - Hotel Morales</title>
+    <!-- Esta línea de abajo es la que mantiene la estructura armada, no se debe borrar -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            bg: '#FDFBF7',      
-                            sand: '#F2EBE1',    
-                            text: '#4A4238',    
-                            blue: '#7293A0',    
-                            green: '#86A789',   
-                            primary: '#B68D6D', 
-                        }
-                    },
-                    boxShadow: {
-                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
-                        'nav': '0 -4px 20px -2px rgba(0, 0, 0, 0.05)',
-                    }
-                }
-            }
-        }
-    </script>
-<style>
+    <style>
         .step-hidden { display: none; }
-        
-        /* --- NUEVA PALETA HOTEL MORALES --- */
-        /* Fondo general (Blanco cálido) */
         .bg-arena { background-color: #FBF8F3; } 
-        
-        /* Títulos y textos destacados (Azul noche) */
         .text-morales { color: #0A3C59; } 
-        
-        /* Botones principales (Azul noche) */
         .btn-primary { background-color: #0A3C59; color: white; border-radius: 0.5rem; padding: 0.75rem 1.5rem; font-weight: 600; width: 100%; transition: all 0.3s;}
-        
-        /* Botones principales deshabilitados (Azul suave) */
         .btn-primary:disabled { background-color: #567D9B; cursor: not-allowed; }
-        
-        /* Botones secundarios (Arena) */
         .btn-secondary { background-color: #E3D3B8; color: #0A3C59; border-radius: 0.5rem; padding: 0.75rem 1.5rem; font-weight: 600; width: 100%; transition: all 0.3s;}
-        
         .faq-answer { display: none; }
         .faq-answer.open { display: block; }
     </style>
