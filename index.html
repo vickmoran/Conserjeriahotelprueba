@@ -19,7 +19,7 @@
                     colors: {
                         brand: {
                             bg: '#FBF8F3',      
-                            sand: '##E3D3B8',    
+                            sand: '#E3D3B8',    
                             text: '#0A3C59',    
                             blue: '#567D9B',    
                             green: '#A3B59F',   
@@ -60,11 +60,6 @@
             background: transparent;
         }
 
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
         /* --- ANIMACIÓN SUAVE PARA ACORDEÓN --- */
         .accordion-grid {
             display: grid;
@@ -98,7 +93,7 @@
                     <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-brand-blue">
                         <i class="fa-solid fa-bell-concierge text-2xl"></i>
                     </div>
-                    <h2 class="text-xl font-bold mb-3">¡Hola! Te damos la bienvenida a la Conserjería Online del Hotel Morales.</h2>
+                    <h2 class="text-xl font-bold mb-3 text-brand-text">¡Hola! Te damos la bienvenida a la Conserjería Online del Hotel Morales.</h2>
                     <p class="text-sm text-brand-text/80 leading-relaxed">
                         Estamos acá para acompañarte antes y durante tu estadía. Encontrá toda la información que necesitás y resolvé tus consultas fácilmente.
                     </p>
@@ -133,7 +128,7 @@
             <div id="view-precheckin" class="view-section">
                 <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('home')">
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
-                    <h2 class="text-2xl font-bold">Pre-check-in Digital</h2>
+                    <h2 class="text-2xl font-bold text-brand-text">Pre-check-in Digital</h2>
                 </div>
                 <p class="mb-6 text-sm text-brand-text/80">Completá tus datos anticipadamente para agilizar tu ingreso al hotel. Es rápido y sencillo.</p>
                 
@@ -144,29 +139,29 @@
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-1 ml-1">Nombre y Apellido</label>
+                        <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Nombre y Apellido</label>
                         <input type="text" name="nombre" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors" placeholder="Ej: Juan Pérez">
                     </div>
                     
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1">DNI o Documento</label>
+                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">DNI o Documento</label>
                             <input type="number" name="dni" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors" placeholder="Sin puntos">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1">Teléfono</label>
+                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Teléfono</label>
                             <input type="tel" name="telefono" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors" placeholder="Ej: 011 4123 4567">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-1 ml-1">Domicilio</label>
+                        <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Domicilio</label>
                         <input type="text" name="domicilio" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors" placeholder="Ej: Av. San Martín 123, CABA">
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1">Estado Civil</label>
+                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Estado Civil</label>
                             <select name="estado_civil" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm">
                                 <option value="" disabled selected>Seleccionar...</option>
                                 <option value="Soltero/a">Soltero/a</option>
@@ -177,35 +172,35 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1">Patente Auto</label>
+                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Patente Auto</label>
                             <input type="text" name="patente" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm" placeholder="Dejar vacío si no aplica">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1">Llegada</label>
-                            <input type="date" name="llegada" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm">
+                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Llegada</label>
+                            <input type="date" name="llegada" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm text-brand-text">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1">Salida</label>
-                            <input type="date" name="salida" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm">
+                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Salida</label>
+                            <input type="date" name="salida" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm text-brand-text">
                         </div>
                     </div>
                     
                     <div class="grid grid-cols-2 gap-4">
                         <div class="col-span-1">
-                            <label class="block text-sm font-semibold mb-1 ml-1">Huéspedes</label>
+                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Huéspedes</label>
                             <input type="number" name="huespedes" required min="1" max="6" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors">
                         </div>
                         <div class="col-span-1">
-                            <label class="block text-sm font-semibold mb-1 ml-1">Email</label>
+                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Email</label>
                             <input type="email" name="email" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-1 ml-1">Observaciones (Opcional)</label>
+                        <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Observaciones (Opcional)</label>
                         <textarea name="observaciones" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors h-24 resize-none" placeholder="¿Necesitás cuna? ¿Llegás tarde?"></textarea>
                     </div>
                     <button type="submit" id="btn-submit-precheckin" class="w-full bg-brand-primary text-white font-bold text-lg rounded-xl py-4 mt-4 active:scale-95 transition-all shadow-soft flex justify-center items-center gap-2">
@@ -218,94 +213,107 @@
                     <div class="w-20 h-20 bg-brand-green/20 text-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fa-solid fa-check text-4xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3">¡Datos recibidos!</h3>
+                    <h3 class="text-2xl font-bold mb-3 text-brand-text">¡Datos recibidos!</h3>
                     <p class="text-brand-text/80 mb-8">Tu pre-check-in se completó con éxito. Nuestro personal de recepción te asistirá rápidamente al llegar.</p>
-                    <button onclick="navigate('home')" class="bg-brand-sand text-brand-text font-bold rounded-xl py-3 px-8">Volver al inicio</button>
+                    <button onclick="navigate('home')" class="bg-brand-sand text-brand-text font-bold rounded-xl py-3 px-8 transition-transform active:scale-95">Volver al inicio</button>
                 </div>
             </div>
 
             <!-- VIEW: INFO -->
             <div id="view-info" class="view-section">
-                <h2 class="text-2xl font-bold mb-6">Información del Hotel</h2>
+                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('home')">
+                    <i class="fa-solid fa-arrow-left text-brand-primary"></i>
+                    <h2 class="text-2xl font-bold text-brand-text">Información del Hotel</h2>
+                </div>
                 
                 <div class="space-y-4">
                     <!-- Info Card 1 -->
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
-                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
                             <div class="flex items-center gap-3">
                                 <i class="fa-regular fa-clock text-brand-blue w-5"></i> Horarios
                             </div>
-                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
                         </button>
-                        <div class="px-5 pb-4 hidden info-content text-sm text-brand-text/80">
-                            <p><strong>Check-in:</strong> A partir de las 14:00 hs.<br>
-                            <strong>Check-out:</strong> Hasta las 10:00 hs.</p>
-                            <p class="mt-2 text-xs italic">*Horarios sujetos a disponibilidad, consultanos por late check-out.</p>
+                        <div class="accordion-grid info-content">
+                            <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/80">
+                                <p><strong>Check-in:</strong> A partir de las 14:00 hs.<br>
+                                <strong>Check-out:</strong> Hasta las 10:00 hs.</p>
+                                <p class="mt-2 text-xs italic">*Horarios sujetos a disponibilidad, consultanos por late check-out.</p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Info Card 2 -->
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
-                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
                             <div class="flex items-center gap-3">
                                 <i class="fa-solid fa-mug-hot text-brand-primary w-5"></i> Desayuno Buffet
                             </div>
-                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
                         </button>
-                        <div class="px-5 pb-4 hidden info-content text-sm text-brand-text/80">
-                            <p>Servicio diario en nuestro salón comedor.<br>
-                            <strong>Horario:</strong> 08:00 hs a 10:30 hs.</p>
-                            <p class="mt-2">Contamos con opciones sin TACC (avisar con anticipación en recepción).</p>
+                        <div class="accordion-grid info-content">
+                            <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/80">
+                                <p>Servicio diario en nuestro salón comedor.<br>
+                                <strong>Horario:</strong> 08:00 hs a 10:30 hs.</p>
+                                <p class="mt-2">Contamos con opciones sin TACC (avisar con anticipación en recepción).</p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Info Card 3 -->
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
-                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
                             <div class="flex items-center gap-3">
                                 <i class="fa-solid fa-martini-glass-citrus text-brand-blue w-5"></i> Bar 24 Horas
                             </div>
-                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
                         </button>
-                        <div class="px-5 pb-4 hidden info-content text-sm text-brand-text/80">
-                            <p>Nuestro bar en el lobby está disponible las 24 horas para disfrutar de cafetería, bebidas frescas y snacks.</p>
+                        <div class="accordion-grid info-content">
+                            <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/80">
+                                <p>Nuestro bar en el lobby está disponible las 24 horas para disfrutar de cafetería, bebidas frescas y snacks.</p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Info Card 4 -->
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
-                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
                             <div class="flex items-center gap-3">
                                 <i class="fa-solid fa-water-ladder text-brand-blue w-5"></i> Pileta Climatizada
                             </div>
-                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
                         </button>
-                        <div class="px-5 pb-4 hidden info-content text-sm text-brand-text/80">
-                            <p>Ubicada en planta baja. <br>
-                            <strong>Temporada:</strong> Noviembre a Marzo.<br>
-                            <strong>Horario:</strong> 10:00 a 20:00 hs.</p>
-                            <p class="mt-2 text-xs">Por favor, solicitar toallas exclusivas para la pileta en recepción.</p>
+                        <div class="accordion-grid info-content">
+                            <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/80">
+                                <p>Ubicada en planta baja. <br>
+                                <strong>Temporada:</strong> Noviembre a Marzo.<br>
+                                <strong>Horario:</strong> 10:00 a 20:00 hs.</p>
+                                <p class="mt-2 text-xs">Por favor, solicitar toallas exclusivas para la pileta en recepción.</p>
+                            </div>
                         </div>
                     </div>
                     
                     <!-- Info Card 5 -->
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
-                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
                             <div class="flex items-center gap-3">
                                 <i class="fa-solid fa-car text-brand-blue w-5"></i> Estacionamiento
                             </div>
-                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
                         </button>
-                        <div class="px-5 pb-4 hidden info-content text-sm text-brand-text/80">
-                            <p>Contamos con estacionamiento gratuito para nuestros huéspedes (sujeto a disponibilidad al momento de llegada).</p>
+                        <div class="accordion-grid info-content">
+                            <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/80">
+                                <p>Contamos con estacionamiento gratuito para nuestros huéspedes (sujeto a disponibilidad al momento de llegada).</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-8 bg-brand-sand rounded-2xl p-5 text-center">
-                    <h3 class="font-bold text-lg mb-2">¿Querés salir a pasear?</h3>
-                    <p class="text-sm mb-4">Descubrí las mejores atracciones de San Clemente.</p>
-                    <button onclick="navigate('recomendaciones')" class="bg-brand-primary text-white px-6 py-2 rounded-xl font-semibold shadow-sm active:scale-95 transition-transform">Ver Recomendaciones</button>
+                <div class="mt-8 bg-brand-sand rounded-2xl p-5 text-center shadow-soft">
+                    <h3 class="font-bold text-lg mb-2 text-brand-text">¿Querés salir a pasear?</h3>
+                    <p class="text-sm mb-4 text-brand-text/80">Descubrí las mejores atracciones de San Clemente.</p>
+                    <button onclick="navigate('recomendaciones')" class="bg-brand-primary text-white px-6 py-3 rounded-xl font-semibold shadow-sm active:scale-95 transition-transform w-full">Ver Recomendaciones</button>
                 </div>
             </div>
 
@@ -313,16 +321,16 @@
             <div id="view-recomendaciones" class="view-section">
                 <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('info')">
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
-                    <h2 class="text-2xl font-bold">Paseos y Gastronomía</h2>
+                    <h2 class="text-2xl font-bold text-brand-text">Paseos y Gastronomía</h2>
                 </div>
                 
                 <div class="space-y-5">
                     <!-- Rec Card -->
                     <div class="bg-white rounded-2xl overflow-hidden shadow-soft border border-brand-sand">
-                        <img src="https://placehold.co/400x200/F2EBE1/4A4238?text=Termas+Marinas" alt="Termas Marinas" class="w-full h-36 object-cover">
+                        <img src="https://placehold.co/400x200/E3D3B8/0A3C59?text=Termas+Marinas" alt="Termas Marinas" class="w-full h-36 object-cover">
                         <div class="p-4">
                             <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">Actividades</span>
-                            <h3 class="text-lg font-bold mt-1 mb-2">Termas Marinas Park</h3>
+                            <h3 class="text-lg font-bold mt-1 mb-2 text-brand-text">Termas Marinas Park</h3>
                             <p class="text-sm text-brand-text/80 mb-3">Parque termal con piletas de agua salada a diferentes temperaturas. Ideal para relajarse en familia.</p>
                             <a href="#" class="text-brand-primary font-semibold text-sm flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Ver en mapa</a>
                         </div>
@@ -330,10 +338,10 @@
 
                     <!-- Rec Card -->
                     <div class="bg-white rounded-2xl overflow-hidden shadow-soft border border-brand-sand">
-                        <img src="https://placehold.co/400x200/F2EBE1/4A4238?text=Mundo+Marino" alt="Mundo Marino" class="w-full h-36 object-cover">
+                        <img src="https://placehold.co/400x200/E3D3B8/0A3C59?text=Mundo+Marino" alt="Mundo Marino" class="w-full h-36 object-cover">
                         <div class="p-4">
                             <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">Entretenimiento</span>
-                            <h3 class="text-lg font-bold mt-1 mb-2">Mundo Marino</h3>
+                            <h3 class="text-lg font-bold mt-1 mb-2 text-brand-text">Mundo Marino</h3>
                             <p class="text-sm text-brand-text/80 mb-3">El oceanario más grande de Sudamérica, un clásico imperdible de San Clemente.</p>
                             <a href="#" class="text-brand-primary font-semibold text-sm flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Ver en mapa</a>
                         </div>
@@ -341,10 +349,10 @@
 
                     <!-- Rec Card -->
                     <div class="bg-white rounded-2xl overflow-hidden shadow-soft border border-brand-sand">
-                        <img src="https://placehold.co/400x200/F2EBE1/4A4238?text=Puerto+y+Ria" alt="Gastronomía" class="w-full h-36 object-cover">
+                        <img src="https://placehold.co/400x200/E3D3B8/0A3C59?text=Puerto+y+Ria" alt="Gastronomía" class="w-full h-36 object-cover">
                         <div class="p-4">
                             <span class="text-xs font-bold text-brand-primary uppercase tracking-wider">Gastronomía</span>
-                            <h3 class="text-lg font-bold mt-1 mb-2">Puerto y Ría</h3>
+                            <h3 class="text-lg font-bold mt-1 mb-2 text-brand-text">Puerto y Ría</h3>
                             <p class="text-sm text-brand-text/80 mb-3">Zona portuaria ideal para disfrutar de mariscos frescos, pesca del día y vistas hermosas al atardecer.</p>
                             <a href="#" class="text-brand-primary font-semibold text-sm flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Ver en mapa</a>
                         </div>
@@ -352,425 +360,395 @@
                 </div>
             </div>
 
-            <!-- VIEW: FAQ -->
-<!-- PANTALLA 4: PREGUNTAS FRECUENTES (NUEVA ESTRUCTURA) -->
-    <main id="view-faq" class="p-6 max-w-md mx-auto hidden pb-24">
-        <h2 class="text-2xl font-bold text-morales mb-6">Preguntas Frecuentes</h2>
-        
-        <div class="space-y-3" id="faq-categories">
-            
-            <!-- CATEGORÍA 1 -->
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                <button class="w-full text-left p-4 font-bold text-morales flex justify-between items-center" onclick="toggleCategory(this)">
-                    <span>Reservas y pagos</span>
-                    <span class="icon-cat text-xl font-normal">▸</span>
-                </button>
-                <div class="accordion-grid category-content">
-                    <div class="accordion-inner px-2 pb-2">
-                        
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Qué medios de pago aceptan?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Aceptamos efectivo, tarjetas de débito, crédito (Visa, Mastercard, Amex) y transferencias bancarias.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Cómo se modifica una reserva?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Para modificar una reserva, comunicate con el hotel o con el canal a través del cual realizaste la reserva. Nuestro equipo te ayudará a gestionar el cambio según disponibilidad y condiciones de la reserva.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Cómo cancelo una reserva?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Para cancelar una reserva, comunicate con el hotel o con el canal a través del cual realizaste la reserva. Las condiciones de cancelación pueden variar según la reserva.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Puedo reservar directamente con el hotel?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Sí. Podés comunicarte directamente con el Hotel Morales para consultar disponibilidad y condiciones de reserva.
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+            <!-- VIEW: FAQ (NUEVA ESTRUCTURA) -->
+            <div id="view-faq" class="view-section">
+                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('home')">
+                    <i class="fa-solid fa-arrow-left text-brand-primary"></i>
+                    <h2 class="text-2xl font-bold text-brand-text">Preguntas Frecuentes</h2>
                 </div>
-            </div>
-
-            <!-- CATEGORÍA 2 -->
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                <button class="w-full text-left p-4 font-bold text-morales flex justify-between items-center" onclick="toggleCategory(this)">
-                    <span>Check-in y check-out</span>
-                    <span class="icon-cat text-xl font-normal">▸</span>
-                </button>
-                <div class="accordion-grid category-content">
-                    <div class="accordion-inner px-2 pb-2">
-                        
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿A qué hora es el check-in?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    El horario de check-in es a partir de las 12hs. Si necesitás coordinar una llegada fuera de ese horario, contactanos para consultar las opciones disponibles.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Puedo hacer un check-out tardío?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Si! El check-out tardío está sujeto a disponibilidad. Consultá con recepción durante tu estadía para conocer las opciones disponibles.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Qué necesito presentar al hacer el check-in?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Al llegar, recepción verificará tus datos y completará el proceso de ingreso. Si realizaste el pre-check-in online, parte de la información ya estará cargada previamente, y el proceso será mucho más rapido.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Puedo dejar mi equipaje antes del check-in?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Si! Nosotros te lo guardamos sin costo extra. Comunicate con recepción para gestionarlo cuando llegues.
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- CATEGORÍA 3 -->
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                <button class="w-full text-left p-4 font-bold text-morales flex justify-between items-center" onclick="toggleCategory(this)">
-                    <span>Habitaciones</span>
-                    <span class="icon-cat text-xl font-normal">▸</span>
-                </button>
-                <div class="accordion-grid category-content">
-                    <div class="accordion-inner px-2 pb-2">
-                        
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Qué tipos de habitación hay?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    El Hotel Morales cuenta con habitaciones dobles, triples y cuádruples.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Puedo pedir una habitación en particular?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Si! Sabemos que muchos quieren la misma habitación de todos los años. Podes comunicarte con el hotel antes de llegar, para que podamos gestionarlo.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Las habitaciones tienen aire acondicionado?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    No, las habitaciones cuentan con ventilador. Pero quedate tranquilo, que las noches suelen ser frescas en La Costa.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Las habitaciones tienen minibar?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Sí, las habitaciones cuentan con minibar.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Las habitaciones tienen caja fuerte?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Sí, las habitaciones cuentan con caja fuerte.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Las habitaciones tienen secador de pelo?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Sí, las habitaciones cuentan con secador de pelo.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Hay Wi-Fi?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Si! Tenemos fibra optica en todo el establecimiento, para que puedas acceder desde cualquier lugar del hotel.
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- CATEGORÍA 4 -->
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                <button class="w-full text-left p-4 font-bold text-morales flex justify-between items-center" onclick="toggleCategory(this)">
-                    <span>Servicios del hotel</span>
-                    <span class="icon-cat text-xl font-normal">▸</span>
-                </button>
-                <div class="accordion-grid category-content">
-                    <div class="accordion-inner px-2 pb-2">
-                        
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Cuándo abre la pileta?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    La pileta climatizada descubierta está disponible durante la temporada de noviembre a marzo.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Tienen estacionamiento?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Sí, el hotel cuenta con estacionamiento gratuito para huéspedes.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿El bar está abierto de noche?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Sí. El bar del Hotel Morales se encuentra disponible las 24 horas.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿El desayuno está incluido?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Si! El hotel ofrece desayuno buffet, tipo continental, 100% gratuito.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿En qué horario se sirve el desayuno?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    El desayuno se sirve de 7 a 10hs, en nuestro salón comedor.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿El estacionamiento necesita reserva?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    No! No es necesario reservar.
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- CATEGORÍA 5 -->
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                <button class="w-full text-left p-4 font-bold text-morales flex justify-between items-center" onclick="toggleCategory(this)">
-                    <span>Ubicación y cómo llegar</span>
-                    <span class="icon-cat text-xl font-normal">▸</span>
-                </button>
-                <div class="accordion-grid category-content">
-                    <div class="accordion-inner px-2 pb-2">
-                        
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Cómo llego desde la terminal o la ruta?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Podés consultar la ubicación del Hotel Morales y obtener indicaciones para llegar desde tu punto de partida a través de Google Maps. Si necesitás ayuda para planificar tu llegada, contactanos.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Dónde está ubicado el hotel?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    El Hotel Morales está ubicado en la Calle 1 N° 1856, en San Clemente del Tuyú, a dos cuadras de la playa y a tres del centro.
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- CATEGORÍA 6 (Especial) -->
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden border-2 border-[#E3D3B8]">
-                <button class="w-full text-left p-4 font-bold text-morales flex justify-between items-center" onclick="toggleCategory(this)">
-                    <span>Antes de tu llegada</span>
-                    <span class="icon-cat text-xl font-normal">▸</span>
-                </button>
-                <div class="accordion-grid category-content">
-                    <div class="accordion-inner px-2 pb-2">
-                        
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Qué necesito hacer antes de llegar al hotel?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Antes de tu llegada podés completar tu pre-check-in online para que nuestro equipo tenga tus datos preparados y agilizar el proceso de ingreso.
-                                    <button onclick="iniciarPreCheckin()" class="btn-primary mt-4 py-2 text-sm">Hacer mi pre-check-in</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-100">
-                            <button class="w-full text-left p-3 font-semibold text-morales flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
-                                <span>¿Cómo hago el pre-check-in?</span>
-                                <span class="icon-q text-lg font-normal text-gray-400">▸</span>
-                            </button>
-                            <div class="accordion-grid answer-content">
-                                <div class="accordion-inner px-3 pb-3 text-sm text-gray-600">
-                                    Desde la sección 'Estoy por viajar' en el inicio de nuestra Conserjería Online podés completar tus datos antes de llegar al hotel. El proceso es simple y te permitirá agilizar tu ingreso!
-                                    <button onclick="iniciarPreCheckin()" class="btn-primary mt-4 py-2 text-sm">Hacer mi pre-check-in</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </main>
-                    <!-- FAQ Item -->
-                    <div class="faq-item bg-white rounded-xl shadow-sm border border-brand-sand overflow-hidden">
-                        <button class="faq-btn w-full px-4 py-4 flex items-center justify-between text-left font-medium">
-                            <span>¿Aceptan mascotas?</span>
-                            <i class="fa-solid fa-plus text-brand-primary text-sm transition-transform duration-300"></i>
+                
+                <div class="space-y-4" id="faq-categories">
+                    
+                    <!-- CATEGORÍA 1 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
+                            <span>Reservas y pagos</span>
+                            <span class="icon-cat text-brand-primary font-bold transition-transform duration-300 inline-block">▸</span>
                         </button>
-                        <div class="faq-content px-4 pb-4 hidden text-sm text-brand-text/80">
-                            No, lamentablemente por políticas del hotel no podemos alojar mascotas.
+                        <div class="accordion-grid category-content">
+                            <div class="accordion-inner">
+                                
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Qué medios de pago aceptan?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Aceptamos efectivo, tarjetas de débito, crédito (Visa, Mastercard, Amex) y transferencias bancarias.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Cómo se modifica una reserva?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Para modificar una reserva, comunicate con el hotel o con el canal a través del cual realizaste la reserva. Nuestro equipo te ayudará a gestionar el cambio según disponibilidad y condiciones de la reserva.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Cómo cancelo una reserva?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Para cancelar una reserva, comunicate con el hotel o con el canal a través del cual realizaste la reserva. Las condiciones de cancelación pueden variar según la reserva.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Puedo reservar directamente con el hotel?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Sí. Podés comunicarte directamente con el Hotel Morales para consultar disponibilidad y condiciones de reserva.
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                    <!-- FAQ Item -->
-                    <div class="faq-item bg-white rounded-xl shadow-sm border border-brand-sand overflow-hidden">
-                        <button class="faq-btn w-full px-4 py-4 flex items-center justify-between text-left font-medium">
-                            <span>¿Tienen servicio de lavandería?</span>
-                            <i class="fa-solid fa-plus text-brand-primary text-sm transition-transform duration-300"></i>
+
+                    <!-- CATEGORÍA 2 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
+                            <span>Check-in y check-out</span>
+                            <span class="icon-cat text-brand-primary font-bold transition-transform duration-300 inline-block">▸</span>
                         </button>
-                        <div class="faq-content px-4 pb-4 hidden text-sm text-brand-text/80">
-                            Ofrecemos servicio de lavandería tercerizado. Por favor, consultá las tarifas y tiempos en la recepción.
+                        <div class="accordion-grid category-content">
+                            <div class="accordion-inner">
+                                
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿A qué hora es el check-in?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            El horario de check-in es a partir de las 12hs. Si necesitás coordinar una llegada fuera de ese horario, contactanos para consultar las opciones disponibles.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Puedo hacer un check-out tardío?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Si! El check-out tardío está sujeto a disponibilidad. Consultá con recepción durante tu estadía para conocer las opciones disponibles.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Qué necesito presentar al hacer el check-in?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Al llegar, recepción verificará tus datos y completará el proceso de ingreso. Si realizaste el pre-check-in online, parte de la información ya estará cargada previamente, y el proceso será mucho más rapido.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Puedo dejar mi equipaje antes del check-in?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Si! Nosotros te lo guardamos sin costo extra. Comunicate con recepción para gestionarlo cuando llegues.
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                    <!-- FAQ Item -->
-                    <div class="faq-item bg-white rounded-xl shadow-sm border border-brand-sand overflow-hidden">
-                        <button class="faq-btn w-full px-4 py-4 flex items-center justify-between text-left font-medium">
-                            <span>¿El estacionamiento se reserva?</span>
-                            <i class="fa-solid fa-plus text-brand-primary text-sm transition-transform duration-300"></i>
+
+                    <!-- CATEGORÍA 3 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
+                            <span>Habitaciones</span>
+                            <span class="icon-cat text-brand-primary font-bold transition-transform duration-300 inline-block">▸</span>
                         </button>
-                        <div class="faq-content px-4 pb-4 hidden text-sm text-brand-text/80">
-                            El estacionamiento es por orden de llegada y no se reserva previamente. Si está lleno, te indicaremos dónde estacionar cerca de forma segura.
+                        <div class="accordion-grid category-content">
+                            <div class="accordion-inner">
+                                
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Qué tipos de habitación hay?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            El Hotel Morales cuenta con habitaciones dobles, triples y cuádruples.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Puedo pedir una habitación en particular?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Si! Sabemos que muchos quieren la misma habitación de todos los años. Podes comunicarte con el hotel antes de llegar, para que podamos gestionarlo.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Las habitaciones tienen aire acondicionado?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            No, las habitaciones cuentan con ventilador. Pero quedate tranquilo, que las noches suelen ser frescas en La Costa.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Las habitaciones tienen minibar?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Sí, las habitaciones cuentan con minibar.
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Las habitaciones tienen caja fuerte?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Sí, las habitaciones cuentan con caja fuerte.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Las habitaciones tienen secador de pelo?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Sí, las habitaciones cuentan con secador de pelo.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Hay Wi-Fi?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Si! Tenemos fibra optica en todo el establecimiento, para que puedas acceder desde cualquier lugar del hotel.
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
+
+                    <!-- CATEGORÍA 4 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
+                            <span>Servicios del hotel</span>
+                            <span class="icon-cat text-brand-primary font-bold transition-transform duration-300 inline-block">▸</span>
+                        </button>
+                        <div class="accordion-grid category-content">
+                            <div class="accordion-inner">
+                                
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Cuándo abre la pileta?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            La pileta climatizada descubierta está disponible durante la temporada de noviembre a marzo.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Tienen estacionamiento?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Sí, el hotel cuenta con estacionamiento gratuito para huéspedes.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿El bar está abierto de noche?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Sí. El bar del Hotel Morales se encuentra disponible las 24 horas.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿El desayuno está incluido?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Si! El hotel ofrece desayuno buffet, tipo continental, 100% gratuito.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿En qué horario se sirve el desayuno?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            El desayuno se sirve de 7 a 10hs, en nuestro salón comedor.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿El estacionamiento necesita reserva?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            No! No es necesario reservar.
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CATEGORÍA 5 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
+                            <span>Ubicación y cómo llegar</span>
+                            <span class="icon-cat text-brand-primary font-bold transition-transform duration-300 inline-block">▸</span>
+                        </button>
+                        <div class="accordion-grid category-content">
+                            <div class="accordion-inner">
+                                
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Cómo llego desde la terminal o la ruta?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            Podés consultar la ubicación del Hotel Morales y obtener indicaciones para llegar desde tu punto de partida a través de Google Maps. Si necesitás ayuda para planificar tu llegada, contactanos.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Dónde está ubicado el hotel?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/70">
+                                            El Hotel Morales está ubicado en la Calle 1 N° 1856, en San Clemente del Tuyú, a dos cuadras de la playa y a tres del centro.
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CATEGORÍA 6 (Especial) -->
+                    <div class="bg-brand-sand/30 rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
+                            <span>Antes de tu llegada</span>
+                            <span class="icon-cat text-brand-primary font-bold transition-transform duration-300 inline-block">▸</span>
+                        </button>
+                        <div class="accordion-grid category-content">
+                            <div class="accordion-inner">
+                                
+                                <div class="border-t border-brand-sand/60">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Qué necesito hacer antes de llegar al hotel?</span>
+                                        <span class="icon-q text-brand-primary text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/80">
+                                            <p class="mb-3">Antes de tu llegada podés completar tu pre-check-in online para que nuestro equipo tenga tus datos preparados y agilizar el proceso de ingreso.</p>
+                                            <button onclick="navigate('precheckin')" class="w-full bg-brand-primary text-white font-semibold py-3 rounded-xl shadow-sm active:scale-95 transition-transform">Hacer mi pre-check-in</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-brand-sand/60">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Cómo hago el pre-check-in?</span>
+                                        <span class="icon-q text-brand-primary text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner px-5 pb-4 text-sm text-brand-text/80">
+                                            <p class="mb-3">Desde la sección 'Estoy por viajar' en el inicio de nuestra Conserjería Online podés completar tus datos antes de llegar al hotel. El proceso es simple y te permitirá agilizar tu ingreso!</p>
+                                            <button onclick="navigate('precheckin')" class="w-full bg-brand-primary text-white font-semibold py-3 rounded-xl shadow-sm active:scale-95 transition-transform">Hacer mi pre-check-in</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -778,24 +756,24 @@
             <div id="view-instay" class="view-section">
                 <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('home')">
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
-                    <h2 class="text-2xl font-bold">Asistencia al Huésped</h2>
+                    <h2 class="text-2xl font-bold text-brand-text">Asistencia al Huésped</h2>
                 </div>
                 <p class="mb-6 text-sm text-brand-text/80">¿Estás alojado en el hotel? Realizá tu solicitud por acá y nuestro equipo te asistirá a la brevedad.</p>
                 
                 <form id="form-instay" class="space-y-4" onsubmit="handleInStayRequest(event)">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1">Tu Nombre</label>
+                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Tu Nombre</label>
                             <input type="text" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1">Nº Habitación</label>
+                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Nº Habitación</label>
                             <input type="number" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors">
                         </div>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-semibold mb-1 ml-1">Tipo de Solicitud</label>
+                        <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Tipo de Solicitud</label>
                         <select required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors">
                             <option value="" disabled selected>Seleccioná una opción...</option>
                             <option value="limpieza">Servicio de limpieza</option>
@@ -807,7 +785,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-1 ml-1">Detalle de tu solicitud</label>
+                        <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Detalle de tu solicitud</label>
                         <textarea required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors h-28 resize-none" placeholder="Por favor, detallanos en qué podemos ayudarte..."></textarea>
                     </div>
                     
@@ -821,7 +799,7 @@
                     <div class="w-20 h-20 bg-brand-blue/20 text-brand-blue rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fa-solid fa-thumbs-up text-4xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3">¡Solicitud enviada!</h3>
+                    <h3 class="text-2xl font-bold mb-3 text-brand-text">¡Solicitud enviada!</h3>
                     <p class="text-brand-text/80 mb-8">Recepción ya recibió tu mensaje. Estamos trabajando para asistirte pronto.</p>
                     <button onclick="navigate('home')" class="bg-brand-sand text-brand-text font-bold rounded-xl py-3 px-8">Volver al inicio</button>
                 </div>
@@ -829,7 +807,7 @@
 
             <!-- VIEW: CONTACTO -->
             <div id="view-contacto" class="view-section">
-                <h2 class="text-2xl font-bold mb-6">Contacto Directo</h2>
+                <h2 class="text-2xl font-bold mb-6 text-brand-text">Contacto Directo</h2>
                 
                 <div class="bg-brand-blue text-white rounded-3xl p-6 text-center mb-6 shadow-soft">
                     <i class="fa-regular fa-face-smile text-4xl mb-3 opacity-90"></i>
@@ -838,29 +816,29 @@
                 </div>
 
                 <div class="space-y-4">
-                    <a href="tel:02252421234" class="block bg-white rounded-2xl p-5 border border-brand-sand shadow-sm flex items-center gap-4 active:bg-gray-50">
+                    <a href="tel:02252421234" class="block bg-white rounded-2xl p-5 border border-brand-sand shadow-sm flex items-center gap-4 active:bg-gray-50 transition-colors">
                         <div class="w-12 h-12 bg-brand-sand rounded-full flex items-center justify-center text-brand-primary text-xl">
                             <i class="fa-solid fa-phone"></i>
                         </div>
                         <div>
-                            <span class="block font-bold text-lg">Llamar por teléfono</span>
-                            <span class="text-sm text-gray-500">(02252) 42-1234</span>
+                            <span class="block font-bold text-lg text-brand-text">Llamar por teléfono</span>
+                            <span class="text-sm text-brand-text/60">(02252) 42-1234</span>
                         </div>
                     </a>
 
-                    <a href="mailto:recepcion@hotelmorales.com.ar" class="block bg-white rounded-2xl p-5 border border-brand-sand shadow-sm flex items-center gap-4 active:bg-gray-50">
+                    <a href="mailto:recepcion@hotelmorales.com.ar" class="block bg-white rounded-2xl p-5 border border-brand-sand shadow-sm flex items-center gap-4 active:bg-gray-50 transition-colors">
                         <div class="w-12 h-12 bg-brand-sand rounded-full flex items-center justify-center text-brand-primary text-xl">
                             <i class="fa-regular fa-envelope"></i>
                         </div>
                         <div>
-                            <span class="block font-bold text-lg">Enviar un correo</span>
-                            <span class="text-sm text-gray-500">recepcion@hotelmorales.com.ar</span>
+                            <span class="block font-bold text-lg text-brand-text">Enviar un correo</span>
+                            <span class="text-sm text-brand-text/60">recepcion@hotelmorales.com.ar</span>
                         </div>
                     </a>
 
-                    <div class="bg-brand-sand rounded-2xl p-5 mt-4">
+                    <div class="bg-brand-sand rounded-2xl p-5 mt-4 text-brand-text">
                         <h4 class="font-bold text-sm uppercase tracking-wider mb-2">Ubicación</h4>
-                        <p class="text-sm">Calle 1 N° 1234, San Clemente del Tuyú, Buenos Aires, Argentina.</p>
+                        <p class="text-sm opacity-90">Calle 1 N° 1234, San Clemente del Tuyú, Buenos Aires, Argentina.</p>
                     </div>
                 </div>
             </div>
@@ -940,31 +918,47 @@
         document.querySelector('.nav-item[data-target="home"]').classList.add('text-brand-primary');
         document.querySelector('.nav-item[data-target="home"]').classList.remove('text-gray-400');
 
-        // --- Info Cards Accordion Logic ---
-// ==========================================
-        // NUEVA LÓGICA DE PREGUNTAS FRECUENTES (CATEGORÍAS Y ACORDEÓN)
+
         // ==========================================
-        
+        // LÓGICA DE INFO ACORDEÓN (Previa)
+        // ==========================================
+        function toggleInfo(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.fa-chevron-down');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('open');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+
+        // ==========================================
+        // NUEVA LÓGICA DE PREGUNTAS FRECUENTES (FAQ)
+        // ==========================================
         function toggleCategory(button) {
             const currentContent = button.nextElementSibling;
             const currentSign = button.querySelector('.icon-cat');
-            const allCategories = document.querySelectorAll('.category-content');
+            const allCategories = document.querySelectorAll('#faq-categories .category-content');
             
             // Cerrar todas las demás categorías
             allCategories.forEach(content => {
                 if(content !== currentContent && content.classList.contains('open')) {
                     content.classList.remove('open');
-                    content.previousElementSibling.querySelector('.icon-cat').innerText = '▸';
+                    content.previousElementSibling.querySelector('.icon-cat').style.transform = 'rotate(0deg)';
                 }
             });
 
             // Abrir o cerrar la categoría seleccionada
             if (currentContent.classList.contains('open')) {
                 currentContent.classList.remove('open');
-                currentSign.innerText = '▸';
+                currentSign.style.transform = 'rotate(0deg)';
             } else {
                 currentContent.classList.add('open');
-                currentSign.innerText = '▾';
+                currentSign.style.transform = 'rotate(90deg)';
             }
         }
 
@@ -972,19 +966,19 @@
             const answer = button.nextElementSibling;
             const sign = button.querySelector('.icon-q');
             
-            // Permite abrir y cerrar libremente las preguntas dentro de la categoría
             if (answer.classList.contains('open')) {
                 answer.classList.remove('open');
-                sign.innerText = '▸';
+                sign.style.transform = 'rotate(0deg)';
             } else {
                 answer.classList.add('open');
-                sign.innerText = '▾';
+                sign.style.transform = 'rotate(90deg)';
             }
         }
 
-        // --- Form Submissions ---
 
-        // URL actualizada de tu Web App de Google Apps Script
+        // ==========================================
+        // LÓGICA DE FORMULARIOS (Google Apps Script)
+        // ==========================================
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzkUW1bX9VyvtG7Kk_4WLHkzvzEwiQUsuvJIvGFuk3DF7E0SzWykxau-nG7ciGDE2N2UQ/exec';
 
         async function handlePreCheckin(e) {
@@ -1003,7 +997,6 @@
             const formData = new FormData(form);
 
             try {
-                // Se agregó mode: 'no-cors' para evitar el bloqueo del navegador
                 await fetch(SCRIPT_URL, {
                     method: 'POST',
                     body: formData,
