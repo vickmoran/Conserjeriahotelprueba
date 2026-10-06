@@ -725,7 +725,7 @@
                         </div>
                     </div>
 
-                    <!-- CATEGORÍA 5 (Mantiene el comportamiento original intacto con indicaciones/ruta) -->
+                    <!-- CATEGORÍA 5 -->
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
                         <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
                             <span>Ubicación y cómo llegar</span>
@@ -804,7 +804,7 @@
                                     <div class="accordion-grid answer-content">
                                         <div class="accordion-inner">
                                             <div class="px-5 pb-4 text-sm text-brand-text/70">
-                                                <p class="mb-3">Desde la sección 'Estoy por viajar' en el inicio de nuestra Conserjería Online podés completar tus datos antes de llegar al hotel. El proceso es simple y te permitirá agilizar tu ingreso!</p>
+                                                <p class="mb-3">Desde la sección 'Estoy por viajar' en el inicio de nossa Conserjería Online podés completar tus datos antes de llegar al hotel. El proceso es simple y te permitirá agilizar tu ingreso!</p>
                                                 <button onclick="navigate('precheckin')" class="w-full bg-brand-primary text-white font-semibold py-3 rounded-xl shadow-sm active:scale-95 transition-transform mt-3">Hacer mi pre-check-in</button>
                                             </div>
                                         </div>
@@ -818,45 +818,45 @@
                 </div>
             </div>
 
-            <!-- VIEW: IN-STAY -->
+            <!-- VIEW: IN-STAY (ASISTENCIA AL HUÉSPED) -->
             <div id="view-instay" class="view-section">
                 <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('home')">
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
                     <h2 class="text-2xl font-bold text-brand-text">Asistencia al Huésped</h2>
                 </div>
-                <p class="mb-6 text-sm text-brand-text/80">¿Estás alojado en el hotel? Realizá tu solicitud por acá y nuestro equipo te asistirá a la brevedad.</p>
+                <p class="mb-6 text-sm text-brand-text/80">Realizá tu solicitud por acá y nuestro equipo te asistirá a la brevedad.</p>
                 
                 <form id="form-instay" class="space-y-4" onsubmit="handleInStayRequest(event)">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Tu Nombre</label>
-                            <input type="text" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Nº Habitación</label>
-                            <input type="number" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors">
-                        </div>
+                    <!-- Mensaje de Error Oculto -->
+                    <div id="error-instay" class="hidden bg-red-100 text-red-700 p-3 rounded-xl text-sm font-medium text-center border border-red-200">
+                        No pudimos enviar tu solicitud. Por favor, intentá nuevamente.
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Habitación</label>
+                        <input type="number" name="habitacion" required min="1" max="500" step="1" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors" placeholder="Número de habitación (1-500)">
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Tipo de Solicitud</label>
-                        <select required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors">
-                            <option value="" disabled selected>Seleccioná una opción...</option>
-                            <option value="limpieza">Servicio de limpieza</option>
-                            <option value="toallas">Recambio de toallas</option>
-                            <option value="mantenimiento">Aviso de mantenimiento</option>
-                            <option value="bar">Pedido al Bar</option>
-                            <option value="otro">Otra consulta</option>
+                        <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Categoría</label>
+                        <select name="categoria" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors text-sm">
+                            <option value="" disabled selected>Seleccioná una categoría...</option>
+                            <option value="limpieza">🧹 Limpieza</option>
+                            <option value="elementos">🛏️ Elementos para la habitación</option>
+                            <option value="mantenimiento">🔧 Mantenimiento</option>
+                            <option value="servicios">🍽️ Servicios del hotel</option>
+                            <option value="turismo">📍 Información turística</option>
+                            <option value="otro">💬 Otra consulta</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Detalle de tu solicitud</label>
-                        <textarea required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors h-28 resize-none" placeholder="Por favor, detallanos en qué podemos ayudarte..."></textarea>
+                        <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Solicitud</label>
+                        <textarea name="solicitud" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors h-28 resize-none" placeholder="Contanos en qué podemos ayudarte..."></textarea>
                     </div>
                     
-                    <button type="submit" class="w-full bg-brand-green text-white font-bold text-lg rounded-xl py-4 mt-4 active:scale-95 transition-transform shadow-soft flex items-center justify-center gap-2">
-                        <i class="fa-regular fa-paper-plane"></i> Enviar solicitud
+                    <button type="submit" id="btn-submit-instay" class="w-full bg-brand-green text-white font-bold text-lg rounded-xl py-4 mt-4 active:scale-95 transition-transform shadow-soft flex items-center justify-center gap-2">
+                        <span>Enviar solicitud</span>
                     </button>
                 </form>
 
@@ -865,9 +865,9 @@
                     <div class="w-20 h-20 bg-brand-blue/20 text-brand-blue rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fa-solid fa-thumbs-up text-4xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-brand-text">¡Solicitud enviada!</h3>
-                    <p class="text-brand-text/80 mb-8">Recepción ya recibió tu mensaje. Estamos trabajando para asistirte pronto.</p>
-                    <button onclick="navigate('home')" class="bg-brand-sand text-brand-text font-bold rounded-xl py-3 px-8">Volver al inicio</button>
+                    <h3 class="text-2xl font-bold mb-3 text-brand-text">Solicitud enviada</h3>
+                    <p class="text-brand-text/80 mb-8">Recibimos tu solicitud.<br>El personal del Hotel Morales la revisará y te asistirá a la brevedad.</p>
+                    <button onclick="navigate('home')" class="bg-brand-sand text-brand-text font-bold rounded-xl py-3 px-8 transition-transform active:scale-95">Volver a la conserjería</button>
                 </div>
             </div>
 
@@ -902,7 +902,6 @@
                         </div>
                     </a>
 
-                    <!-- TARJETA DE UBICACIÓN (Abre la ficha del establecimiento en Google Maps sin ruta automática) -->
                     <a href="https://maps.google.com/?q=Hotel+Morales,+C.+1+1856,+B7105+San+Clemente+del+Tuyu,+Provincia+de+Buenos+Aires" target="_blank" class="block bg-white rounded-2xl p-5 border border-brand-sand shadow-sm flex items-center gap-4 active:bg-gray-50 transition-colors">
                         <div class="w-12 h-12 bg-brand-sand rounded-full flex items-center justify-center text-brand-primary text-xl">
                             <i class="fa-solid fa-location-dot"></i>
@@ -1093,17 +1092,58 @@
             }
         }
 
-        function handleInStayRequest(e) {
+        async function handleInStayRequest(e) {
             e.preventDefault();
-            document.getElementById('form-instay').classList.add('hidden');
-            document.getElementById('success-instay').classList.remove('hidden');
-            document.getElementById('success-instay').classList.add('block');
+            
+            const form = e.target;
+            const btnSubmit = document.getElementById('btn-submit-instay');
+            const errorDiv = document.getElementById('error-instay');
+            
+            const originalBtnHtml = btnSubmit.innerHTML;
+            btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Enviando solicitud...</span>';
+            btnSubmit.disabled = true;
+            btnSubmit.classList.add('opacity-80', 'cursor-not-allowed');
+            errorDiv.classList.add('hidden');
+
+            const formData = new FormData(form);
+            formData.append('tipo', 'asistencia');
+
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+
+                form.classList.add('hidden');
+                const successDiv = document.getElementById('success-instay');
+                successDiv.classList.remove('hidden');
+                successDiv.classList.add('block');
+                window.scrollTo(0, 0);
+
+            } catch (error) {
+                console.error('Error al enviar asistencia:', error);
+                errorDiv.classList.remove('hidden');
+                btnSubmit.innerHTML = originalBtnHtml;
+                btnSubmit.disabled = false;
+                btnSubmit.classList.remove('opacity-80', 'cursor-not-allowed');
+            }
         }
 
         document.querySelector('.nav-item[data-target="home"]').addEventListener('click', () => {
-            document.getElementById('form-instay').reset();
-            document.getElementById('form-instay').classList.remove('hidden');
-            document.getElementById('success-instay').classList.add('hidden');
+            const formInstay = document.getElementById('form-instay');
+            if(formInstay) {
+                formInstay.reset();
+                formInstay.classList.remove('hidden');
+                document.getElementById('success-instay').classList.add('hidden');
+                document.getElementById('error-instay').classList.add('hidden');
+                const btnSubmit = document.getElementById('btn-submit-instay');
+                if(btnSubmit) {
+                    btnSubmit.innerHTML = '<span>Enviar solicitud</span>';
+                    btnSubmit.disabled = false;
+                    btnSubmit.classList.remove('opacity-80', 'cursor-not-allowed');
+                }
+            }
         });
 
     </script>
