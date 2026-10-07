@@ -288,28 +288,62 @@
                 </button>
             </div>
 
-            <!-- VIEW: RECOMENDACIONES (GUÍA TURÍSTICA LOCAL) -->
+            <!-- VIEW: RECOMENDACIONES (MAIN PORTADA) -->
             <div id="view-recomendaciones" class="view-section">
-                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('info')">
+                <div class="flex items-center gap-3 mb-4 cursor-pointer" onclick="navigate('info')">
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
-                    <h2 class="text-2xl font-bold text-brand-text">Guía Turística</h2>
+                    <h2 class="text-2xl font-bold text-brand-text">Recomendaciones</h2>
                 </div>
 
-                <div class="mb-6 bg-brand-sand/30 p-5 rounded-3xl text-center border border-brand-sand/50">
-                    <h3 class="font-bold text-xl mb-2 text-brand-text">¿Qué tenés ganas de hacer?</h3>
-                    <p class="text-sm text-brand-text/80 leading-relaxed">Te recomendamos nuestros favoritos de San Clemente para que puedas disfrutar tu estadía al máximo!</p>
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-brand-text mb-1">¿Qué tenés ganas de hacer?</h3>
+                    <p class="text-sm text-brand-text/80">Te recomendamos nuestros favoritos de San Clemente para que puedas disfrutar tu estadía al máximo!</p>
                 </div>
+                
+                <div class="space-y-4 pb-10" id="rec-banners-container">
+                    <!-- Javascript inyectará los 3 banners principales aquí -->
+                </div>
+            </div>
 
-                <!-- TABS NAVEGACIÓN -->
+            <!-- VIEW: SUB-SECCIÓN GASTRONOMÍA -->
+            <div id="view-rec-gastronomia" class="view-section">
+                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('recomendaciones')">
+                    <i class="fa-solid fa-arrow-left text-brand-primary"></i>
+                    <h2 class="text-2xl font-bold text-brand-text">Gastronomía</h2>
+                </div>
+                
+                <!-- TABS GASTRONOMÍA -->
                 <div class="flex gap-2 overflow-x-auto pb-4 mb-2 no-scrollbar" style="scroll-behavior: smooth;">
-                    <button onclick="renderRecs('gastronomia')" id="tab-gastronomia" class="rec-tab px-5 py-2.5 bg-brand-primary text-white border border-transparent rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">🍴 Gastronomía</button>
-                    <button onclick="renderRecs('atracciones')" id="tab-atracciones" class="rec-tab px-5 py-2.5 bg-white text-brand-text border border-brand-sand/60 rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">🎟️ Atracciones</button>
-                    <button onclick="renderRecs('quehacer')" id="tab-quehacer" class="rec-tab px-5 py-2.5 bg-white text-brand-text border border-brand-sand/60 rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">🌿 Qué hacer</button>
+                    <button onclick="renderGastronomiaCards('restaurantes')" id="tab-restaurantes" class="rec-gastro-tab px-5 py-2.5 bg-brand-primary text-white border border-transparent rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">🍽️ Restaurantes</button>
+                    <button onclick="renderGastronomiaCards('cafeterias')" id="tab-cafeterias" class="rec-gastro-tab px-5 py-2.5 bg-white text-brand-text border border-brand-sand/60 rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">☕ Cafeterías</button>
+                    <button onclick="renderGastronomiaCards('pizzerias')" id="tab-pizzerias" class="rec-gastro-tab px-5 py-2.5 bg-white text-brand-text border border-brand-sand/60 rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">🍕 Pizzerías</button>
+                    <button onclick="renderGastronomiaCards('panaderias')" id="tab-panaderias" class="rec-gastro-tab px-5 py-2.5 bg-white text-brand-text border border-brand-sand/60 rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">🥐 Panaderías</button>
                 </div>
 
-                <!-- CONTENIDO DINÁMICO DE RECOMENDACIONES -->
-                <div id="rec-content" class="pb-10">
-                    <!-- Javascript inyectará las tarjetas aquí -->
+                <div id="rec-gastronomia-content" class="pb-10 space-y-5">
+                    <!-- Javascript inyectará las tarjetas de gastronomía aquí -->
+                </div>
+            </div>
+
+            <!-- VIEW: SUB-SECCIÓN ATRACCIONES -->
+            <div id="view-rec-atracciones" class="view-section">
+                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('recomendaciones')">
+                    <i class="fa-solid fa-arrow-left text-brand-primary"></i>
+                    <h2 class="text-2xl font-bold text-brand-text">Atracciones</h2>
+                </div>
+                <div id="rec-atracciones-content" class="pb-10 space-y-5">
+                    <!-- Javascript inyectará las tarjetas de atracciones aquí -->
+                </div>
+            </div>
+
+            <!-- VIEW: SUB-SECCIÓN QUÉ HACER -->
+            <div id="view-rec-quehacer" class="view-section">
+                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('recomendaciones')">
+                    <i class="fa-solid fa-arrow-left text-brand-primary"></i>
+                    <h2 class="text-2xl font-bold text-brand-text">Qué hacer</h2>
+                </div>
+                <div id="rec-quehacer-content" class="pb-10 space-y-5">
+                    <!-- Javascript inyectará las tarjetas de qué hacer aquí -->
                 </div>
             </div>
 
@@ -338,6 +372,381 @@
                                         <div class="accordion-inner">
                                             <div class="px-5 pb-4 text-sm text-brand-text/70">
                                                 Aceptamos efectivo, tarjetas de débito, crédito (Visa, Mastercard, Amex) y transferencias bancarias.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Cómo se modifica una reserva?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Para modificar una reserva, comunicate con el hotel o con el canal a través del cual realizaste la reserva. Nuestro equipo te ayudará a gestionar el cambio según disponibilidad y condiciones de la reserva.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Cómo cancelo una reserva?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Para cancelar una reserva, comunicate con el hotel o con el canal a través del cual realizaste la reserva. Las condiciones de cancelación pueden variar según la reserva.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Puedo reservar directamente con el hotel?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Sí. Podés comunicarte directamente con el Hotel Morales para consultar disponibilidad y condiciones de reserva.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CATEGORÍA 2 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
+                            <span>Check-in y check-out</span>
+                            <span class="icon-cat text-brand-primary font-bold transition-transform duration-300 inline-block">▸</span>
+                        </button>
+                        <div class="accordion-grid category-content">
+                            <div class="accordion-inner">
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿A qué hora es el check-in?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                El horario de check-in es a partir de las 12hs. Si necesitás coordinar una llegada fuera de ese horario, contactanos para consultar las opciones disponibles.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Puedo hacer un check-out tardío?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Si! El check-out tardío está sujeto a disponibilidad. Consultá con recepción durante tu estadía para conocer las opciones disponibles.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Qué necesito presentar al hacer el check-in?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Al llegar, recepción verificará tus datos y completará el proceso de ingreso. Si realizaste el pre-check-in online, parte de la información ya estará cargada previamente, y el proceso será mucho más rapido.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Puedo dejar mi equipaje antes del check-in?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Si! Nosotros te lo guardamos sin costo extra. Comunicate con recepción para gestionarlo cuando llegues.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CATEGORÍA 3 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
+                            <span>Habitaciones</span>
+                            <span class="icon-cat text-brand-primary font-bold transition-transform duration-300 inline-block">▸</span>
+                        </button>
+                        <div class="accordion-grid category-content">
+                            <div class="accordion-inner">
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Qué tipos de habitación hay?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                El Hotel Morales cuenta con habitaciones dobles, triples y cuádruples.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Puedo pedir una habitación en particular?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Si! Sabemos que muchos quieren la misma habitación de todos los años. Podes comunicarte con el hotel antes de llegar, para que podamos gestionarlo.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Las habitaciones tienen aire acondicionado?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                No, las habitaciones cuentan con ventilador. Pero quedate tranquilo, que las noches suelen ser frescas en La Costa.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Las habitaciones tienen minibar?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Sí, las habitaciones cuentan con minibar.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Las habitaciones tienen caja fuerte?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Sí, las habitaciones cuentan con caja fuerte.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Las habitaciones tienen secador de pelo?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Sí, las habitaciones cuentan con secador de pelo.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Hay Wi-Fi?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Si! Tenemos fibra optica en todo el establecimiento, para que puedas acceder desde cualquier lugar del hotel.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CATEGORÍA 4 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
+                            <span>Servicios del hotel</span>
+                            <span class="icon-cat text-brand-primary font-bold transition-transform duration-300 inline-block">▸</span>
+                        </button>
+                        <div class="accordion-grid category-content">
+                            <div class="accordion-inner">
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Cuándo abre la pileta?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                La pileta climatizada descubierta está disponible durante la temporada de noviembre a marzo.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Tienen estacionamiento?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Sí, el hotel cuenta con estacionamiento gratuito para huéspedes.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿El bar está abierto de noche?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Sí. El bar del Hotel Morales se encuentra disponible las 24 horas.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿El desayuno está incluido?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Si! El hotel ofrece desayuno buffet, tipo continental, 100% gratuito.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿En qué horario se sirve el desayuno?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                El desayuno se sirve de 7 a 10hs, en nuestro salón comedor.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿El estacionamiento necesita reserva?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                No! No es necesario reservar.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CATEGORÍA 5 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
+                            <span>Ubicación y cómo llegar</span>
+                            <span class="icon-cat text-brand-primary font-bold transition-transform duration-300 inline-block">▸</span>
+                        </button>
+                        <div class="accordion-grid category-content">
+                            <div class="accordion-inner">
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Cómo llego desde la terminal o la ruta?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                <p class="mb-3">Podés consultar la ubicación del Hotel Morales y obtener indicaciones para llegar desde tu punto de partida a través de Google Maps. Si necesitás ayuda para planificar tu llegada, contactanos.</p>
+                                                <a href="https://www.google.com/maps/dir/?api=1&destination=Hotel+Morales,+C.+1+1856,+B7105+San+Clemente+del+Tuyu,+Provincia+de+Buenos+Aires" target="_blank" class="w-full bg-brand-primary text-white font-semibold py-3 rounded-xl shadow-sm active:scale-95 transition-transform mt-3 flex justify-center items-center gap-2">
+                                                    <i class="fa-solid fa-map-location-dot"></i> Cómo llegar
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Dónde está ubicado el hotel?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                <p class="mb-3">El Hotel Morales está ubicado en la Calle 1 N° 1856, en San Clemente del Tuyú, a dos cuadras de la playa y a tres del centro.</p>
+                                                <a href="https://www.google.com/maps/dir/?api=1&destination=Hotel+Morales,+C.+1+1856,+B7105+San+Clemente+del+Tuyu,+Provincia+de+Buenos+Aires" target="_blank" class="w-full bg-brand-primary text-white font-semibold py-3 rounded-xl shadow-sm active:scale-95 transition-transform mt-3 flex justify-center items-center gap-2">
+                                                    <i class="fa-solid fa-map-location-dot"></i> Cómo llegar
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CATEGORÍA 6 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
+                            <span>Antes de tu llegada</span>
+                            <span class="icon-cat text-brand-primary font-bold transition-transform duration-300 inline-block">▸</span>
+                        </button>
+                        <div class="accordion-grid category-content">
+                            <div class="accordion-inner">
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Qué necesito hacer antes de llegar al hotel?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                <p class="mb-3">Antes de tu llegada podés completar tu pre-check-in online para que nuestro equipo tenga tus datos preparados y agilizar el proceso de ingreso.</p>
+                                                <button onclick="navigate('precheckin')" class="w-full bg-brand-primary text-white font-semibold py-3 rounded-xl shadow-sm active:scale-95 transition-transform mt-3">Hacer mi pre-check-in</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Cómo hago el pre-check-in?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                <p class="mb-3">Desde la sección 'Estoy por viajar' en el inicio de nuestra Conserjería Online podés completar tus datos antes de llegar al hotel. El proceso es simple y te permitirá agilizar tu ingreso!</p>
+                                                <button onclick="navigate('precheckin')" class="w-full bg-brand-primary text-white font-semibold py-3 rounded-xl shadow-sm active:scale-95 transition-transform mt-3">Hacer mi pre-check-in</button>
                                             </div>
                                         </div>
                                     </div>
@@ -561,107 +970,99 @@
         // BASE DE DATOS DE RECOMENDACIONES (GUÍA)
         // ==========================================
         const recomendaciones = {
-            gastronomia: [
-                {
-                    subcategoria: "🍽️ Restaurantes",
-                    items: [
-                        {
-                            nombre: "La Parrillita",
-                            categoria: "🍽️ Restaurante",
-                            direccion: "Calle 1 N° 2178",
-                            distancia: "A 350 m del hotel",
-                            descripcion: "Si tenés ganas de comer una buena parrilla, es uno de los clásicos de San Clemente.",
-                            imagen: "https://images.unsplash.com/photo-1544025162-811114210287?auto=format&fit=crop&w=600&q=80",
-                            mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Parrillita+San+Clemente+del+Tuyu"
-                        },
-                        {
-                            nombre: "Don Venancio",
-                            categoria: "🍽️ Restaurante",
-                            direccion: "Av. San Martín 243",
-                            distancia: "A 300 m del hotel",
-                            descripcion: "Una opción para comer bien y tranquilo, ideal si buscás una comida más tradicional de bodegón.",
-                            imagen: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=600&q=80",
-                            mapsUrl: "https://www.google.com/maps/search/?api=1&query=Don+Venancio+San+Clemente+del+Tuyu"
-                        },
-                        {
-                            nombre: "La Cantina del Delfín",
-                            categoria: "🍽️ Restaurante",
-                            direccion: "Puerto de San Clemente",
-                            distancia: "A 3,5 km del hotel",
-                            descripcion: "Si te gustan los pescados y mariscos, no te lo podés perder. Está más alejada del centro, en el puerto.",
-                            etiqueta: "🚗 Recomendado con auto",
-                            imagen: "https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=600&q=80",
-                            mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Cantina+del+Delfin+San+Clemente+del+Tuyu"
-                        }
-                    ]
-                },
-                {
-                    subcategoria: "☕ Cafeterías",
-                    items: [
-                        {
-                            nombre: "Cheroga",
-                            categoria: "☕ Cafetería",
-                            direccion: "Calle 1 N° 2156",
-                            distancia: "A 300 m del hotel",
-                            descripcion: "Un clásico para tomar un café, desayunar o frenar en el centro. Podés sentarte adentro o en la vereda.",
-                            imagen: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80",
-                            mapsUrl: "https://www.google.com/maps/search/?api=1&query=Cheroga+San+Clemente+del+Tuyu"
-                        },
-                        {
-                            nombre: "La Marca",
-                            categoria: "☕ Cafetería",
-                            direccion: "Calle 1 y 15",
-                            distancia: "A 300 m del hotel",
-                            descripcion: "Está en pleno centro y es una buena opción para sentarte a tomar algo mientras recorrés la zona.",
-                            imagen: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80",
-                            mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Marca+San+Clemente+del+Tuyu"
-                        }
-                    ]
-                },
-                {
-                    subcategoria: "🍕 Pizzerías",
-                    items: [
-                        {
-                            nombre: "Potenza",
-                            categoria: "🍕 Pizzería",
-                            direccion: "Calle 1 N° 2162",
-                            distancia: "A 300 m del hotel",
-                            descripcion: "Si tenés ganas de una pizza en el centro, es una buena opción.",
-                            imagen: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80",
-                            mapsUrl: "https://www.google.com/maps/search/?api=1&query=Potenza+San+Clemente+del+Tuyu"
-                        },
-                        {
-                            nombre: "Center Pizza",
-                            categoria: "🍕 Pizzería",
-                            direccion: "Calle 1",
-                            distancia: "A 300 m del hotel",
-                            descripcion: "Una opción cerca para comer pizza, sin meterte en el centro.",
-                            imagen: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80",
-                            mapsUrl: "https://www.google.com/maps/search/?api=1&query=Center+Pizza+San+Clemente+del+Tuyu"
-                        }
-                    ]
-                },
-                {
-                    subcategoria: "🥐 Panaderías",
-                    items: [
-                        {
-                            nombre: "Bonavita",
-                            categoria: "🥐 Panadería",
-                            direccion: "Calle 1 y 18",
-                            distancia: "A 100 m del hotel",
-                            descripcion: "Las mejores medialunas y sándwiches de miga para llevarte a la playa o para la ruta.",
-                            imagen: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
-                            mapsUrl: "https://www.google.com/maps/search/?api=1&query=Panaderia+Bonavita+San+Clemente+del+Tuyu"
-                        }
-                    ]
-                }
-            ],
+            banners: {
+                gastronomia: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80",
+                atracciones: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80",
+                quehacer: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
+            },
+            gastronomia: {
+                restaurantes: [
+                    {
+                        nombre: "La Parrillita",
+                        categoria: "🍽️ Restaurante",
+                        direccion: "Calle 1 N° 2178",
+                        distancia: "A 350 m",
+                        descripcion: "Si tenés ganas de comer una buena parrilla, es uno de los clásicos de San Clemente.",
+                        imagen: "https://images.unsplash.com/photo-1544025162-811114210287?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Parrillita+San+Clemente+del+Tuyu"
+                    },
+                    {
+                        nombre: "Don Venancio",
+                        categoria: "🍽️ Restaurante",
+                        direccion: "Av. San Martín 243",
+                        distancia: "A 400 m",
+                        descripcion: "Una opción para comer bien y tranquilo, ideal si buscás una comida más tradicional de bodegón.",
+                        imagen: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Don+Venancio+San+Clemente+del+Tuyu"
+                    },
+                    {
+                        nombre: "La Cantina del Delfín",
+                        categoria: "🍽️ Restaurante",
+                        direccion: "Puerto de San Clemente",
+                        distancia: "A 3,5 km",
+                        descripcion: "Si te gustan los pescados y mariscos, no te lo podés perder. Está más alejada del centro, en el puerto.",
+                        etiqueta: "🚗 Recomendado con auto",
+                        imagen: "https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Cantina+del+Delfin+San+Clemente+del+Tuyu"
+                    }
+                ],
+                cafeterias: [
+                    {
+                        nombre: "Cheroga",
+                        categoria: "☕ Cafetería",
+                        direccion: "Calle 1 N° 2156",
+                        distancia: "A 300 m",
+                        descripcion: "Un clásico para tomar un café, desayunar o frenar en el centro. Podés sentarte adentro o en la vereda.",
+                        imagen: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Cheroga+San+Clemente+del+Tuyu"
+                    },
+                    {
+                        nombre: "La Marca",
+                        categoria: "☕ Cafetería",
+                        direccion: "Calle 1 y 15",
+                        distancia: "A 200 m",
+                        descripcion: "Está en pleno centro y es una buena opción para sentarte a tomar algo mientras recorrés la zona.",
+                        imagen: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Marca+San+Clemente+del+Tuyu"
+                    }
+                ],
+                pizzerias: [
+                    {
+                        nombre: "Potenza",
+                        categoria: "🍕 Pizzería",
+                        direccion: "Calle 1 N° 2162",
+                        distancia: "A 300 m",
+                        descripcion: "Si tenés ganas de una pizza en el centro, es una buena opción.",
+                        imagen: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Potenza+San+Clemente+del+Tuyu"
+                    },
+                    {
+                        nombre: "Center Pizza",
+                        categoria: "🍕 Pizzería",
+                        direccion: "Calle 1",
+                        distancia: "A 200 m",
+                        descripcion: "Una opción cerca para comer pizza, sin meterte en el centro.",
+                        imagen: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Center+Pizza+San+Clemente+del+Tuyu"
+                    }
+                ],
+                panaderias: [
+                    {
+                        nombre: "Bonavita",
+                        categoria: "🥐 Panadería",
+                        direccion: "Calle 1 y 18",
+                        distancia: "A 100 m",
+                        descripcion: "Las mejores medialunas y sándwiches de miga para llevarte a la playa o para la ruta.",
+                        imagen: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Panaderia+Bonavita+San+Clemente+del+Tuyu"
+                    }
+                ]
+            },
             atracciones: [
                 {
                     nombre: "Mundo Marino",
-                    categoria: "🎟️ Atracción",
                     direccion: "Av. Décima 157",
-                    horario: "🕐 Horarios: consultar sitio oficial",
+                    horario: "Horarios: consultar sitio oficial",
                     descripcion: "¡El acuario más famoso de Argentina! El lugar al que tenés que ir a pasar el día si venís con chicos.",
                     imagen: "https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&w=600&q=80",
                     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Mundo+Marino+San+Clemente+del+Tuyu",
@@ -669,9 +1070,8 @@
                 },
                 {
                     nombre: "Termas Marinas",
-                    categoria: "🎟️ Atracción",
                     direccion: "Faro San Antonio, Punta Rasa",
-                    horario: "🕐 Horarios: consultar sitio oficial",
+                    horario: "Horarios: consultar sitio oficial",
                     etiqueta: "🚗 Recomendado con auto",
                     descripcion: "Un buen plan para pasar el día entre piletas de aguas termales saladas, toboganes y naturaleza.",
                     imagen: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=80",
@@ -680,7 +1080,6 @@
                 },
                 {
                     nombre: "Faro San Antonio",
-                    categoria: "🎟️ Atracción",
                     direccion: "Punta Rasa",
                     descripcion: "Si vas para el lado de Termas Marinas, aprovechá para conocer el Faro, uno de los lugares más característicos de la zona.",
                     imagen: "https://images.unsplash.com/photo-1559816029-43c22ea3b2f5?auto=format&fit=crop&w=600&q=80",
@@ -688,7 +1087,6 @@
                 },
                 {
                     nombre: "Muelle",
-                    categoria: "🎟️ Atracción",
                     direccion: "Av. Costanera y Calle 2",
                     descripcion: "El punto de referencia de la playa. Ideal para ir a pescar.",
                     imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
@@ -698,7 +1096,6 @@
             quehacer: [
                 {
                     nombre: "Reserva Natural Punta Rasa",
-                    categoria: "🌿 Paseo",
                     direccion: "Extremo norte de la costa",
                     etiqueta: "🚗 Recomendado con auto",
                     tip: "Antes de ir, fijate la tabla de mareas.",
@@ -708,7 +1105,6 @@
                 },
                 {
                     nombre: "Vivero Cosme Argerich",
-                    categoria: "🌿 Paseo",
                     direccion: "Av. XV y Calle 18",
                     descripcion: "Un lugar tranquilo para caminar entre árboles y pasar un rato rodeado de verde. Buena opción si buscás algo más relajado.",
                     imagen: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80",
@@ -716,7 +1112,6 @@
                 },
                 {
                     nombre: "Puerto de San Clemente",
-                    categoria: "🌿 Paseo",
                     direccion: "Ría de San Clemente",
                     descripcion: "Si querés conocer una parte más tradicional de San Clemente, date una vuelta por el puerto. Podés ver las embarcaciones y también comer algo rico.",
                     imagen: "https://images.unsplash.com/photo-1596483594049-ab088365610b?auto=format&fit=crop&w=600&q=80",
@@ -724,7 +1119,6 @@
                 },
                 {
                     nombre: "Tapera de López",
-                    categoria: "🌿 Paseo",
                     direccion: "Ría de San Clemente",
                     etiqueta: "🚗 Recomendado con auto",
                     descripcion: "Una buena opción para salir del centro, recorrer un poco y disfrutar de un entorno más natural, comiendo algo rico o pescando.",
@@ -733,7 +1127,6 @@
                 },
                 {
                     nombre: "Centro / Peatonal",
-                    categoria: "🌿 Paseo",
                     direccion: "Calle 1 y alrededores",
                     verano: "La peatonal funciona de 20:00 a 02:00, así que es un buen plan para después de cenar.",
                     descripcion: "Si querés salir a caminar, mirar negocios o tomar algo, el centro es una opción fácil y queda cerca del hotel.",
@@ -743,39 +1136,95 @@
             ]
         };
 
-        // RENDERIZADO DE LAS TARJETAS DINÁMICAMENTE
-        function renderRecs(categoriaId) {
-            // Actualizar diseño de botones Pestaña (Tabs)
-            document.querySelectorAll('.rec-tab').forEach(tab => {
-                tab.classList.remove('bg-brand-primary', 'text-white', 'border-transparent');
-                tab.classList.add('bg-white', 'text-brand-text', 'border-brand-sand/60');
+        // --- Navigation Logic ---
+        function navigate(targetId) {
+            const sections = document.querySelectorAll('.view-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            const target = document.getElementById('view-' + targetId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo(0, 0); 
+            }
+
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('text-brand-primary');
+                item.classList.add('text-gray-400');
+                
+                // Mantiene "info" seleccionado si estamos dentro de sub-secciones de Recomendaciones
+                let activeTarget = targetId;
+                if(targetId.startsWith('rec-') || targetId === 'recomendaciones') activeTarget = 'info';
+
+                if (item.dataset.target === activeTarget) {
+                    item.classList.remove('text-gray-400');
+                    item.classList.add('text-brand-primary');
+                }
             });
-            const activeTab = document.getElementById(`tab-${categoriaId}`);
-            if(activeTab) {
-                activeTab.classList.remove('bg-white', 'text-brand-text', 'border-brand-sand/60');
-                activeTab.classList.add('bg-brand-primary', 'text-white', 'border-transparent');
+
+            // LÓGICA DE PRE-CHECK-IN ÚNICO
+            if (targetId === 'precheckin') {
+                const isCompleted = localStorage.getItem('precheckin_completado');
+                const form = document.getElementById('form-precheckin');
+                const successDiv = document.getElementById('success-precheckin');
+                
+                if (isCompleted === 'true') {
+                    form.classList.add('hidden');
+                    successDiv.classList.remove('hidden');
+                    successDiv.classList.add('block');
+                } else {
+                    form.classList.remove('hidden');
+                    successDiv.classList.add('hidden');
+                    successDiv.classList.remove('block');
+                }
             }
 
-            const container = document.getElementById('rec-content');
-            container.innerHTML = '';
-
-            // Generar tarjetas en el HTML
-            if(categoriaId === 'gastronomia') {
-                recomendaciones.gastronomia.forEach(sub => {
-                    const subTitle = document.createElement('h3');
-                    subTitle.className = 'text-xl font-bold text-brand-text mb-4 mt-8 first:mt-0 border-b border-brand-sand pb-2';
-                    subTitle.textContent = sub.subcategoria;
-                    container.appendChild(subTitle);
-                    sub.items.forEach(item => container.appendChild(createCard(item)));
-                });
-            } else {
-                recomendaciones[categoriaId].forEach(item => container.appendChild(createCard(item)));
-            }
+            // AUTO-RENDERIZAR CONTENIDO DINÁMICO SEGÚN LA VISTA
+            if (targetId === 'recomendaciones') renderMainBanners();
+            if (targetId === 'rec-gastronomia') renderGastronomiaCards('restaurantes'); // default tab
+            if (targetId === 'rec-atracciones') renderAtracciones();
+            if (targetId === 'rec-quehacer') renderQueHacer();
         }
 
-        function createCard(item) {
+        document.querySelector('.nav-item[data-target="home"]').classList.add('text-brand-primary');
+        document.querySelector('.nav-item[data-target="home"]').classList.remove('text-gray-400');
+
+        // ==========================================
+        // LÓGICA DE GENERACIÓN DE TARJETAS (RECOMENDACIONES)
+        // ==========================================
+        
+        function renderMainBanners() {
+            const container = document.getElementById('rec-banners-container');
+            container.innerHTML = `
+                <div onclick="navigate('rec-gastronomia')" class="relative rounded-3xl overflow-hidden shadow-soft cursor-pointer active:scale-98 transition-transform h-48 group">
+                    <img src="${recomendaciones.banners.gastronomia}" alt="Gastronomía" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-text/90 via-brand-text/40 to-transparent flex flex-col justify-end p-5 text-white">
+                        <h4 class="text-xl font-bold mb-1">Gastronomía</h4>
+                        <p class="text-xs text-white/90 font-medium">Lugares que te recomendamos para comer, tomar un café, pedir una pizza o llevarte algo rico.</p>
+                    </div>
+                </div>
+
+                <div onclick="navigate('rec-atracciones')" class="relative rounded-3xl overflow-hidden shadow-soft cursor-pointer active:scale-98 transition-transform h-48 group">
+                    <img src="${recomendaciones.banners.atracciones}" alt="Atracciones" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-text/90 via-brand-text/40 to-transparent flex flex-col justify-end p-5 text-white">
+                        <h4 class="text-xl font-bold mb-1">Atracciones</h4>
+                        <p class="text-xs text-white/90 font-medium">Los lugares más conocidos de San Clemente para conocer y disfrutar durante tu estadía.</p>
+                    </div>
+                </div>
+
+                <div onclick="navigate('rec-quehacer')" class="relative rounded-3xl overflow-hidden shadow-soft cursor-pointer active:scale-98 transition-transform h-48 group">
+                    <img src="${recomendaciones.banners.quehacer}" alt="Qué hacer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-text/90 via-brand-text/40 to-transparent flex flex-col justify-end p-5 text-white">
+                        <h4 class="text-xl font-bold mb-1">Qué hacer</h4>
+                        <p class="text-xs text-white/90 font-medium">Ideas para salir a caminar, conocer otros rincones y disfrutar San Clemente.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createStandardCard(item) {
             const div = document.createElement('div');
-            div.className = 'bg-white rounded-2xl overflow-hidden shadow-soft border border-brand-sand mb-5';
+            div.className = 'bg-white rounded-2xl overflow-hidden shadow-soft border border-brand-sand';
 
             let html = `<img src="${item.imagen}" class="w-full h-44 object-cover" alt="${item.nombre}">
                         <div class="p-5">
@@ -784,6 +1233,8 @@
             if(item.categoria) {
                 html += `<p class="text-xs font-semibold text-brand-blue uppercase tracking-wider mb-3">${item.categoria}</p>`;
             }
+
+            html += `<p class="text-sm text-brand-text/90 leading-relaxed mb-4">${item.descripcion}</p>`;
 
             html += `<div class="space-y-1.5 mb-4 text-sm text-brand-text/80">`;
             if(item.direccion) html += `<p class="flex items-start gap-2"><i class="fa-solid fa-location-dot mt-0.5 w-4 text-center"></i> <span>${item.direccion}</span></p>`;
@@ -809,8 +1260,6 @@
                          </div>`;
             }
 
-            html += `<p class="text-sm text-brand-text/90 leading-relaxed italic mb-5">"${item.descripcion}"</p>`;
-
             html += `<div class="flex gap-2">
                         <a href="${item.mapsUrl}" target="_blank" class="flex-1 bg-brand-primary text-white font-semibold py-3 rounded-xl shadow-sm active:scale-95 transition-transform flex justify-center items-center gap-2 text-sm">
                             <i class="fa-solid fa-map-location-dot"></i> Cómo llegar
@@ -823,61 +1272,37 @@
             }
 
             html += `</div></div>`;
-            
             div.innerHTML = html;
             return div;
         }
 
-        // --- Navigation Logic ---
-        function navigate(targetId) {
-            const sections = document.querySelectorAll('.view-section');
-            sections.forEach(sec => sec.classList.remove('active'));
-            
-            const target = document.getElementById('view-' + targetId);
-            if (target) {
-                target.classList.add('active');
-                window.scrollTo(0, 0); 
-            }
-
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                item.classList.remove('text-brand-primary');
-                item.classList.add('text-gray-400');
-                
-                if (item.dataset.target === targetId) {
-                    item.classList.remove('text-gray-400');
-                    item.classList.add('text-brand-primary');
-                }
+        function renderGastronomiaCards(tabId) {
+            document.querySelectorAll('.rec-gastro-tab').forEach(tab => {
+                tab.classList.remove('bg-brand-primary', 'text-white', 'border-transparent');
+                tab.classList.add('bg-white', 'text-brand-text', 'border-brand-sand/60');
             });
-
-            // LÓGICA DE PRE-CHECK-IN ÚNICO
-            if (targetId === 'precheckin') {
-                const isCompleted = localStorage.getItem('precheckin_completado');
-                const form = document.getElementById('form-precheckin');
-                const successDiv = document.getElementById('success-precheckin');
-                
-                if (isCompleted === 'true') {
-                    form.classList.add('hidden');
-                    successDiv.classList.remove('hidden');
-                    successDiv.classList.add('block');
-                } else {
-                    form.classList.remove('hidden');
-                    successDiv.classList.add('hidden');
-                    successDiv.classList.remove('block');
-                }
+            const activeTab = document.getElementById(`tab-${tabId}`);
+            if(activeTab) {
+                activeTab.classList.remove('bg-white', 'text-brand-text', 'border-brand-sand/60');
+                activeTab.classList.add('bg-brand-primary', 'text-white', 'border-transparent');
             }
 
-            // AUTO-INICIALIZAR RECOMENDACIONES SI ENTRA POR PRIMERA VEZ
-            if (targetId === 'recomendaciones') {
-                const recContent = document.getElementById('rec-content');
-                if(!recContent.innerHTML.trim()) {
-                    renderRecs('gastronomia');
-                }
-            }
+            const container = document.getElementById('rec-gastronomia-content');
+            container.innerHTML = '';
+            recomendaciones.gastronomia[tabId].forEach(item => container.appendChild(createStandardCard(item)));
         }
 
-        document.querySelector('.nav-item[data-target="home"]').classList.add('text-brand-primary');
-        document.querySelector('.nav-item[data-target="home"]').classList.remove('text-gray-400');
+        function renderAtracciones() {
+            const container = document.getElementById('rec-atracciones-content');
+            container.innerHTML = '';
+            recomendaciones.atracciones.forEach(item => container.appendChild(createStandardCard(item)));
+        }
+
+        function renderQueHacer() {
+            const container = document.getElementById('rec-quehacer-content');
+            container.innerHTML = '';
+            recomendaciones.quehacer.forEach(item => container.appendChild(createStandardCard(item)));
+        }
 
         // ==========================================
         // LÓGICA DE MODALES DE INFO
