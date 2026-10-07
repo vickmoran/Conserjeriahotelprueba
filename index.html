@@ -72,6 +72,24 @@
         .accordion-inner {
             overflow: hidden;
         }
+
+        /* --- MODAL ANIMATIONS --- */
+        .modal-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-brand-text flex justify-center w-full min-h-screen">
@@ -219,152 +237,102 @@
                 </div>
             </div>
 
-            <!-- VIEW: INFO -->
+            <!-- VIEW: INFO (NUEVO MENÚ VISUAL 2x2 + 1) -->
             <div id="view-info" class="view-section">
                 <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('home')">
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
                     <h2 class="text-2xl font-bold text-brand-text">Información del Hotel</h2>
                 </div>
                 
-                <div class="space-y-4">
-                    <!-- Info Card 1 -->
-                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
-                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
-                            <div class="flex items-center gap-3">
-                                <i class="fa-regular fa-clock text-brand-blue w-5"></i> Horarios
-                            </div>
-                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
-                        </button>
-                        <div class="accordion-grid info-content">
-                            <div class="accordion-inner">
-                                <div class="px-5 pb-4 text-sm text-brand-text/80">
-                                    <p><strong>Check-in:</strong> A partir de las 14:00 hs.<br>
-                                    <strong>Check-out:</strong> Hasta las 10:00 hs.</p>
-                                    <p class="mt-2 text-xs italic">*Horarios sujetos a disponibilidad, consultanos por late check-out.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <p class="text-sm text-brand-text/80 mb-6">Tocá cualquier servicio para conocer los detalles de tu estadía.</p>
 
-                    <!-- Info Card 2 -->
-                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
-                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
-                            <div class="flex items-center gap-3">
-                                <i class="fa-solid fa-mug-hot text-brand-primary w-5"></i> Desayuno Buffet
-                            </div>
-                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
-                        </button>
-                        <div class="accordion-grid info-content">
-                            <div class="accordion-inner">
-                                <div class="px-5 pb-4 text-sm text-brand-text/80">
-                                    <p>Servicio diario en nuestro salón comedor.<br>
-                                    <strong>Horario:</strong> 08:00 hs a 10:30 hs.</p>
-                                    <p class="mt-2">Contamos con opciones sin TACC (avisar con anticipación en recepción).</p>
-                                </div>
-                            </div>
+                <!-- GRILLA 2x2 DE CUADRANTES -->
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <!-- Cuadrante 1: Horarios -->
+                    <button onclick="openModal('modal-horarios')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
+                        <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
+                            <i class="fa-regular fa-clock text-3xl"></i>
                         </div>
-                    </div>
+                        <span class="font-bold text-base text-brand-text">Horarios</span>
+                    </button>
 
-                    <!-- Info Card 3 -->
-                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
-                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
-                            <div class="flex items-center gap-3">
-                                <i class="fa-solid fa-martini-glass-citrus text-brand-blue w-5"></i> Bar 24 Horas
-                            </div>
-                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
-                        </button>
-                        <div class="accordion-grid info-content">
-                            <div class="accordion-inner">
-                                <div class="px-5 pb-4 text-sm text-brand-text/80">
-                                    <p>Nuestro bar en el lobby está disponible las 24 horas para disfrutar de cafetería, bebidas frescas y snacks.</p>
-                                </div>
-                            </div>
+                    <!-- Cuadrante 2: Desayuno -->
+                    <button onclick="openModal('modal-desayuno')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
+                        <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
+                            <i class="fa-solid fa-mug-hot text-3xl"></i>
                         </div>
-                    </div>
+                        <span class="font-bold text-base text-brand-text">Desayuno</span>
+                    </button>
 
-                    <!-- Info Card 4 -->
-                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
-                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
-                            <div class="flex items-center gap-3">
-                                <i class="fa-solid fa-water-ladder text-brand-blue w-5"></i> Pileta Climatizada
-                            </div>
-                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
-                        </button>
-                        <div class="accordion-grid info-content">
-                            <div class="accordion-inner">
-                                <div class="px-5 pb-4 text-sm text-brand-text/80">
-                                    <p>Ubicada en planta baja. <br>
-                                    <strong>Temporada:</strong> Noviembre a Marzo.<br>
-                                    <strong>Horario:</strong> 10:00 a 20:00 hs.</p>
-                                    <p class="mt-2 text-xs">Por favor, solicitar toallas exclusivas para la pileta en recepción.</p>
-                                </div>
-                            </div>
+                    <!-- Cuadrante 3: Bar -->
+                    <button onclick="openModal('modal-bar')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
+                        <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
+                            <i class="fa-solid fa-martini-glass-citrus text-3xl"></i>
                         </div>
-                    </div>
-                    
-                    <!-- Info Card 5 -->
-                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
-                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
-                            <div class="flex items-center gap-3">
-                                <i class="fa-solid fa-car text-brand-blue w-5"></i> Estacionamiento
-                            </div>
-                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
-                        </button>
-                        <div class="accordion-grid info-content">
-                            <div class="accordion-inner">
-                                <div class="px-5 pb-4 text-sm text-brand-text/80">
-                                    <p>Contamos con estacionamiento gratuito para nuestros huéspedes (sujeto a disponibilidad al momento de llegada).</p>
-                                </div>
-                            </div>
+                        <span class="font-bold text-base text-brand-text">Bar</span>
+                    </button>
+
+                    <!-- Cuadrante 4: Pileta -->
+                    <button onclick="openModal('modal-pileta')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
+                        <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
+                            <i class="fa-solid fa-water-ladder text-3xl"></i>
                         </div>
-                    </div>
+                        <span class="font-bold text-base text-brand-text">Pileta</span>
+                    </button>
                 </div>
 
-                <div class="mt-8 bg-brand-sand rounded-2xl p-5 text-center shadow-soft">
-                    <h3 class="font-bold text-lg mb-2 text-brand-text">¿Querés salir a pasear?</h3>
-                    <p class="text-sm mb-4 text-brand-text/80">Descubrí las mejores atracciones de San Clemente.</p>
-                    <button onclick="navigate('recomendaciones')" class="bg-brand-primary text-white px-6 py-3 rounded-xl font-semibold shadow-sm active:scale-95 transition-transform w-full">Ver Recomendaciones</button>
-                </div>
+                <!-- QUINTA TARJETA RECTANGULAR: RECOMENDACIONES -->
+                <button onclick="navigate('recomendaciones')" class="w-full bg-white rounded-3xl p-5 flex items-center gap-5 shadow-soft border border-brand-sand/60 active:scale-95 transition-all group text-left">
+                    <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text flex-shrink-0 group-hover:bg-brand-sand/30 transition-colors">
+                        <i class="fa-solid fa-compass text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-brand-text mb-0.5">Recomendaciones</h3>
+                        <p class="text-xs text-brand-text/70">Guía turística, paseos y gastronomía</p>
+                    </div>
+                </button>
             </div>
 
-            <!-- VIEW: RECOMENDACIONES -->
+            <!-- VIEW: RECOMENDACIONES (GUÍA TURÍSTICA DIGITAL) -->
             <div id="view-recomendaciones" class="view-section">
-                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('info')">
+                <div class="flex items-center gap-3 mb-4 cursor-pointer" onclick="navigate('info')">
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
-                    <h2 class="text-2xl font-bold text-brand-text">Paseos y Gastronomía</h2>
+                    <h2 class="text-2xl font-bold text-brand-text">Guía Turística</h2>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-brand-text mb-1">Descubrí lo mejor de San Clemente</h3>
+                    <p class="text-sm text-brand-text/80">Nuestros lugares favoritos para comer, pasear y disfrutar durante tu estadía.</p>
                 </div>
                 
-                <div class="space-y-5">
-                    <!-- Rec Card -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-soft border border-brand-sand">
-                        <img src="https://placehold.co/400x200/E3D3B8/0A3C59?text=Termas+Marinas" alt="Termas Marinas" class="w-full h-36 object-cover">
-                        <div class="p-4">
-                            <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">Actividades</span>
-                            <h3 class="text-lg font-bold mt-1 mb-2 text-brand-text">Termas Marinas Park</h3>
-                            <p class="text-sm text-brand-text/80 mb-3">Parque termal con piletas de agua salada a diferentes temperaturas. Ideal para relajarse en familia.</p>
-                            <a href="#" class="text-brand-primary font-semibold text-sm flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Ver en mapa</a>
+                <div class="space-y-4">
+                    <!-- Banner 1: Gastronomía -->
+                    <div onclick="alert('Próximamente: Sección de Gastronomía')" class="relative rounded-3xl overflow-hidden shadow-soft cursor-pointer active:scale-98 transition-transform h-48 group">
+                        <!-- COMENTARIO: Reemplazar imagen de gastronomía aquí -->
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Gastronomía" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-text/90 via-brand-text/40 to-transparent flex flex-col justify-end p-5 text-white">
+                            <h4 class="text-xl font-bold mb-1">Gastronomía</h4>
+                            <p class="text-xs text-white/90">Restaurantes, cafeterías y lugares para disfrutar de algo rico.</p>
                         </div>
                     </div>
 
-                    <!-- Rec Card -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-soft border border-brand-sand">
-                        <img src="https://placehold.co/400x200/E3D3B8/0A3C59?text=Mundo+Marino" alt="Mundo Marino" class="w-full h-36 object-cover">
-                        <div class="p-4">
-                            <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">Entretenimiento</span>
-                            <h3 class="text-lg font-bold mt-1 mb-2 text-brand-text">Mundo Marino</h3>
-                            <p class="text-sm text-brand-text/80 mb-3">El oceanario más grande de Sudamérica, un clásico imperdible de San Clemente.</p>
-                            <a href="#" class="text-brand-primary font-semibold text-sm flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Ver en mapa</a>
+                    <!-- Banner 2: Atracciones -->
+                    <div onclick="alert('Próximamente: Sección de Atracciones')" class="relative rounded-3xl overflow-hidden shadow-soft cursor-pointer active:scale-98 transition-transform h-48 group">
+                        <!-- COMENTARIO: Reemplazar imagen de atracciones aquí -->
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Atracciones" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-text/90 via-brand-text/40 to-transparent flex flex-col justify-end p-5 text-white">
+                            <h4 class="text-xl font-bold mb-1">Atracciones</h4>
+                            <p class="text-xs text-white/90">Lugares y experiencias para disfrutar durante tu estadía.</p>
                         </div>
                     </div>
 
-                    <!-- Rec Card -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-soft border border-brand-sand">
-                        <img src="https://placehold.co/400x200/E3D3B8/0A3C59?text=Puerto+y+Ria" alt="Gastronomía" class="w-full h-36 object-cover">
-                        <div class="p-4">
-                            <span class="text-xs font-bold text-brand-primary uppercase tracking-wider">Gastronomía</span>
-                            <h3 class="text-lg font-bold mt-1 mb-2 text-brand-text">Puerto y Ría</h3>
-                            <p class="text-sm text-brand-text/80 mb-3">Zona portuaria ideal para disfrutar de mariscos frescos, pesca del día y vistas hermosas al atardecer.</p>
-                            <a href="#" class="text-brand-primary font-semibold text-sm flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Ver en mapa</a>
+                    <!-- Banner 3: Qué hay cerca -->
+                    <div onclick="alert('Próximamente: Sección Qué hay cerca')" class="relative rounded-3xl overflow-hidden shadow-soft cursor-pointer active:scale-98 transition-transform h-48 group">
+                        <!-- COMENTARIO: Reemplazar imagen de qué hay cerca aquí -->
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Qué hay cerca" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-text/90 via-brand-text/40 to-transparent flex flex-col justify-end p-5 text-white">
+                            <h4 class="text-xl font-bold mb-1">Qué hay cerca</h4>
+                            <p class="text-xs text-white/90">Lugares para conocer y disfrutar cerca del hotel.</p>
                         </div>
                     </div>
                 </div>
@@ -804,7 +772,7 @@
                                     <div class="accordion-grid answer-content">
                                         <div class="accordion-inner">
                                             <div class="px-5 pb-4 text-sm text-brand-text/70">
-                                                <p class="mb-3">Desde la sección 'Estoy por viajar' en el inicio de nossa Conserjería Online podés completar tus datos antes de llegar al hotel. El proceso es simple y te permitirá agilizar tu ingreso!</p>
+                                                <p class="mb-3">Desde la sección 'Estoy por viajar' en el inicio de nuestra Conserjería Online podés completar tus datos antes de llegar al hotel. El proceso es simple y te permitirá agilizar tu ingreso!</p>
                                                 <button onclick="navigate('precheckin')" class="w-full bg-brand-primary text-white font-semibold py-3 rounded-xl shadow-sm active:scale-95 transition-transform mt-3">Hacer mi pre-check-in</button>
                                             </div>
                                         </div>
@@ -827,7 +795,6 @@
                 <p class="mb-6 text-sm text-brand-text/80">Realizá tu solicitud por acá y nuestro equipo te asistirá a la brevedad.</p>
                 
                 <form id="form-instay" class="space-y-4" onsubmit="handleInStayRequest(event)">
-                    <!-- Mensaje de Error Oculto -->
                     <div id="error-instay" class="hidden bg-red-100 text-red-700 p-3 rounded-xl text-sm font-medium text-center border border-red-200">
                         No pudimos enviar tu solicitud. Por favor, intentá nuevamente.
                     </div>
@@ -916,6 +883,88 @@
 
         </main>
 
+        <!-- MODALES PARA LOS 4 SERVICIOS DE INFO -->
+        <!-- Modal Horarios -->
+        <div id="modal-horarios" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-horarios')">
+            <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative text-brand-text">
+                <button onclick="closeModal('modal-horarios')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <div class="flex flex-col items-center text-center mt-2">
+                    <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3">
+                        <i class="fa-regular fa-clock text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Horarios</h3>
+                    <div class="text-sm text-brand-text/80 space-y-2 text-left bg-brand-bg/50 p-4 rounded-2xl w-full">
+                        <p><strong>Check-in:</strong> A partir de las 14:00 hs.</p>
+                        <p><strong>Check-out:</strong> Hasta las 10:00 hs.</p>
+                        <p class="text-xs text-brand-text/60 mt-2 italic">*Horarios sujetos a disponibilidad, consultanos por late check-out.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Desayuno -->
+        <div id="modal-desayuno" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-desayuno')">
+            <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative text-brand-text">
+                <button onclick="closeModal('modal-desayuno')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <div class="flex flex-col items-center text-center mt-2">
+                    <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3">
+                        <i class="fa-solid fa-mug-hot text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Desayuno Buffet</h3>
+                    <div class="text-sm text-brand-text/80 space-y-3 text-left bg-brand-bg/50 p-4 rounded-2xl w-full">
+                        <p>Servicio diario en nuestro salón comedor.</p>
+                        <div class="bg-white p-3 rounded-xl border border-brand-sand/40 text-center font-bold text-brand-primary">
+                            Horario: 08:00 hs a 10:30 hs.
+                        </div>
+                        <p class="text-xs text-brand-text/70">Contamos con opciones sin TACC (avisar con anticipación en recepción).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Bar -->
+        <div id="modal-bar" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-bar')">
+            <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative text-brand-text">
+                <button onclick="closeModal('modal-bar')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <div class="flex flex-col items-center text-center mt-2">
+                    <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3">
+                        <i class="fa-solid fa-martini-glass-citrus text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Bar 24 Horas</h3>
+                    <div class="text-sm text-brand-text/80 space-y-3 text-left bg-brand-bg/50 p-4 rounded-2xl w-full">
+                        <p>Nuestro bar en el lobby está disponible las 24 horas para disfrutar de cafetería, bebidas frescas y snacks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Pileta -->
+        <div id="modal-pileta" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-pileta')">
+            <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative text-brand-text">
+                <button onclick="closeModal('modal-pileta')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <div class="flex flex-col items-center text-center mt-2">
+                    <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3">
+                        <i class="fa-solid fa-water-ladder text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Pileta Climatizada</h3>
+                    <div class="text-sm text-brand-text/80 space-y-2 text-left bg-brand-bg/50 p-4 rounded-2xl w-full">
+                        <p><strong>Ubicación:</strong> Planta baja.</p>
+                        <p><strong>Temporada:</strong> Noviembre a Marzo.</p>
+                        <p><strong>Horario:</strong> 10:00 a 20:00 hs.</p>
+                        <p class="text-xs text-brand-text/60 mt-2">*Por favor, solicitar toallas exclusivas para la pileta en recepción.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Floating WhatsApp Button -->
         <a href="https://wa.me/5492252487664" target="_blank" class="absolute bottom-24 right-5 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-transform z-50">
             <i class="fa-brands fa-whatsapp text-3xl"></i>
@@ -991,18 +1040,25 @@
 
 
         // ==========================================
-        // LÓGICA DE INFO ACORDEÓN 
+        // LÓGICA DE MODALES DE INFO
         // ==========================================
-        function toggleInfo(button) {
-            const content = button.nextElementSibling;
-            const icon = button.querySelector('.fa-chevron-down');
-            
-            if (content.classList.contains('open')) {
-                content.classList.remove('open');
-                icon.style.transform = 'rotate(0deg)';
-            } else {
-                content.classList.add('open');
-                icon.style.transform = 'rotate(180deg)';
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if(modal) {
+                modal.classList.add('active');
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if(modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        function closeModalOnOutside(event, modalId) {
+            if(event.target.id === modalId) {
+                closeModal(modalId);
             }
         }
 
@@ -1015,7 +1071,6 @@
             const currentSign = button.querySelector('.icon-cat');
             const allCategories = document.querySelectorAll('#faq-categories .category-content');
             
-            // Cerrar todas las demás categorías
             allCategories.forEach(content => {
                 if(content !== currentContent && content.classList.contains('open')) {
                     content.classList.remove('open');
@@ -1023,7 +1078,6 @@
                 }
             });
 
-            // Abrir o cerrar la categoría seleccionada
             if (currentContent.classList.contains('open')) {
                 currentContent.classList.remove('open');
                 currentSign.style.transform = 'rotate(0deg)';
@@ -1050,7 +1104,8 @@
         // ==========================================
         // LÓGICA DE FORMULARIOS (Google Apps Script)
         // ==========================================
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzvR30AIMEslSGciYR5C5fHOc_MGtcaFKVIHBdxrH0pnukTus8z03U1pIETUxdA5-CZkw/exec";
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzkUW1bX9VyvtG7Kk_4WLHkzvzEwiQUsuvJIvGFuk3DF7E0SzWykxau-nG7ciGDE2N2UQ/exec';
+
         async function handlePreCheckin(e) {
             e.preventDefault();
             
