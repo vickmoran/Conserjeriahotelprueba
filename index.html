@@ -770,9 +770,10 @@
                         No pudimos enviar tu solicitud. Por favor, intentá nuevamente.
                     </div>
 
+                    <!-- REEMPLAZAR ESTE BLOQUE EN LA VISTA IN-STAY -->
                     <div>
                         <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Habitación</label>
-                        <input type="number" name="habitacion" required min="1" max="500" step="1" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors" placeholder="Número de habitación (1-500)">
+                        <input type="number" id="input-habitacion" name="habitacion" required min="0" max="415" step="1" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors" placeholder="Ej: 12, 105, 210, 305...">
                     </div>
                     
                     <div>
@@ -1451,6 +1452,36 @@
                     btnSubmit.disabled = false;
                     btnSubmit.classList.remove('opacity-80', 'cursor-not-allowed');
                 }
+            }
+        });
+
+        // ==========================================
+        // VALIDACIÓN DE NÚMEROS DE HABITACIÓN
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputHabitacion = document.getElementById('input-habitacion');
+
+            if (inputHabitacion) {
+                inputHabitacion.addEventListener('input', function() {
+                    if (this.value === '') {
+                        this.setCustomValidity('');
+                        return;
+                    }
+
+                    const val = parseInt(this.value, 10);
+                    const isValid = 
+                        (val >= 0 && val <= 21) ||
+                        (val >= 100 && val <= 115) ||
+                        (val >= 200 && val <= 215) ||
+                        (val >= 300 && val <= 315) ||
+                        (val >= 400 && val <= 415);
+
+                    if (!isValid) {
+                        this.setCustomValidity('Número inválido. Las habitaciones van del 0 al 21, y del 100 al 415 (terminadas hasta el 15).');
+                    } else {
+                        this.setCustomValidity('');
+                    }
+                });
             }
         });
 
