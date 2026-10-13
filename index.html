@@ -148,14 +148,7 @@
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
                     <h2 class="text-2xl font-bold text-brand-text">Pre-check-in Digital</h2>
                 </div>
-                <p class="mb-4 text-sm text-brand-text/80">Completá tus datos anticipadamente para agilizar tu ingreso al hotel. Es rápido y sencillo.</p>
-                
-                <!-- BOTÓN POLÍTICA DE PRIVACIDAD -->
-                <div class="mb-6">
-                    <button type="button" onclick="openModal('modal-privacidad')" class="text-brand-blue font-semibold text-sm hover:opacity-80 transition-opacity inline-flex items-center gap-1.5 underline decoration-brand-blue/30 underline-offset-4">
-                        🔒 Ver más sobre la protección de tus datos
-                    </button>
-                </div>
+                <p class="mb-6 text-sm text-brand-text/80">Completá tus datos anticipadamente para agilizar tu ingreso al hotel. Es rápido y sencillo.</p>
                 
                 <form id="form-precheckin" class="space-y-4" onsubmit="handlePreCheckin(event)">
                     <div id="error-precheckin" class="hidden bg-red-100 text-red-700 p-3 rounded-xl text-sm font-medium text-center border border-red-200">
@@ -243,114 +236,164 @@
                 </div>
             </div>
 
-            <!-- VIEW: INFO (RECOMENDACIONES PRIMERO + MENÚ VISUAL 2x2) -->
+            <!-- VIEW: INFO (RECOMENDACIONES PRIMERO + ALTURA MAYOR) -->
             <div id="view-info" class="view-section">
                 <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('home')">
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
                     <h2 class="text-2xl font-bold text-brand-text">Información del Hotel</h2>
                 </div>
                 
-                <p class="text-sm text-brand-text/80 mb-6">Tocá cualquier servicio para conocer los detalles de tu estadía.</p>
+                <div class="space-y-4">
+                    <!-- RECOMENDACIONES: ARRIBA Y CON MAYOR ALTURA -->
+                    <button onclick="navigate('recomendaciones')" class="w-full bg-white rounded-2xl p-6 flex items-center gap-4 shadow-soft border border-brand-sand active:scale-95 transition-all text-left">
+                        <div class="w-16 h-16 bg-brand-sand/40 rounded-2xl flex items-center justify-center text-brand-primary flex-shrink-0">
+                            <i class="fa-solid fa-compass text-3xl"></i>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-lg text-brand-text">Recomendaciones</span>
+                            <span class="text-sm text-brand-text/70">Gastronomía, paseos y atracciones</span>
+                        </div>
+                    </button>
 
-                <!-- RECOMENDACIONES: AHORA PRIMERO Y MÁS ALTO -->
-                <button onclick="navigate('recomendaciones')" class="w-full bg-white rounded-3xl p-8 mb-4 flex items-center gap-5 shadow-soft border border-brand-sand/60 active:scale-95 transition-all group text-left">
-                    <div class="w-20 h-20 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text flex-shrink-0 group-hover:bg-brand-sand/30 transition-colors">
-                        <i class="fa-solid fa-compass text-4xl"></i>
+                    <!-- Info Card 1 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-regular fa-clock text-brand-blue w-5"></i> Horarios
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
+                        </button>
+                        <div class="accordion-grid info-content">
+                            <div class="accordion-inner">
+                                <div class="px-5 pb-4 text-sm text-brand-text/80">
+                                    <p><strong>Check-in:</strong> A partir de las 14:00 hs.<br>
+                                    <strong>Check-out:</strong> Hasta las 10:00 hs.</p>
+                                    <p class="mt-2 text-xs italic">*Horarios sujetos a disponibilidad, consultanos por late check-out.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-xl text-brand-text mb-1">Recomendaciones</h3>
-                        <p class="text-sm text-brand-text/70">Guía turística, paseos y gastronomía</p>
+
+                    <!-- Info Card 2 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-mug-hot text-brand-primary w-5"></i> Desayuno Buffet
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
+                        </button>
+                        <div class="accordion-grid info-content">
+                            <div class="accordion-inner">
+                                <div class="px-5 pb-4 text-sm text-brand-text/80">
+                                    <p>Servicio diario en nuestro salón comedor.<br>
+                                    <strong>Horario:</strong> 08:00 hs a 10:30 hs.</p>
+                                    <p class="mt-2">Contamos con opciones sin TACC (avisar con anticipación en recepción).</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </button>
 
-                <!-- GRILLA 2x2 DE CUADRANTES -->
-                <div class="grid grid-cols-2 gap-4 mb-4">
-                    <button onclick="openModal('modal-horarios')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
-                        <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
-                            <i class="fa-regular fa-clock text-3xl"></i>
+                    <!-- Info Card 3 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-martini-glass-citrus text-brand-blue w-5"></i> Bar 24 Horas
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
+                        </button>
+                        <div class="accordion-grid info-content">
+                            <div class="accordion-inner">
+                                <div class="px-5 pb-4 text-sm text-brand-text/80">
+                                    <p>Nuestro bar en el lobby está disponible las 24 horas para disfrutar de cafetería, bebidas frescas y snacks.</p>
+                                </div>
+                            </div>
                         </div>
-                        <span class="font-bold text-base text-brand-text">Horarios</span>
-                    </button>
+                    </div>
 
-                    <button onclick="openModal('modal-desayuno')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
-                        <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
-                            <i class="fa-solid fa-mug-hot text-3xl"></i>
+                    <!-- Info Card 4 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-water-ladder text-brand-blue w-5"></i> Pileta Climatizada
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
+                        </button>
+                        <div class="accordion-grid info-content">
+                            <div class="accordion-inner">
+                                <div class="px-5 pb-4 text-sm text-brand-text/80">
+                                    <p>Ubicada en planta baja. <br>
+                                    <strong>Temporada:</strong> Noviembre a Marzo.<br>
+                                    <strong>Horario:</strong> 10:00 a 20:00 hs.</p>
+                                    <p class="mt-2 text-xs">Por favor, solicitar toallas exclusivas para la pileta en recepción.</p>
+                                </div>
+                            </div>
                         </div>
-                        <span class="font-bold text-base text-brand-text">Desayuno</span>
-                    </button>
-
-                    <button onclick="openModal('modal-bar')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
-                        <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
-                            <i class="fa-solid fa-martini-glass-citrus text-3xl"></i>
+                    </div>
+                    
+                    <!-- Info Card 5 -->
+                    <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
+                        <button class="w-full px-5 py-4 flex items-center justify-between text-left font-semibold text-lg info-toggle text-brand-text" onclick="toggleInfo(this)">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-car text-brand-blue w-5"></i> Estacionamiento
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300 text-brand-primary"></i>
+                        </button>
+                        <div class="accordion-grid info-content">
+                            <div class="accordion-inner">
+                                <div class="px-5 pb-4 text-sm text-brand-text/80">
+                                    <p>Contamos con estacionamiento gratuito para nuestros huéspedes (sujeto a disponibilidad al momento de llegada).</p>
+                                </div>
+                            </div>
                         </div>
-                        <span class="font-bold text-base text-brand-text">Bar</span>
-                    </button>
-
-                    <button onclick="openModal('modal-pileta')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
-                        <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
-                            <i class="fa-solid fa-water-ladder text-3xl"></i>
-                        </div>
-                        <span class="font-bold text-base text-brand-text">Pileta</span>
-                    </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- VIEW: RECOMENDACIONES (MAIN PORTADA) -->
+            <!-- VIEW: RECOMENDACIONES (PORTADA Y SUB-SECCIONES DINÁMICAS) -->
             <div id="view-recomendaciones" class="view-section">
-                <div class="flex items-center gap-3 mb-4 cursor-pointer" onclick="navigate('info')">
+                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('info')">
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
                     <h2 class="text-2xl font-bold text-brand-text">Recomendaciones</h2>
                 </div>
-
-                <div class="mb-6">
-                    <h3 class="text-xl font-bold text-brand-text mb-1">¿Qué tenés ganas de hacer?</h3>
-                    <p class="text-sm text-brand-text/80">Te recomendamos nuestros favoritos de San Clemente para que puedas disfrutar tu estadía al máximo!</p>
-                </div>
                 
-                <div class="space-y-4 pb-10" id="rec-banners-container">
-                    <!-- Javascript inyectará los 3 banners principales aquí -->
-                </div>
-            </div>
+                <div class="space-y-4" id="rec-menu-container">
+                    <!-- Categorías con solo título principal -->
+                    <div onclick="renderRecCategory('gastronomia')" class="bg-white rounded-2xl p-5 border border-brand-sand shadow-soft cursor-pointer active:scale-95 transition-transform flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-brand-sand/40 rounded-xl flex items-center justify-center text-brand-primary text-xl">
+                                <i class="fa-solid fa-utensils"></i>
+                            </div>
+                            <span class="font-bold text-lg text-brand-text">Gastronomía</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-brand-primary"></i>
+                    </div>
 
-            <!-- VIEW: SUB-SECCIÓN GASTRONOMÍA -->
-            <div id="view-rec-gastronomia" class="view-section">
-                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('recomendaciones')">
-                    <i class="fa-solid fa-arrow-left text-brand-primary"></i>
-                    <h2 class="text-2xl font-bold text-brand-text">Gastronomía</h2>
-                </div>
-                
-                <!-- TABS GASTRONOMÍA -->
-                <div class="flex gap-2 overflow-x-auto pb-4 mb-2 no-scrollbar" style="scroll-behavior: smooth;">
-                    <button onclick="renderGastronomiaCards('restaurantes')" id="tab-restaurantes" class="rec-gastro-tab px-5 py-2.5 bg-brand-primary text-white border border-transparent rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">🍽️ Restaurantes</button>
-                    <button onclick="renderGastronomiaCards('cafeterias')" id="tab-cafeterias" class="rec-gastro-tab px-5 py-2.5 bg-white text-brand-text border border-brand-sand/60 rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">☕ Cafeterías</button>
-                    <button onclick="renderGastronomiaCards('pizzerias')" id="tab-pizzerias" class="rec-gastro-tab px-5 py-2.5 bg-white text-brand-text border border-brand-sand/60 rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">🍕 Pizzerías</button>
-                    <button onclick="renderGastronomiaCards('panaderias')" id="tab-panaderias" class="rec-gastro-tab px-5 py-2.5 bg-white text-brand-text border border-brand-sand/60 rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">🥐 Panaderías</button>
+                    <div onclick="renderRecCategory('atracciones')" class="bg-white rounded-2xl p-5 border border-brand-sand shadow-soft cursor-pointer active:scale-95 transition-transform flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-brand-sand/40 rounded-xl flex items-center justify-center text-brand-primary text-xl">
+                                <i class="fa-solid fa-mountain-sun"></i>
+                            </div>
+                            <span class="font-bold text-lg text-brand-text">Atracciones</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-brand-primary"></i>
+                    </div>
+
+                    <div onclick="renderRecCategory('quehacer')" class="bg-white rounded-2xl p-5 border border-brand-sand shadow-soft cursor-pointer active:scale-95 transition-transform flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-brand-sand/40 rounded-xl flex items-center justify-center text-brand-primary text-xl">
+                                <i class="fa-solid fa-compass"></i>
+                            </div>
+                            <span class="font-bold text-lg text-brand-text">Qué hacer</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-brand-primary"></i>
+                    </div>
                 </div>
 
-                <div id="rec-gastronomia-content" class="pb-10 space-y-5">
-                    <!-- Javascript inyectará las tarjetas de gastronomía aquí -->
-                </div>
-            </div>
-
-            <!-- VIEW: SUB-SECCIÓN ATRACCIONES -->
-            <div id="view-rec-atracciones" class="view-section">
-                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('recomendaciones')">
-                    <i class="fa-solid fa-arrow-left text-brand-primary"></i>
-                    <h2 class="text-2xl font-bold text-brand-text">Atracciones</h2>
-                </div>
-                <div id="rec-atracciones-content" class="pb-10 space-y-5">
-                    <!-- Javascript inyectará las tarjetas de atracciones aquí -->
-                </div>
-            </div>
-
-            <!-- VIEW: SUB-SECCIÓN QUÉ HACER -->
-            <div id="view-rec-quehacer" class="view-section">
-                <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('recomendaciones')">
-                    <i class="fa-solid fa-arrow-left text-brand-primary"></i>
-                    <h2 class="text-2xl font-bold text-brand-text">Qué hacer</h2>
-                </div>
-                <div id="rec-quehacer-content" class="pb-10 space-y-5">
-                    <!-- Javascript inyectará las tarjetas de qué hacer aquí -->
+                <div id="rec-content-container" class="hidden space-y-4">
+                    <button onclick="backToRecMenu()" class="text-brand-primary font-semibold text-sm flex items-center gap-2 mb-4">
+                        <i class="fa-solid fa-arrow-left"></i> Volver a categorías
+                    </button>
+                    <div id="rec-items-list" class="space-y-4"></div>
                 </div>
             </div>
 
@@ -362,6 +405,7 @@
                 </div>
                 
                 <div class="space-y-4" id="faq-categories">
+                    
                     <!-- CATEGORÍA 1 -->
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
                         <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
@@ -370,6 +414,7 @@
                         </button>
                         <div class="accordion-grid category-content">
                             <div class="accordion-inner">
+                                
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿Qué medios de pago aceptan?</span>
@@ -383,6 +428,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿Cómo se modifica una reserva?</span>
@@ -396,6 +442,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿Cómo cancelo una reserva?</span>
@@ -409,6 +456,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- NUEVA PREGUNTA SOBRE SEÑAS -->
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿Se puede cancelar una reserva con seña?</span>
@@ -422,6 +471,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿Puedo reservar directamente con el hotel?</span>
@@ -435,9 +485,11 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+
                     <!-- CATEGORÍA 2 -->
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
                         <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
@@ -446,6 +498,7 @@
                         </button>
                         <div class="accordion-grid category-content">
                             <div class="accordion-inner">
+                                
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿A qué hora es el check-in?</span>
@@ -459,6 +512,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿Puedo hacer un check-out tardío?</span>
@@ -472,6 +526,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿Qué necesito presentar al hacer el check-in?</span>
@@ -485,6 +540,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿Puedo dejar mi equipaje antes del check-in?</span>
@@ -498,9 +554,11 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+
                     <!-- CATEGORÍA 3 -->
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
                         <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
@@ -509,6 +567,7 @@
                         </button>
                         <div class="accordion-grid category-content">
                             <div class="accordion-inner">
+                                
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿Qué tipos de habitación hay?</span>
@@ -522,6 +581,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿Puedo pedir una habitación en particular?</span>
@@ -535,6 +595,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿Las habitaciones tienen aire acondicionado?</span>
@@ -548,6 +609,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿Las habitaciones tienen minibar?</span>
@@ -561,6 +623,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿Las habitaciones tienen caja fuerte?</span>
@@ -574,6 +637,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿Las habitaciones tienen secador de pelo?</span>
@@ -587,6 +651,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿Hay Wi-Fi?</span>
@@ -600,9 +665,11 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+
                     <!-- CATEGORÍA 4 -->
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
                         <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
@@ -611,6 +678,7 @@
                         </button>
                         <div class="accordion-grid category-content">
                             <div class="accordion-inner">
+                                
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿Cuándo abre la pileta?</span>
@@ -624,6 +692,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- ESTACIONAMIENTO: ACLARADO QUE ES DESCUBIERTO -->
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿Tienen estacionamiento?</span>
@@ -637,6 +707,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿El bar está abierto de noche?</span>
@@ -650,6 +721,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿El desayuno está incluido?</span>
@@ -663,6 +735,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿En qué horario se sirve el desayuno?</span>
@@ -676,6 +749,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿El estacionamiento necesita reserva?</span>
@@ -689,9 +763,11 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+
                     <!-- CATEGORÍA 5 -->
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
                         <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
@@ -700,6 +776,7 @@
                         </button>
                         <div class="accordion-grid category-content">
                             <div class="accordion-inner">
+                                
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿Cómo llego desde la terminal o la ruta?</span>
@@ -716,6 +793,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿Dónde está ubicado el hotel?</span>
@@ -732,9 +810,11 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+
                     <!-- CATEGORÍA 6 -->
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
                         <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
@@ -743,6 +823,7 @@
                         </button>
                         <div class="accordion-grid category-content">
                             <div class="accordion-inner">
+                                
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿Qué necesito hacer antes de llegar al hotel?</span>
@@ -757,6 +838,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿Cómo hago el pre-check-in?</span>
@@ -771,9 +853,11 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -786,12 +870,14 @@
                 <p class="mb-6 text-sm text-brand-text/80">Realizá tu solicitud por acá y nuestro equipo te asistirá a la brevedad.</p>
                 
                 <form id="form-instay" class="space-y-4" onsubmit="handleInStayRequest(event)">
+                    <!-- Mensaje de Error Oculto -->
                     <div id="error-instay" class="hidden bg-red-100 text-red-700 p-3 rounded-xl text-sm font-medium text-center border border-red-200">
                         No pudimos enviar tu solicitud. Por favor, intentá nuevamente.
                     </div>
 
                     <div>
                         <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Habitación</label>
+                        <!-- Campo de habitación validado con la lista exacta solicitada -->
                         <input type="number" id="input-habitacion" name="habitacion" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors" placeholder="Ej: 8, 105, 210, 401...">
                     </div>
                     
@@ -874,117 +960,6 @@
 
         </main>
 
-        <!-- MODALES DE INFO -->
-        <!-- Modal Horarios -->
-        <div id="modal-horarios" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-horarios')">
-            <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative text-brand-text">
-                <button onclick="closeModal('modal-horarios')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-                <div class="flex flex-col items-center text-center mt-2">
-                    <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3">
-                        <i class="fa-regular fa-clock text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Horarios</h3>
-                    <div class="text-sm text-brand-text/80 space-y-2 text-left bg-brand-bg/50 p-4 rounded-2xl w-full">
-                        <p><strong>Check-in:</strong> A partir de las 14:00 hs.</p>
-                        <p><strong>Check-out:</strong> Hasta las 10:00 hs.</p>
-                        <p class="text-xs text-brand-text/60 mt-2 italic">*Horarios sujetos a disponibilidad, consultanos por late check-out.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Desayuno -->
-        <div id="modal-desayuno" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-desayuno')">
-            <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative text-brand-text">
-                <button onclick="closeModal('modal-desayuno')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-                <div class="flex flex-col items-center text-center mt-2">
-                    <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3">
-                        <i class="fa-solid fa-mug-hot text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Desayuno Buffet</h3>
-                    <div class="text-sm text-brand-text/80 space-y-3 text-left bg-brand-bg/50 p-4 rounded-2xl w-full">
-                        <p>Servicio diario en nuestro salón comedor.</p>
-                        <div class="bg-white p-3 rounded-xl border border-brand-sand/40 text-center font-bold text-brand-primary">
-                            Horario: 08:00 hs a 10:30 hs.
-                        </div>
-                        <p class="text-xs text-brand-text/70">Contamos con opciones sin TACC (avisar con anticipación en recepción).</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Bar -->
-        <div id="modal-bar" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-bar')">
-            <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative text-brand-text">
-                <button onclick="closeModal('modal-bar')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-                <div class="flex flex-col items-center text-center mt-2">
-                    <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3">
-                        <i class="fa-solid fa-martini-glass-citrus text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Bar 24 Horas</h3>
-                    <div class="text-sm text-brand-text/80 space-y-3 text-left bg-brand-bg/50 p-4 rounded-2xl w-full">
-                        <p>Nuestro bar en el lobby está disponible las 24 horas para disfrutar de cafetería, bebidas frescas y snacks.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Pileta -->
-        <div id="modal-pileta" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-pileta')">
-            <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative text-brand-text">
-                <button onclick="closeModal('modal-pileta')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-                <div class="flex flex-col items-center text-center mt-2">
-                    <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3">
-                        <i class="fa-solid fa-water-ladder text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Pileta Climatizada</h3>
-                    <div class="text-sm text-brand-text/80 space-y-2 text-left bg-brand-bg/50 p-4 rounded-2xl w-full">
-                        <p><strong>Ubicación:</strong> Planta baja.</p>
-                        <p><strong>Temporada:</strong> Noviembre a Marzo.</p>
-                        <p><strong>Horario:</strong> 10:00 a 20:00 hs.</p>
-                        <p class="text-xs text-brand-text/60 mt-2">*Por favor, solicitar toallas exclusivas para la pileta en recepción.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Privacidad -->
-        <div id="modal-privacidad" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-privacidad')">
-            <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative text-brand-text max-h-[85vh] flex flex-col">
-                <button onclick="closeModal('modal-privacidad')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors flex-shrink-0">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-                
-                <div class="flex flex-col items-center text-center mt-2 flex-shrink-0">
-                    <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3">
-                        <i class="fa-solid fa-shield-halved text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 leading-tight">Política de privacidad y protección de datos</h3>
-                </div>
-                
-                <div class="overflow-y-auto text-sm text-brand-text/80 space-y-3 text-left bg-brand-bg/50 p-4 rounded-2xl w-full custom-scrollbar">
-                    <p>En Hotel Morales nos comprometemos a cuidar tu información personal y a tratarla con responsabilidad y confidencialidad.</p>
-                    <p>Los datos que nos brindes durante el proceso de check-in serán utilizados exclusivamente para gestionar tu estadía, cumplir con las obligaciones legales aplicables y brindarte los servicios correspondientes.</p>
-                    <p>No utilizaremos tu información para fines ajenos a los informados ni la compartiremos con terceros, salvo cuando sea necesario para la prestación del servicio o exista una obligación legal que así lo requiera.</p>
-                    <p>Adoptamos medidas para proteger tus datos y evitar accesos, usos o divulgaciones no autorizados.</p>
-                    <p>Tu confianza es importante para nosotros. Queremos que disfrutes de tu estadía con la tranquilidad de saber que tu información es tratada con el cuidado que merece.</p>
-                    <p>Si tenés alguna consulta sobre el uso de tus datos personales, podés comunicarte con nuestro equipo.</p>
-                </div>
-
-                <button onclick="closeModal('modal-privacidad')" class="w-full bg-brand-primary text-white font-bold rounded-xl py-3 mt-4 active:scale-95 transition-transform flex-shrink-0 shadow-soft">
-                    Entendido
-                </button>
-            </div>
-        </div>
-
         <!-- Floating WhatsApp Button -->
         <a href="https://wa.me/5492252487664" target="_blank" class="absolute bottom-24 right-5 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-transform z-50">
             <i class="fa-brands fa-whatsapp text-3xl"></i>
@@ -1015,200 +990,51 @@
     </div>
 
     <script>
-        // ==========================================
-        // BASE DE DATOS DE RECOMENDACIONES (GUÍA)
-        // ==========================================
-        const recomendaciones = {
-            banners: {
-                gastronomia: "gastronomia.jpg",
-                atracciones: "atracciones.jpg",
-                quehacer: "quever.jpg"
-            },
-            gastronomia: {
-                restaurantes: [
-                    {
-                        nombre: "La Parrillita",
-                        categoria: "🍽️ Restaurante",
-                        direccion: "Calle 1 N° 2178",
-                        distancia: "A 350 m",
-                        descripcion: "Si tenés ganas de comer una buena parrilla, es uno de los clásicos de San Clemente.",
-                        imagen: "laparrillita.jpg",
-                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Parrillita+San+Clemente+del+Tuyu"
-                    },
-                    {
-                        nombre: "Don Venancio",
-                        categoria: "🍽️ Restaurante",
-                        direccion: "Av. San Martín N° 243",
-                        distancia: "A 400 m",
-                        descripcion: "Una opción para comer bien y tranquilo, ideal si buscás una comida más tradicional de bodegón.",
-                        etiqueta: "Abierto solo en verano",
-                        imagen: "donvenancio.jpg",
-                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Don+Venancio+San+Clemente+del+Tuyu"
-                    },
-                    {
-                        nombre: "La Cantina del Delfín",
-                        categoria: "🍽️ Restaurante",
-                        direccion: "Av. XI N° 225",
-                        distancia: "A 3,5 km",
-                        descripcion: "Si te gustan los pescados y mariscos, no te lo podés perder. Está más alejada del centro, en el puerto.",
-                        etiqueta: "🚗 Recomendado con auto",
-                        imagen: "https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=600&q=80",
-                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Cantina+del+Delfin+San+Clemente+del+Tuyu"
-                    },
-                ],
-                cafeterias: [
-                    {
-                        nombre: "Cheroga",
-                        categoria: "☕ Cafetería",
-                        direccion: "Calle 1 N° 2156",
-                        distancia: "A 300 m",
-                        descripcion: "Un clásico para tomar un café, desayunar o frenar en el centro. Podés sentarte adentro o en la vereda.",
-                        imagen: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80",
-                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Cheroga+San+Clemente+del+Tuyu"
-                    },
-                    {
-                        nombre: "La Marca",
-                        categoria: "☕ Cafetería",
-                        direccion: "Calle 1 N° 2385",
-                        distancia: "A 800 m",
-                        descripcion: "Está en pleno centro y es una buena opción para sentarte a tomar algo mientras recorrés la zona.",
-                        imagen: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80",
-                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Marca+San+Clemente+del+Tuyu"
-                    },
-                    {
-                        nombre: "Tropicana",
-                        categoria: "☕ Cafetería"
-                    }
-                ],
-                pizzerias: [
-                    {
-                        nombre: "Potenza",
-                        categoria: "🍕 Pizzería",
-                        direccion: "Calle 1 N° 2162",
-                        distancia: "A 300 m",
-                        descripcion: "Si tenés ganas de una pizza en el centro, es una buena opción.",
-                        imagen: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80",
-                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Potenza+San+Clemente+del+Tuyu"
-                    },
-                    {
-                        nombre: "Center Pizza",
-                        categoria: "🍕 Pizzería",
-                        direccion: "Calle 63 N°112",
-                        distancia: "A 200 m",
-                        descripcion: "Una opción para comer pizza cerca, sin meterte en el centro.",
-                        imagen: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80",
-                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Center+Pizza+San+Clemente+del+Tuyu"
-                    },
-                    {
-                        nombre: "El Mundo de la Pizza",
-                        categoria: "🍕 Pizzería"
-                    }
-                ],
-                panaderias: [
-                    {
-                        nombre: "Bonavita",
-                        categoria: "🥐 Panadería",
-                        direccion: "Calle 1 y 18",
-                        distancia: "A 400 m",
-                        descripcion: "Las mejores medialunas y sándwiches de miga para llevarte a la playa o para la ruta.",
-                        imagen: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
-                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Panaderia+Bonavita+San+Clemente+del+Tuyu"
-                    },
-                    {
-                        nombre: "La Sirena",
-                        categoria: "🥐 Panadería",
-                        direccion: "Calle 5 N° 1476",
-                        distancia: "A 200 m",
-                        descripcion: "Cañoncitos y medialunas increíbles y muy cerca!",
-                        imagen: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
-                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Panaderia+La+Sirena+San+Clemente+del+Tuyu"
-                    },
-                ]
-            },
+        // --- Base de datos de Recomendaciones actualizada ---
+        const recomendacionesData = {
+            gastronomia: [
+                { nombre: "El Mundo de la Pizza", categoria: "Pizzería" },
+                { nombre: "Tropicana", categoria: "Cafetería" },
+                { nombre: "Rancho Aparte", categoria: "Restaurante" },
+                { nombre: "Selva Restobar", categoria: "Restaurante" },
+                { nombre: "La Sirena", categoria: "Panadería" },
+                { nombre: "Leila", categoria: "Panadería" }
+            ],
             atracciones: [
-                {
-                    nombre: "Mundo Marino",
-                    direccion: "Av. X N° 157",
-                    horario: "Horarios: consultar sitio oficial",
-                    descripcion: "¡El acuario más famoso de Argentina! El lugar al que tenés que ir a pasar el día si venís con chicos.",
-                    imagen: "mundomarino.jpg",
-                    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Mundo+Marino+San+Clemente+del+Tuyu",
-                    webUrl: "https://www.mundomarino.com.ar/"
-                },
-                {
-                    nombre: "Termas Marinas Park",
-                    direccion: "Camino a Termas",
-                    horario: "Horarios: consultar sitio oficial",
-                    etiqueta: "🚗 Recomendado con auto",
-                    descripcion: "Un buen plan para pasar el día entre piletas de aguas termales saladas, toboganes y naturaleza.",
-                    imagen: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=80",
-                    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Termas+Marinas+San+Clemente+del+Tuyu",
-                    webUrl: "https://www.termasmarinas.com.ar/"
-                },
-                {
-                    nombre: "Faro San Antonio",
-                    direccion: "Termas Marinas Park",
-                    descripcion: "Si vas para el lado de Termas Marinas, aprovechá para conocer el Faro, uno de los lugares más característicos de la zona.",
-                    imagen: "faro.jpg",
-                    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Faro+San+Antonio+San+Clemente+del+Tuyu"
-                },
-                {
-                    nombre: "Muelle",
-                    direccion: "Av. Costanera y Calle 2",
-                    descripcion: "El punto de referencia de la playa. Ideal para ir a pescar.",
-                    imagen: "muelle.jpg",
-                    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Muelle+San+Clemente+del+Tuyu"
-                },
-                {
-                    nombre: "Poseidon",
-                    direccion: "Ruta 11 KM:324",
-                    descripcion: "Parque acuático para divertirse en familia.",
-                    imagen: "muelle.jpg",
-                    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Poseidon+Parque+Acuatico"
-                }
+                { nombre: "Mundo Marino", descripcion: "El oceanario más grande de Sudamérica, un clásico imperdible de San Clemente." },
+                { nombre: "Termas Marinas Park", descripcion: "Parque termal con piletas de agua salada a diferentes temperaturas. Ideal para relajarse en familia." },
+                { nombre: "Poseidón", descripcion: "Atracción turística de San Clemente." }
             ],
             quehacer: [
-                {
-                    nombre: "Reserva Natural Punta Rasa",
-                    direccion: "Camino a Punta Rasa",
-                    etiqueta: "🚗 Recomendado con auto",
-                    tip: "Antes de ir, fijate la tabla de mareas.",
-                    descripcion: "Si tenés auto, es un lugar muy lindo para ver cómo (no) se unen del Río de la Plata con el Mar Argentino y todas las especies de aves autóctonas.",
-                    imagen: "puntarasa.jpg",
-                    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Punta+Rasa+San+Clemente+del+Tuyu"
-                },
-                {
-                    nombre: "Vivero Cosme Argerich",
-                    direccion: "Av. XV y Calle 18",
-                    descripcion: "Un lugar tranquilo para caminar entre árboles y pasar un rato rodeado de verde. Buena opción si buscás algo más relajado.",
-                    imagen: "vivero.jpg",
-                    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Vivero+Cosme+Argerich+San+Clemente+del+Tuyu"
-                },
-                {
-                    nombre: "Puerto de San Clemente",
-                    direccion: "Av. X y XI",
-                    descripcion: "Si querés conocer una parte más tradicional de San Clemente, date una vuelta por el puerto. Podés ver las embarcaciones y también comer algo rico.",
-                    imagen: "puerto.jpg",
-                    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Puerto+San+Clemente+del+Tuyu"
-                },
-                {
-                    nombre: "Tapera de López",
-                    direccion: "Camino a Tapera de López",
-                    etiqueta: "🚗 Recomendado con auto",
-                    descripcion: "Una buena opción para salir del centro, recorrer un poco y disfrutar de un entorno más natural, comiendo algo rico o pescando.",
-                    imagen: "tapera.jpg",
-                    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Tapera+de+Lopez+San+Clemente+del+Tuyu"
-                },
-                {
-                    nombre: "Centro / Peatonal",
-                    direccion: "Calle 1 y alrededores",
-                    verano: "La peatonal funciona de 20:00 a 02:00, así que es un buen plan para después de cenar.",
-                    descripcion: "Si querés salir a caminar, mirar negocios o tomar algo, el centro es una opción fácil y queda cerca del hotel.",
-                    imagen: "calle 1.jpg",
-                    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Peatonal+San+Clemente+del+Tuyu"
-                }
+                { nombre: "Puerto y Ría", descripcion: "Zona portuaria ideal para disfrutar de mariscos frescos, pesca del día y vistas hermosas al atardecer." }
             ]
         };
+
+        function renderRecCategory(categoryKey) {
+            document.getElementById('rec-menu-container').classList.add('hidden');
+            const contentContainer = document.getElementById('rec-content-container');
+            contentContainer.classList.remove('hidden');
+
+            const listContainer = document.getElementById('rec-items-list');
+            listContainer.innerHTML = '';
+
+            const items = recomendacionesData[categoryKey] || [];
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'bg-white rounded-2xl p-5 border border-brand-sand shadow-soft';
+                div.innerHTML = `
+                    <h3 class="text-lg font-bold text-brand-text mb-1">${item.nombre}</h3>
+                    ${item.categoria ? `<span class="text-xs font-bold text-brand-blue uppercase tracking-wider block mb-2">${item.categoria}</span>` : ''}
+                    ${item.descripcion ? `<p class="text-sm text-brand-text/80">${item.descripcion}</p>` : ''}
+                `;
+                listContainer.appendChild(div);
+            });
+        }
+
+        function backToRecMenu() {
+            document.getElementById('rec-content-container').classList.add('hidden');
+            document.getElementById('rec-menu-container').classList.remove('hidden');
+        }
 
         // --- Navigation Logic ---
         function navigate(targetId) {
@@ -1226,9 +1052,8 @@
                 item.classList.remove('text-brand-primary');
                 item.classList.add('text-gray-400');
                 
-                // Mantiene "info" seleccionado si estamos dentro de sub-secciones de Recomendaciones
                 let activeTarget = targetId;
-                if(targetId.startsWith('rec-') || targetId === 'recomendaciones') activeTarget = 'info';
+                if(targetId === 'recomendaciones') activeTarget = 'info';
 
                 if (item.dataset.target === activeTarget) {
                     item.classList.remove('text-gray-400');
@@ -1236,7 +1061,6 @@
                 }
             });
 
-            // LÓGICA DE PRE-CHECK-IN ÚNICO
             if (targetId === 'precheckin') {
                 const isCompleted = localStorage.getItem('precheckin_completado');
                 const form = document.getElementById('form-precheckin');
@@ -1253,162 +1077,29 @@
                 }
             }
 
-            // AUTO-RENDERIZAR CONTENIDO DINÁMICO SEGÚN LA VISTA
-            if (targetId === 'recomendaciones') renderMainBanners();
-            if (targetId === 'rec-gastronomia') renderGastronomiaCards('restaurantes'); // default tab
-            if (targetId === 'rec-atracciones') renderAtracciones();
-            if (targetId === 'rec-quehacer') renderQueHacer();
+            if(targetId === 'recomendaciones') {
+                backToRecMenu();
+            }
         }
 
         document.querySelector('.nav-item[data-target="home"]').classList.add('text-brand-primary');
         document.querySelector('.nav-item[data-target="home"]').classList.remove('text-gray-400');
 
-        // ==========================================
-        // LÓGICA DE GENERACIÓN DE TARJETAS (RECOMENDACIONES)
-        // ==========================================
-        
-        function renderMainBanners() {
-            const container = document.getElementById('rec-banners-container');
-            container.innerHTML = `
-                <div onclick="navigate('rec-gastronomia')" class="relative rounded-3xl overflow-hidden shadow-soft cursor-pointer active:scale-98 transition-transform h-48 group">
-                    <img src="${recomendaciones.banners.gastronomia}" alt="Gastronomía" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-text/90 via-brand-text/40 to-transparent flex flex-col justify-end p-5 text-white">
-                        <h4 class="text-xl font-bold mb-1">Gastronomía</h4>
-                    </div>
-                </div>
-
-                <div onclick="navigate('rec-atracciones')" class="relative rounded-3xl overflow-hidden shadow-soft cursor-pointer active:scale-98 transition-transform h-48 group">
-                    <img src="${recomendaciones.banners.atracciones}" alt="Atracciones" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-text/90 via-brand-text/40 to-transparent flex flex-col justify-end p-5 text-white">
-                        <h4 class="text-xl font-bold mb-1">Atracciones</h4>
-                    </div>
-                </div>
-
-                <div onclick="navigate('rec-quehacer')" class="relative rounded-3xl overflow-hidden shadow-soft cursor-pointer active:scale-98 transition-transform h-48 group">
-                    <img src="${recomendaciones.banners.quehacer}" alt="Qué hacer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-text/90 via-brand-text/40 to-transparent flex flex-col justify-end p-5 text-white">
-                        <h4 class="text-xl font-bold mb-1">Qué hacer</h4>
-                    </div>
-                </div>
-            `;
-        }
-
-        function createStandardCard(item) {
-            const div = document.createElement('div');
-            div.className = 'bg-white rounded-2xl overflow-hidden shadow-soft border border-brand-sand';
-
-            let html = ``;
-            if (item.imagen) {
-                html += `<img src="${item.imagen}" class="w-full h-44 object-cover" alt="${item.nombre}">`;
-            }
-            html += `<div class="p-5">
-                        <h3 class="text-xl font-bold text-brand-text mb-1">${item.nombre}</h3>`;
+        // --- Lógica de Info Acordeón ---
+        function toggleInfo(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.fa-chevron-down');
             
-            if(item.categoria) {
-                html += `<p class="text-xs font-semibold text-brand-blue uppercase tracking-wider mb-3">${item.categoria}</p>`;
-            }
-
-            if (item.descripcion) {
-                html += `<p class="text-sm text-brand-text/90 leading-relaxed mb-4">${item.descripcion}</p>`;
-            }
-
-            if(item.direccion || item.distancia || item.horario) {
-                html += `<div class="space-y-1.5 mb-4 text-sm text-brand-text/80">`;
-                if(item.direccion) html += `<p class="flex items-start gap-2"><i class="fa-solid fa-location-dot mt-0.5 w-4 text-center"></i> <span>${item.direccion}</span></p>`;
-                if(item.distancia) html += `<p class="flex items-start gap-2"><i class="fa-solid fa-ruler mt-0.5 w-4 text-center"></i> <span>${item.distancia}</span></p>`;
-                if(item.horario) html += `<p class="flex items-start gap-2"><i class="fa-regular fa-clock mt-0.5 w-4 text-center"></i> <span>${item.horario}</span></p>`;
-                html += `</div>`;
-            }
-
-            if(item.etiqueta) {
-                html += `<div class="bg-brand-bg text-brand-primary text-xs font-bold px-3 py-1.5 rounded-lg inline-block mb-3 border border-brand-sand/50">${item.etiqueta}</div>`;
-            }
-
-            if(item.tip) {
-                html += `<div class="bg-brand-sand/30 border border-brand-sand rounded-xl p-3 mb-3 flex gap-2 items-start">
-                            <span class="text-lg leading-none">💡</span>
-                            <p class="text-sm font-medium text-brand-text/90"><span class="font-bold">Tip de recepción:</span> ${item.tip}</p>
-                         </div>`;
-            }
-
-            if(item.verano) {
-                html += `<div class="bg-[#FFF8E7] border border-[#F2C94C]/40 rounded-xl p-3 mb-3 flex gap-2 items-start">
-                            <span class="text-lg leading-none">☀️</span>
-                            <p class="text-sm font-medium text-brand-text/90"><span class="font-bold">En verano:</span> ${item.verano}</p>
-                         </div>`;
-            }
-
-            if (item.mapsUrl || item.webUrl) {
-                html += `<div class="flex gap-2">`;
-                if(item.mapsUrl) {
-                    html += `<a href="${item.mapsUrl}" target="_blank" class="flex-1 bg-brand-primary text-white font-semibold py-3 rounded-xl shadow-sm active:scale-95 transition-transform flex justify-center items-center gap-2 text-sm">
-                                <i class="fa-solid fa-map-location-dot"></i> Cómo llegar
-                            </a>`;
-                }
-                
-                if(item.webUrl) {
-                    html += `<a href="${item.webUrl}" target="_blank" class="flex-1 bg-white border-2 border-brand-primary text-brand-primary font-semibold py-3 rounded-xl shadow-sm active:scale-95 transition-transform flex justify-center items-center gap-2 text-sm">
-                                <i class="fa-solid fa-globe"></i> Sitio web
-                            </a>`;
-                }
-                html += `</div>`;
-            }
-            
-            html += `</div>`;
-            div.innerHTML = html;
-            return div;
-        }
-
-        function renderGastronomiaCards(tabId) {
-            document.querySelectorAll('.rec-gastro-tab').forEach(tab => {
-                tab.classList.remove('bg-brand-primary', 'text-white', 'border-transparent');
-                tab.classList.add('bg-white', 'text-brand-text', 'border-brand-sand/60');
-            });
-            const activeTab = document.getElementById(`tab-${tabId}`);
-            if(activeTab) {
-                activeTab.classList.remove('bg-white', 'text-brand-text', 'border-brand-sand/60');
-                activeTab.classList.add('bg-brand-primary', 'text-white', 'border-transparent');
-            }
-
-            const container = document.getElementById('rec-gastronomia-content');
-            container.innerHTML = '';
-            recomendaciones.gastronomia[tabId].forEach(item => container.appendChild(createStandardCard(item)));
-        }
-
-        function renderAtracciones() {
-            const container = document.getElementById('rec-atracciones-content');
-            container.innerHTML = '';
-            recomendaciones.atracciones.forEach(item => container.appendChild(createStandardCard(item)));
-        }
-
-        function renderQueHacer() {
-            const container = document.getElementById('rec-quehacer-content');
-            container.innerHTML = '';
-            recomendaciones.quehacer.forEach(item => container.appendChild(createStandardCard(item)));
-        }
-
-        // ==========================================
-        // LÓGICA DE MODALES DE INFO
-        // ==========================================
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if(modal) modal.classList.add('active');
-        }
-
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if(modal) modal.classList.remove('active');
-        }
-
-        function closeModalOnOutside(event, modalId) {
-            if(event.target.id === modalId) {
-                closeModal(modalId);
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('open');
+                icon.style.transform = 'rotate(180deg)';
             }
         }
 
-        // ==========================================
-        // LÓGICA DE PREGUNTAS FRECUENTES (FAQ)
-        // ==========================================
+        // --- Lógica de Preguntas Frecuentes (FAQ) ---
         function toggleCategory(button) {
             const currentContent = button.nextElementSibling;
             const currentSign = button.querySelector('.icon-cat');
@@ -1443,18 +1134,17 @@
             }
         }
 
-        // ==========================================
-        // LÓGICA DE FORMULARIOS (Google Apps Script)
-        // ==========================================
+        // --- Lógica de Formularios (Google Apps Script) ---
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzkUW1bX9VyvtG7Kk_4WLHkzvzEwiQUsuvJIvGFuk3DF7E0SzWykxau-nG7ciGDE2N2UQ/exec';
 
         async function handlePreCheckin(e) {
             e.preventDefault();
+            
             const form = e.target;
             const btnSubmit = document.getElementById('btn-submit-precheckin');
             const errorDiv = document.getElementById('error-precheckin');
-            const originalBtnHtml = btnSubmit.innerHTML;
             
+            const originalBtnHtml = btnSubmit.innerHTML;
             btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Enviando datos...</span>';
             btnSubmit.disabled = true;
             btnSubmit.classList.add('opacity-80', 'cursor-not-allowed');
@@ -1470,11 +1160,13 @@
                 });
 
                 localStorage.setItem('precheckin_completado', 'true');
+                
                 form.classList.add('hidden');
                 const successDiv = document.getElementById('success-precheckin');
                 successDiv.classList.remove('hidden');
                 successDiv.classList.add('block');
                 window.scrollTo(0, 0);
+
             } catch (error) {
                 console.error('Error al enviar:', error);
                 errorDiv.classList.remove('hidden');
@@ -1487,11 +1179,12 @@
 
         async function handleInStayRequest(e) {
             e.preventDefault();
+            
             const form = e.target;
             const btnSubmit = document.getElementById('btn-submit-instay');
             const errorDiv = document.getElementById('error-instay');
-            const originalBtnHtml = btnSubmit.innerHTML;
             
+            const originalBtnHtml = btnSubmit.innerHTML;
             btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Enviando solicitud...</span>';
             btnSubmit.disabled = true;
             btnSubmit.classList.add('opacity-80', 'cursor-not-allowed');
@@ -1512,6 +1205,7 @@
                 successDiv.classList.remove('hidden');
                 successDiv.classList.add('block');
                 window.scrollTo(0, 0);
+
             } catch (error) {
                 console.error('Error al enviar asistencia:', error);
                 errorDiv.classList.remove('hidden');
@@ -1537,9 +1231,7 @@
             }
         });
 
-        // ==========================================
-        // VALIDACIÓN DE NÚMEROS DE HABITACIÓN
-        // ==========================================
+        // --- Validación de números de habitación ---
         document.addEventListener('DOMContentLoaded', () => {
             const inputHabitacion = document.getElementById('input-habitacion');
 
@@ -1561,14 +1253,13 @@
                         (val >= 401 && val <= 415);
 
                     if (!isValid) {
-                        this.setCustomValidity('Habitación inválida. Las habitaciones son: 6 a 10, 16, 18, 20, 21, 24, 25, 27; y pisos del 101 al 415 (terminadas hasta el 15).');
+                        this.setCustomValidity('Habitación inválida. Las habitaciones válidas son: 6 a 10, 16, 18, 20, 21, 24, 25, 27; y pisos del 101 al 415 (del 01 al 15 por piso).');
                     } else {
                         this.setCustomValidity('');
                     }
                 });
             }
         });
-
     </script>
 </body>
 </html>
