@@ -148,8 +148,15 @@
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
                     <h2 class="text-2xl font-bold text-brand-text">Pre-check-in Digital</h2>
                 </div>
-                <p class="mb-6 text-sm text-brand-text/80">Completá tus datos anticipadamente para agilizar tu ingreso al hotel. Es rápido y sencillo.</p>
+                <p class="mb-3 text-sm text-brand-text/80">Completá tus datos anticipadamente para agilizar tu ingreso al hotel. Es rápido y sencillo.</p>
                 
+                <!-- Enlace discreto a la política de privacidad -->
+                <div class="mb-6">
+                    <button type="button" onclick="openModal('modal-privacidad')" class="text-xs font-semibold text-brand-primary hover:underline flex items-center gap-1.5 focus:outline-none">
+                        <span>🔒</span> Ver más sobre la protección de tus datos
+                    </button>
+                </div>
+
                 <form id="form-precheckin" class="space-y-4" onsubmit="handlePreCheckin(event)">
                     <div id="error-precheckin" class="hidden bg-red-100 text-red-700 p-3 rounded-xl text-sm font-medium text-center border border-red-200">
                         Hubo un error al enviar los datos. Por favor, intentá nuevamente.
@@ -236,56 +243,56 @@
                 </div>
             </div>
 
-            <!-- VIEW: INFO (MENÚ VISUAL 2x2 + 1) -->
+            <!-- VIEW: INFO (RECOMENDACIONES ARRIBA Y CON MAYOR ALTURA) -->
             <div id="view-info" class="view-section">
                 <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('home')">
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
                     <h2 class="text-2xl font-bold text-brand-text">Información del Hotel</h2>
                 </div>
                 
-                <p class="text-sm text-brand-text/80 mb-6">Tocá cualquier servicio para conocer los detalles de tu estadía.</p>
-
-                <!-- GRILLA 2x2 DE CUADRANTES -->
-                <div class="grid grid-cols-2 gap-4 mb-4">
-                    <button onclick="openModal('modal-horarios')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
-                        <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
-                            <i class="fa-regular fa-clock text-3xl"></i>
+                <div class="space-y-4">
+                    <!-- RECOMENDACIONES: ARRIBA Y CON MAYOR ALTURA -->
+                    <button onclick="navigate('recomendaciones')" class="w-full bg-white rounded-3xl p-7 flex items-center gap-5 shadow-soft border border-brand-sand/60 active:scale-95 transition-all group text-left">
+                        <div class="w-20 h-20 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text flex-shrink-0 group-hover:bg-brand-sand/30 transition-colors">
+                            <i class="fa-solid fa-compass text-4xl"></i>
                         </div>
-                        <span class="font-bold text-base text-brand-text">Horarios</span>
+                        <div>
+                            <h3 class="font-bold text-xl text-brand-text mb-1">Recomendaciones</h3>
+                            <p class="text-sm text-brand-text/70">Guía turística, paseos y gastronomía</p>
+                        </div>
                     </button>
 
-                    <button onclick="openModal('modal-desayuno')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
-                        <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
-                            <i class="fa-solid fa-mug-hot text-3xl"></i>
-                        </div>
-                        <span class="font-bold text-base text-brand-text">Desayuno</span>
-                    </button>
+                    <!-- GRILLA 2x2 DE CUADRANTES DE INFO -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="openModal('modal-horarios')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
+                            <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
+                                <i class="fa-regular fa-clock text-3xl"></i>
+                            </div>
+                            <span class="font-bold text-base text-brand-text">Horarios</span>
+                        </button>
 
-                    <button onclick="openModal('modal-bar')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
-                        <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
-                            <i class="fa-solid fa-martini-glass-citrus text-3xl"></i>
-                        </div>
-                        <span class="font-bold text-base text-brand-text">Bar</span>
-                    </button>
+                        <button onclick="openModal('modal-desayuno')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
+                            <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
+                                <i class="fa-solid fa-mug-hot text-3xl"></i>
+                            </div>
+                            <span class="font-bold text-base text-brand-text">Desayuno</span>
+                        </button>
 
-                    <button onclick="openModal('modal-pileta')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
-                        <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
-                            <i class="fa-solid fa-water-ladder text-3xl"></i>
-                        </div>
-                        <span class="font-bold text-base text-brand-text">Pileta</span>
-                    </button>
+                        <button onclick="openModal('modal-bar')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
+                            <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
+                                <i class="fa-solid fa-martini-glass-citrus text-3xl"></i>
+                            </div>
+                            <span class="font-bold text-base text-brand-text">Bar</span>
+                        </button>
+
+                        <button onclick="openModal('modal-pileta')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
+                            <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
+                                <i class="fa-solid fa-water-ladder text-3xl"></i>
+                            </div>
+                            <span class="font-bold text-base text-brand-text">Pileta</span>
+                        </button>
+                    </div>
                 </div>
-
-                <!-- QUINTA TARJETA RECTANGULAR: RECOMENDACIONES -->
-                <button onclick="navigate('recomendaciones')" class="w-full bg-white rounded-3xl p-5 flex items-center gap-5 shadow-soft border border-brand-sand/60 active:scale-95 transition-all group text-left">
-                    <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text flex-shrink-0 group-hover:bg-brand-sand/30 transition-colors">
-                        <i class="fa-solid fa-compass text-3xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg text-brand-text mb-0.5">Recomendaciones</h3>
-                        <p class="text-xs text-brand-text/70">Guía turística, paseos y gastronomía</p>
-                    </div>
-                </button>
             </div>
 
             <!-- VIEW: RECOMENDACIONES (MAIN PORTADA) -->
@@ -398,6 +405,20 @@
                                         <div class="accordion-inner">
                                             <div class="px-5 pb-4 text-sm text-brand-text/70">
                                                 Para cancelar una reserva, comunicate con el hotel o con el canal a través del cual realizaste la reserva. Las condiciones de cancelación pueden variar según la reserva.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- NUEVA PREGUNTA SOBRE SEÑAS -->
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span class="pr-4">¿Se puede cancelar una reserva con seña?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                Sí, pero las señas no se devuelven. Solo se puede modificar la reserva, cambiando de fecha.
                                             </div>
                                         </div>
                                     </div>
@@ -604,6 +625,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- ESTACIONAMIENTO ACLARADO COMO DESCUBIERTO -->
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿Tienen estacionamiento?</span>
@@ -612,7 +634,7 @@
                                     <div class="accordion-grid answer-content">
                                         <div class="accordion-inner">
                                             <div class="px-5 pb-4 text-sm text-brand-text/70">
-                                                Sí, el hotel cuenta con estacionamiento gratuito para huéspedes.
+                                                Sí, el hotel cuenta con estacionamiento descubierto gratuito para huéspedes.
                                             </div>
                                         </div>
                                     </div>
@@ -770,10 +792,10 @@
                         No pudimos enviar tu solicitud. Por favor, intentá nuevamente.
                     </div>
 
-                    <!-- REEMPLAZAR ESTE BLOQUE EN LA VISTA IN-STAY -->
                     <div>
                         <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Habitación</label>
-                        <input type="number" id="input-habitacion" name="habitacion" required min="0" max="415" step="1" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors" placeholder="Ej: 12, 105, 210, 305...">
+                        <!-- Campo con validación estricta de habitaciones -->
+                        <input type="number" id="input-habitacion" name="habitacion" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors" placeholder="Ej: 8, 105, 210, 305...">
                     </div>
                     
                     <div>
@@ -937,6 +959,32 @@
             </div>
         </div>
 
+        <!-- Modal Privacidad (Pre-check-in) -->
+        <div id="modal-privacidad" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-privacidad')">
+            <div class="modal-content bg-white w-full max-w-md max-h-[85vh] rounded-3xl p-6 shadow-2xl relative text-brand-text flex flex-col">
+                <button onclick="closeModal('modal-privacidad')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors z-10">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <div class="flex flex-col items-center text-center mt-2 mb-4 flex-shrink-0">
+                    <div class="w-14 h-14 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-primary mb-2 text-2xl">
+                        🔒
+                    </div>
+                    <h3 class="text-lg font-bold">Política de privacidad y protección de datos</h3>
+                </div>
+                <div class="text-sm text-brand-text/80 space-y-3 text-left bg-brand-bg/50 p-4 rounded-2xl overflow-y-auto flex-grow pr-2">
+                    <p>En Hotel Morales nos comprometemos a cuidar tu información personal y a tratarla con responsabilidad y confidencialidad.</p>
+                    <p>Los datos que nos brindes durante el proceso de check-in serán utilizados exclusivamente para gestionar tu estadía, cumplir con las obligaciones legales aplicables y brindarte los servicios correspondientes.</p>
+                    <p>No utilizaremos tu información para fines ajenos a los informados ni la compartiremos con terceros, salvo cuando sea necesario para la prestación del servicio o exista una obligación legal que así lo requiera.</p>
+                    <p>Adoptamos medidas para proteger tus datos y evitar accesos, usos o divulgaciones no autorizados.</p>
+                    <p>Tu confianza es importante para nosotros. Queremos que disfrutes de tu estadía con la tranquilidad de saber que tu información es tratada con el cuidado que merece.</p>
+                    <p>Si tenés alguna consulta sobre el uso de tus datos personales, podés comunicarte con nuestro equipo.</p>
+                </div>
+                <div class="mt-4 pt-2 flex-shrink-0">
+                    <button onclick="closeModal('modal-privacidad')" class="w-full bg-brand-primary text-white font-semibold py-3 rounded-xl shadow-sm active:scale-95 transition-transform">Entendido</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Floating WhatsApp Button -->
         <a href="https://wa.me/5492252487664" target="_blank" class="absolute bottom-24 right-5 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-transform z-50">
             <i class="fa-brands fa-whatsapp text-3xl"></i>
@@ -997,6 +1045,22 @@
                         mapsUrl: "https://www.google.com/maps/search/?api=1&query=Don+Venancio+San+Clemente+del+Tuyu"
                     },
                     {
+                        nombre: "Rancho Aparte",
+                        categoria: "🍽️ Restaurante",
+                        direccion: "San Clemente del Tuyú",
+                        descripcion: "Establecimiento gastronómico recomendado para disfrutar de una buena comida en la zona.",
+                        imagen: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Rancho+Aparte+San+Clemente+del+Tuyu"
+                    },
+                    {
+                        nombre: "Selva Restobar",
+                        categoria: "🍽️ Restaurante",
+                        direccion: "San Clemente del Tuyú",
+                        descripcion: "Un espacio gastronómico agradable para disfrutar de platos y bebidas.",
+                        imagen: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Selva+Restobar+San+Clemente+del+Tuyu"
+                    },
+                    {
                         nombre: "La Cantina del Delfín",
                         categoria: "🍽️ Restaurante",
                         direccion: "Av. XI N° 225",
@@ -1018,6 +1082,14 @@
                         mapsUrl: "https://www.google.com/maps/search/?api=1&query=Cheroga+San+Clemente+del+Tuyu"
                     },
                     {
+                        nombre: "Tropicana",
+                        categoria: "☕ Cafetería",
+                        direccion: "San Clemente del Tuyú",
+                        descripcion: "Excelente cafetería para disfrutar de un rico café y opciones dulces o saladas.",
+                        imagen: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Tropicana+San+Clemente+del+Tuyu"
+                    },
+                    {
                         nombre: "La Marca",
                         categoria: "☕ Cafetería",
                         direccion: "Calle 1 N° 2385",
@@ -1028,6 +1100,14 @@
                     }
                 ],
                 pizzerias: [
+                    {
+                        nombre: "El Mundo de la Pizza",
+                        categoria: "🍕 Pizzería",
+                        direccion: "San Clemente del Tuyú",
+                        descripcion: "Variedad de pizzas y empanadas artesanales para disfrutar en el local o pedir.",
+                        imagen: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=El+Mundo+de+la+Pizza+San+Clemente+del+Tuyu"
+                    },
                     {
                         nombre: "Potenza",
                         categoria: "🍕 Pizzería",
@@ -1048,6 +1128,22 @@
                     }
                 ],
                 panaderias: [
+                    {
+                        nombre: "La Sirena",
+                        categoria: "🥐 Panadería",
+                        direccion: "San Clemente del Tuyú",
+                        descripcion: "Panificados frescos, facturas y especialidades artesanales.",
+                        imagen: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Sirena+San+Clemente+del+Tuyu"
+                    },
+                    {
+                        nombre: "Leila",
+                        categoria: "🥐 Panadería",
+                        direccion: "San Clemente del Tuyú",
+                        descripcion: "Excelente pastelería, productos de panadería y opciones dulces.",
+                        imagen: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80",
+                        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Leila+San+Clemente+del+Tuyu"
+                    },
                     {
                         nombre: "Bonavita",
                         categoria: "🥐 Panadería",
@@ -1078,6 +1174,13 @@
                     imagen: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=80",
                     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Termas+Marinas+San+Clemente+del+Tuyu",
                     webUrl: "https://www.termasmarinas.com.ar/"
+                },
+                {
+                    nombre: "Poseidón",
+                    direccion: "San Clemente del Tuyú",
+                    descripcion: "Atracción turística ideal para visitar y disfrutar en San Clemente.",
+                    imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
+                    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Poseidon+San+Clemente+del+Tuyu"
                 },
                 {
                     nombre: "Faro San Antonio",
@@ -1153,7 +1256,6 @@
                 item.classList.remove('text-brand-primary');
                 item.classList.add('text-gray-400');
                 
-                // Mantiene "info" seleccionado si estamos dentro de sub-secciones de Recomendaciones
                 let activeTarget = targetId;
                 if(targetId.startsWith('rec-') || targetId === 'recomendaciones') activeTarget = 'info';
 
@@ -1469,15 +1571,17 @@
                     }
 
                     const val = parseInt(this.value, 10);
+                    const validIndividualRooms = [6, 7, 8, 9, 10, 16, 18, 20, 21, 24, 25, 27];
+                    
                     const isValid = 
-                        (val >= 0 && val <= 21) ||
-                        (val >= 100 && val <= 115) ||
-                        (val >= 200 && val <= 215) ||
-                        (val >= 300 && val <= 315) ||
-                        (val >= 400 && val <= 415);
+                        validIndividualRooms.includes(val) ||
+                        (val >= 101 && val <= 115) ||
+                        (val >= 201 && val <= 215) ||
+                        (val >= 301 && val <= 315) ||
+                        (val >= 401 && val <= 415);
 
                     if (!isValid) {
-                        this.setCustomValidity('Número inválido. Las habitaciones van del 0 al 21, y del 100 al 415 (terminadas hasta el 15).');
+                        this.setCustomValidity('Habitación inválida. Las habitaciones válidas son: 6 a 10, 16, 18, 20, 21, 24, 25, 27; y pisos del 101 al 415 (del 01 al 15 por piso).');
                     } else {
                         this.setCustomValidity('');
                     }
