@@ -498,6 +498,20 @@
                             <span class="icon-cat text-brand-primary font-bold transition-transform duration-300 inline-block">▸</span>
                         </button>
                         <div class="accordion-grid category-content">
+                            <div class="accordion-inner">
+                                <div class="border-t border-brand-sand/40">
+                                    <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
+                                        <span>¿Qué tipos de habitación hay?</span>
+                                        <span class="icon-q text-brand-blue text-sm transition-transform duration-300 inline-block">▸</span>
+                                    </button>
+                                    <div class="accordion-grid answer-content">
+                                        <div class="accordion-inner">
+                                            <div class="px-5 pb-4 text-sm text-brand-text/70">
+                                                El Hotel Morales cuenta con habitaciones dobles, triples y cuádruples.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿Puedo pedir una habitación en particular?</span>
@@ -1463,7 +1477,7 @@
             }
         }
 
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyahYBcv_MxByJNKYWNw2_fSbP-6VSGKwgmxzTU5XKk0KUtyYdnhCUfz5N3L2CSUTEN6w/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzwfB6P8pY7GWgv6MI-zVO_JWgrUw3xldeRvD4xjO-vuQQHtcMBpr2StMpIIRNn5YdI/exec';
 
         async function handlePreCheckin(e) {
             e.preventDefault();
