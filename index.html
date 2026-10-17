@@ -1235,7 +1235,6 @@
             ]
         };
 
-        // Variable global temporal para retener los datos del formulario tras un envío exitoso
         let datosPreCheckinTemporal = null;
 
         function setHuespedes(cantidad) {
@@ -1510,7 +1509,6 @@
 
             const formData = new FormData(form);
 
-            // Guardar temporalmente los datos en memoria para generar el PDF sin reenviar
             datosPreCheckinTemporal = {};
             formData.forEach((value, key) => {
                 datosPreCheckinTemporal[key] = value;
@@ -1539,132 +1537,138 @@
             }
         }
 
-        // Función para generar el PDF utilizando jsPDF y permitir compartirlo o descargarlo
+        // Función corregida para generar y compartir/descargar el PDF
         function generarYCompartirPDF() {
             if (!datosPreCheckinTemporal) {
                 alert('No se encontraron los datos del formulario. Por favor, recargá la página si es necesario.');
                 return;
             }
 
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
+            const jsPDFClass = window.jspdf && window.jspdf.jsPDF ? window.jspdf.jsPDF : (window.jsPDF ? window.jsPDF : null);
 
-            const d = datosPreCheckinTemporal;
-            const fechaGeneracion = new Date().toLocaleString('es-AR', {
-                day: '2-digit', month: '2-digit', year: 'numeric',
-                hour: '2-digit', minute: '2-digit'
-            });
+            if (!jsPDFClass) {
+                alert('La librería de PDF aún se está cargando o hay un problema de conexión con el script. Por favor, intentá nuevamente en unos segundos.');
+                return;
+            }
 
-            // Encabezado institucional
-            doc.setFont("helvetica", "bold");
-            doc.setFontSize(18);
-            doc.setTextColor(10, 60, 89); // Color brand-text
-            doc.text("Hotel Morales", 105, 20, { align: "center" });
+            try {
+                const doc = new jsPDFClass();
+                const d = datosPreCheckinTemporal;
+                const fechaGeneracion = new Date().toLocaleString('es-AR', {
+                    day: '2-digit', month: '2-digit', year: 'numeric',
+                    hour: '2-digit', minute: '2-digit'
+                });
 
-            doc.setFontSize(10);
-            doc.setTextColor(171, 83, 40); // Color brand-primary
-            doc.text("DESDE 1941", 105, 26, { align: "center" });
+                // Encabezado institucional
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(18);
+                doc.setTextColor(10, 60, 89);
+                doc.text("Hotel Morales", 105, 20, { align: "center" });
 
-            doc.setFontSize(14);
-            doc.setTextColor(74, 66, 56);
-            doc.text("Constancia de datos del pre check-in", 105, 36, { align: "center" });
+                doc.setFontSize(10);
+                doc.setTextColor(171, 83, 40);
+                doc.text("DESDE 1941", 105, 26, { align: "center" });
 
-            doc.setLineWidth(0.5);
-            doc.setStrokeColor(227, 211, 184); // Color brand-sand
-            doc.line(20, 42, 190, 42);
+                doc.setFontSize(14);
+                doc.setTextColor(74, 66, 56);
+                doc.text("Constancia de datos del pre check-in", 105, 36, { align: "center" });
 
-            // Datos del Huésped Responsable
-            doc.setFontSize(11);
-            doc.setFont("helvetica", "bold");
-            doc.setTextColor(10, 60, 89);
-            doc.text("Datos del Huésped Responsable:", 20, 52);
+                doc.setLineWidth(0.5);
+                doc.setDrawColor(227, 211, 184); // Corregido de setStrokeColor a setDrawColor (compatible con jsPDF)
+                doc.line(20, 42, 190, 42);
 
-            doc.setFont("helvetica", "normal");
-            doc.setFontSize(10);
-            doc.setTextColor(74, 66, 56);
+                // Datos del Huésped Responsable
+                doc.setFontSize(11);
+                doc.setFont("helvetica", "bold");
+                doc.setTextColor(10, 60, 89);
+                doc.text("Datos del Huésped Responsable:", 20, 52);
 
-            let y = 60;
-            const lineHeight = 7;
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(10);
+                doc.setTextColor(74, 66, 56);
 
-            const datosPrincipales = [
-                `Nombre y Apellido: ${d.nombre || '-'}`,
-                `DNI: ${d.dni || '-'}`,
-                `Domicilio completo: ${d.domicilio || '-'}`,
-                `Estado civil: ${d.estado_civil || '-'}`,
-                `Patente del vehículo: ${d.patente ? d.patente : 'No completada'}`,
-                `Teléfono celular: ${d.telefono || '-'}`,
-                `Correo electrónico: ${d.email || '-'}`,
-                `Cantidad total de huéspedes: ${d.huespedes || '-'}`
-            ];
+                let y = 60;
+                const lineHeight = 7;
 
-            datosPrincipales.forEach(item => {
-                doc.text(item, 25, y);
-                y += lineHeight;
-            });
+                const datosPrincipales = [
+                    `Nombre y Apellido: ${d.nombre || '-'}`,
+                    `DNI: ${d.dni || '-'}`,
+                    `Domicilio completo: ${d.domicilio || '-'}`,
+                    `Estado civil: ${d.estado_civil || '-'}`,
+                    `Patente del vehículo: ${d.patente ? d.patente : 'No completada'}`,
+                    `Teléfono celular: ${d.telefono || '-'}`,
+                    `Correo electrónico: ${d.email || '-'}`,
+                    `Cantidad total de huéspedes: ${d.huespedes || '-'}`
+                ];
 
-            // Acompañantes
-            const numHuespedes = parseInt(d.huespedes || '1', 10);
-            const numAcompanantes = numHuespedes - 1;
+                datosPrincipales.forEach(item => {
+                    doc.text(item, 25, y);
+                    y += lineHeight;
+                });
 
-            if (numAcompanantes > 0) {
+                // Acompañantes
+                const numHuespedes = parseInt(d.huespedes || '1', 10);
+                const numAcompanantes = numHuespedes - 1;
+
+                if (numAcompanantes > 0) {
+                    y += 3;
+                    doc.setFont("helvetica", "bold");
+                    doc.setTextColor(10, 60, 89);
+                    doc.text("Acompañantes Registrados:", 20, y);
+                    y += lineHeight;
+
+                    doc.setFont("helvetica", "normal");
+                    doc.setTextColor(74, 66, 56);
+
+                    for (let i = 1; i <= numAcompanantes; i++) {
+                        const nombreAc = d[`acompanante_${i}_nombre`] || '-';
+                        const dniAc = d[`acompanante_${i}_dni`] || '-';
+                        doc.text(`- Acompañante ${i}: ${nombreAc} (DNI: ${dniAc})`, 25, y);
+                        y += lineHeight;
+                    }
+                }
+
+                // Observaciones
                 y += 3;
                 doc.setFont("helvetica", "bold");
                 doc.setTextColor(10, 60, 89);
-                doc.text("Acompañantes Registrados:", 20, y);
+                doc.text("Observaciones:", 20, y);
                 y += lineHeight;
 
                 doc.setFont("helvetica", "normal");
                 doc.setTextColor(74, 66, 56);
+                doc.text(d.observaciones ? d.observaciones : 'Ninguna', 25, y, { maxWidth: 160 });
+                y += (d.observaciones ? 12 : 7);
 
-                for (let i = 1; i <= numAcompanantes; i++) {
-                    const nombreAc = d[`acompanante_${i}_nombre`] || '-';
-                    const dniAc = d[`acompanante_${i}_dni`] || '-';
-                    doc.text(`- Acompañante ${i}: ${nombreAc} (DNI: ${dniAc})`, 25, y);
-                    y += lineHeight;
+                // Pie de página con fecha y hora
+                doc.setFontSize(8);
+                doc.setTextColor(120, 120, 120);
+                doc.text(`Fecha y hora de generación: ${fechaGeneracion}`, 20, 280);
+                doc.text("Hotel Morales - Calle 1 N° 1856, San Clemente del Tuyú", 20, 285);
+
+                const pdfBlob = doc.output('blob');
+                const pdfFile = new File([pdfBlob], "Constancia_Pre_Checkin_Hotel_Morales.pdf", { type: "application/pdf" });
+
+                if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+                    navigator.share({
+                        title: 'Constancia de pre check-in - Hotel Morales',
+                        text: 'Adjunto la constancia con los datos de mi pre check-in para el Hotel Morales.',
+                        files: [pdfFile]
+                    }).catch((error) => {
+                        console.log('Error al compartir o cancelado por el usuario:', error);
+                    });
+                } else {
+                    const pdfUrl = URL.createObjectURL(pdfBlob);
+                    const link = document.createElement('a');
+                    link.href = pdfUrl;
+                    link.download = 'Constancia_Pre_Checkin_Hotel_Morales.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
                 }
-            }
-
-            // Observaciones
-            y += 3;
-            doc.setFont("helvetica", "bold");
-            doc.setTextColor(10, 60, 89);
-            doc.text("Observaciones:", 20, y);
-            y += lineHeight;
-
-            doc.setFont("helvetica", "normal");
-            doc.setTextColor(74, 66, 56);
-            doc.text(d.observaciones ? d.observaciones : 'Ninguna', 25, y, { maxWidth: 160 });
-            y += (d.observaciones ? 12 : 7);
-
-            // Pie de página con fecha y hora
-            doc.setFontSize(8);
-            doc.setTextColor(120, 120, 120);
-            doc.text(`Fecha y hora de generación: ${fechaGeneracion}`, 20, 280);
-            doc.text("Hotel Morales - Calle 1 N° 1856, San Clemente del Tuyú", 20, 285);
-
-            // Salida del archivo PDF en formato Blob
-            const pdfBlob = doc.output('blob');
-            const pdfFile = new File([pdfBlob], "Constancia_Pre_Checkin_Hotel_Morales.pdf", { type: "application/pdf" });
-
-            // Compartir o Descargar
-            if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
-                navigator.share({
-                    title: 'Constancia de pre check-in - Hotel Morales',
-                    text: 'Adjunto la constancia con los datos de mi pre check-in para el Hotel Morales.',
-                    files: [pdfFile]
-                }).catch((error) => {
-                    console.log('Error al compartir o cancelado por el usuario:', error);
-                });
-            } else {
-                // Fallback: descarga directa si el navegador no soporta compartir archivos nativamente
-                const pdfUrl = URL.createObjectURL(pdfBlob);
-                const link = document.createElement('a');
-                link.href = pdfUrl;
-                link.download = 'Constancia_Pre_Checkin_Hotel_Morales.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                alert('Tu navegador no permite compartir archivos directamente. Se ha descargado la constancia en PDF para que puedas adjuntarla manualmente.');
+            } catch (err) {
+                console.error("Error al generar el PDF:", err);
+                alert("Ocurrió un error al generar el PDF. Verificá la consola para más detalles.");
             }
         }
 
