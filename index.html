@@ -150,7 +150,6 @@
                 </div>
                 <p class="mb-3 text-sm text-brand-text/80">Completá tus datos anticipadamente para agilizar tu ingreso al hotel. Es rápido y sencillo.</p>
                 
-                <!-- Enlace discreto a la política de privacidad -->
                 <div class="mb-6">
                     <button type="button" onclick="openModal('modal-privacidad')" class="text-xs font-semibold text-brand-primary hover:underline flex items-center gap-1.5 focus:outline-none">
                         <span>🔒</span> Ver más sobre la protección de tus datos
@@ -163,7 +162,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Nombre y Apellido</label>
+                        <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Nombre y Apellido (Responsable)</label>
                         <input type="text" name="nombre" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors" placeholder="Ej: Juan Pérez">
                     </div>
                     
@@ -200,39 +199,42 @@
                             <input type="text" name="patente" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm" placeholder="Dejar vacío si no aplica">
                         </div>
                     </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Llegada</label>
-                            <input type="date" name="llegada" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm text-brand-text">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Salida</label>
-                            <input type="date" name="salida" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors text-sm text-brand-text">
-                        </div>
-                    </div>
                     
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="col-span-1">
-                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Huéspedes</label>
-                            <input type="number" name="huespedes" required min="1" max="6" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors">
-                        </div>
-                        <div class="col-span-1">
-                            <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Email</label>
-                            <input type="email" name="email" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors">
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Email</label>
+                        <input type="email" name="email" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors">
+                    </div>
+
+                    <!-- SELECCIÓN DE HUÉSPEDES -->
+                    <div class="pt-2">
+                        <label class="block text-sm font-semibold mb-2 ml-1 text-brand-text">Cantidad Total de Huéspedes</label>
+                        <input type="hidden" id="huespedes-input" name="huespedes" value="" required>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button type="button" onclick="setHuespedes(2)" id="btn-h2" class="huesped-btn border-2 border-brand-sand rounded-xl py-3 px-2 text-center font-semibold text-sm bg-white text-brand-text transition-all active:scale-95">
+                                2 personas<span class="block text-xs font-normal text-brand-text/70 mt-0.5">Doble</span>
+                            </button>
+                            <button type="button" onclick="setHuespedes(3)" id="btn-h3" class="huesped-btn border-2 border-brand-sand rounded-xl py-3 px-2 text-center font-semibold text-sm bg-white text-brand-text transition-all active:scale-95">
+                                3 personas<span class="block text-xs font-normal text-brand-text/70 mt-0.5">Triple</span>
+                            </button>
+                            <button type="button" onclick="setHuespedes(4)" id="btn-h4" class="huesped-btn border-2 border-brand-sand rounded-xl py-3 px-2 text-center font-semibold text-sm bg-white text-brand-text transition-all active:scale-95">
+                                4 personas<span class="block text-xs font-normal text-brand-text/70 mt-0.5">Cuádruple</span>
+                            </button>
                         </div>
                     </div>
+
+                    <!-- CONTENEDOR DINÁMICO DE ACOMPAÑANTES -->
+                    <div id="acompanantes-container" class="space-y-4 pt-2"></div>
 
                     <div>
                         <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Observaciones (Opcional)</label>
                         <textarea name="observaciones" class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-blue transition-colors h-24 resize-none" placeholder="¿Necesitás cuna? ¿Llegás tarde?"></textarea>
                     </div>
+
                     <button type="submit" id="btn-submit-precheckin" class="w-full bg-brand-primary text-white font-bold text-lg rounded-xl py-4 mt-4 active:scale-95 transition-all shadow-soft flex justify-center items-center gap-2">
                         <span>Completar mi pre-check-in</span>
                     </button>
                 </form>
 
-                <!-- Success State -->
                 <div id="success-precheckin" class="hidden text-center py-10">
                     <div class="w-20 h-20 bg-brand-green/20 text-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fa-solid fa-check text-4xl"></i>
@@ -243,7 +245,7 @@
                 </div>
             </div>
 
-            <!-- VIEW: INFO (RECOMENDACIONES ARRIBA Y CON MAYOR ALTURA) -->
+            <!-- VIEW: INFO -->
             <div id="view-info" class="view-section">
                 <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('home')">
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
@@ -251,7 +253,6 @@
                 </div>
                 
                 <div class="space-y-4">
-                    <!-- RECOMENDACIONES: ARRIBA Y CON MAYOR ALTURA -->
                     <button onclick="navigate('recomendaciones')" class="w-full bg-white rounded-3xl p-7 flex items-center gap-5 shadow-soft border border-brand-sand/60 active:scale-95 transition-all group text-left">
                         <div class="w-20 h-20 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text flex-shrink-0 group-hover:bg-brand-sand/30 transition-colors">
                             <i class="fa-solid fa-compass text-4xl"></i>
@@ -262,7 +263,6 @@
                         </div>
                     </button>
 
-                    <!-- GRILLA 2x2 DE CUADRANTES DE INFO -->
                     <div class="grid grid-cols-2 gap-4">
                         <button onclick="openModal('modal-horarios')" class="bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-soft border border-brand-sand/60 active:scale-95 transition-all aspect-square group">
                             <div class="w-16 h-16 bg-brand-bg rounded-2xl flex items-center justify-center text-brand-text mb-3 group-hover:bg-brand-sand/30 transition-colors">
@@ -295,7 +295,7 @@
                 </div>
             </div>
 
-            <!-- VIEW: RECOMENDACIONES (MAIN PORTADA) -->
+            <!-- VIEW: RECOMENDACIONES -->
             <div id="view-recomendaciones" class="view-section">
                 <div class="flex items-center gap-3 mb-4 cursor-pointer" onclick="navigate('info')">
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
@@ -307,9 +307,7 @@
                     <p class="text-sm text-brand-text/80">Te recomendamos nuestros favoritos de San Clemente para que puedas disfrutar tu estadía al máximo!</p>
                 </div>
                 
-                <div class="space-y-4 pb-10" id="rec-banners-container">
-                    <!-- Javascript inyectará los 3 banners principales aquí -->
-                </div>
+                <div class="space-y-4 pb-10" id="rec-banners-container"></div>
             </div>
 
             <!-- VIEW: SUB-SECCIÓN GASTRONOMÍA -->
@@ -319,7 +317,6 @@
                     <h2 class="text-2xl font-bold text-brand-text">Gastronomía</h2>
                 </div>
                 
-                <!-- TABS GASTRONOMÍA -->
                 <div class="flex gap-2 overflow-x-auto pb-4 mb-2 no-scrollbar" style="scroll-behavior: smooth;">
                     <button onclick="renderGastronomiaCards('restaurantes')" id="tab-restaurantes" class="rec-gastro-tab px-5 py-2.5 bg-brand-primary text-white border border-transparent rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">🍽️ Restaurantes</button>
                     <button onclick="renderGastronomiaCards('cafeterias')" id="tab-cafeterias" class="rec-gastro-tab px-5 py-2.5 bg-white text-brand-text border border-brand-sand/60 rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">☕ Cafeterías</button>
@@ -327,9 +324,7 @@
                     <button onclick="renderGastronomiaCards('panaderias')" id="tab-panaderias" class="rec-gastro-tab px-5 py-2.5 bg-white text-brand-text border border-brand-sand/60 rounded-full font-semibold text-sm whitespace-nowrap shadow-soft transition-all">🥐 Panaderías</button>
                 </div>
 
-                <div id="rec-gastronomia-content" class="pb-10 space-y-5">
-                    <!-- Javascript inyectará las tarjetas de gastronomía aquí -->
-                </div>
+                <div id="rec-gastronomia-content" class="pb-10 space-y-5"></div>
             </div>
 
             <!-- VIEW: SUB-SECCIÓN ATRACCIONES -->
@@ -338,9 +333,7 @@
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
                     <h2 class="text-2xl font-bold text-brand-text">Atracciones</h2>
                 </div>
-                <div id="rec-atracciones-content" class="pb-10 space-y-5">
-                    <!-- Javascript inyectará las tarjetas de atracciones aquí -->
-                </div>
+                <div id="rec-atracciones-content" class="pb-10 space-y-5"></div>
             </div>
 
             <!-- VIEW: SUB-SECCIÓN QUÉ HACER -->
@@ -349,9 +342,7 @@
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
                     <h2 class="text-2xl font-bold text-brand-text">Qué hacer</h2>
                 </div>
-                <div id="rec-quehacer-content" class="pb-10 space-y-5">
-                    <!-- Javascript inyectará las tarjetas de qué hacer aquí -->
-                </div>
+                <div id="rec-quehacer-content" class="pb-10 space-y-5"></div>
             </div>
 
             <!-- VIEW: FAQ -->
@@ -362,7 +353,6 @@
                 </div>
                 
                 <div class="space-y-4" id="faq-categories">
-                    <!-- CATEGORÍA 1 -->
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
                         <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
                             <span>Reservas y pagos</span>
@@ -409,7 +399,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- NUEVA PREGUNTA SOBRE SEÑAS -->
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span class="pr-4">¿Se puede cancelar una reserva con seña?</span>
@@ -439,7 +428,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- CATEGORÍA 2 -->
+
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
                         <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
                             <span>Check-in y check-out</span>
@@ -502,7 +491,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- CATEGORÍA 3 -->
+
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
                         <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
                             <span>Habitaciones</span>
@@ -604,7 +593,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- CATEGORÍA 4 -->
+
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
                         <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
                             <span>Servicios del hotel</span>
@@ -625,7 +614,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- ESTACIONAMIENTO ACLARADO COMO DESCUBIERTO -->
                                 <div class="border-t border-brand-sand/40">
                                     <button class="w-full px-5 py-3 text-left font-semibold text-brand-text/90 flex justify-between items-center text-sm" onclick="toggleQuestion(this)">
                                         <span>¿Tienen estacionamiento?</span>
@@ -694,7 +682,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- CATEGORÍA 5 -->
+
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
                         <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
                             <span>Ubicación y cómo llegar</span>
@@ -737,7 +725,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- CATEGORÍA 6 -->
+
                     <div class="bg-white rounded-2xl shadow-soft border border-brand-sand overflow-hidden">
                         <button class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-lg text-brand-text" onclick="toggleCategory(this)">
                             <span>Antes de tu llegada</span>
@@ -779,7 +767,7 @@
                 </div>
             </div>
 
-            <!-- VIEW: IN-STAY (ASISTENCIA AL HUÉSPED) -->
+            <!-- VIEW: IN-STAY -->
             <div id="view-instay" class="view-section">
                 <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigate('home')">
                     <i class="fa-solid fa-arrow-left text-brand-primary"></i>
@@ -794,7 +782,6 @@
 
                     <div>
                         <label class="block text-sm font-semibold mb-1 ml-1 text-brand-text">Habitación</label>
-                        <!-- Campo con validación estricta de habitaciones -->
                         <input type="number" id="input-habitacion" name="habitacion" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-colors" placeholder="Ej: 8, 105, 210, 305...">
                     </div>
                     
@@ -821,7 +808,6 @@
                     </button>
                 </form>
 
-                <!-- Success State -->
                 <div id="success-instay" class="hidden text-center py-10">
                     <div class="w-20 h-20 bg-brand-blue/20 text-brand-blue rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fa-solid fa-thumbs-up text-4xl"></i>
@@ -878,7 +864,6 @@
         </main>
 
         <!-- MODALES DE INFO -->
-        <!-- Modal Horarios -->
         <div id="modal-horarios" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-horarios')">
             <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative text-brand-text">
                 <button onclick="closeModal('modal-horarios')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors">
@@ -898,7 +883,6 @@
             </div>
         </div>
 
-        <!-- Modal Desayuno -->
         <div id="modal-desayuno" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-desayuno')">
             <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative text-brand-text">
                 <button onclick="closeModal('modal-desayuno')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors">
@@ -920,7 +904,6 @@
             </div>
         </div>
 
-        <!-- Modal Bar -->
         <div id="modal-bar" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-bar')">
             <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative text-brand-text">
                 <button onclick="closeModal('modal-bar')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors">
@@ -938,7 +921,6 @@
             </div>
         </div>
 
-        <!-- Modal Pileta -->
         <div id="modal-pileta" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-pileta')">
             <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative text-brand-text">
                 <button onclick="closeModal('modal-pileta')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors">
@@ -959,7 +941,6 @@
             </div>
         </div>
 
-        <!-- Modal Privacidad (Pre-check-in) -->
         <div id="modal-privacidad" class="modal-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnOutside(event, 'modal-privacidad')">
             <div class="modal-content bg-white w-full max-w-md max-h-[85vh] rounded-3xl p-6 shadow-2xl relative text-brand-text flex flex-col">
                 <button onclick="closeModal('modal-privacidad')" class="absolute top-4 right-4 w-9 h-9 bg-brand-bg rounded-full flex items-center justify-center text-brand-text hover:bg-brand-sand/40 transition-colors z-10">
@@ -1015,9 +996,6 @@
     </div>
 
     <script>
-        // ==========================================
-        // BASE DE DATOS DE RECOMENDACIONES (GUÍA)
-        // ==========================================
         const recomendaciones = {
             banners: {
                 gastronomia: "gastronomia.jpg",
@@ -1248,7 +1226,47 @@
             ]
         };
 
-        // --- Navigation Logic ---
+        function setHuespedes(cantidad) {
+            document.getElementById('huespedes-input').value = cantidad;
+            
+            // Estilos de botones de selección
+            document.querySelectorAll('.huesped-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-primary', 'text-white', 'border-brand-primary');
+                btn.classList.add('bg-white', 'text-brand-text', 'border-brand-sand');
+            });
+            
+            const activeBtn = document.getElementById(`btn-h${cantidad}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-white', 'text-brand-text', 'border-brand-sand');
+                activeBtn.classList.add('bg-brand-primary', 'text-white', 'border-brand-primary');
+            }
+
+            // Renderizar formularios de acompañantes dinámicamente
+            renderAcompanantes(cantidad - 1);
+        }
+
+        function renderAcompanantes(numAcompanantes) {
+            const container = document.getElementById('acompanantes-container');
+            container.innerHTML = '';
+
+            for (let i = 1; i <= numAcompanantes; i++) {
+                const div = document.createElement('div');
+                div.className = 'bg-white/60 p-4 rounded-2xl border-2 border-brand-sand space-y-3';
+                div.innerHTML = `
+                    <h4 class="font-bold text-sm text-brand-primary uppercase tracking-wide">Acompañante ${i}</h4>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 ml-1 text-brand-text">Nombre y Apellido</label>
+                        <input type="text" name="acompanante_${i}_nombre" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-2.5 outline-none focus:border-brand-blue transition-colors text-sm" placeholder="Nombre completo">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 ml-1 text-brand-text">DNI o Documento</label>
+                        <input type="number" name="acompanante_${i}_dni" required class="w-full bg-white border-2 border-brand-sand rounded-xl px-4 py-2.5 outline-none focus:border-brand-blue transition-colors text-sm" placeholder="Sin puntos">
+                    </div>
+                `;
+                container.appendChild(div);
+            }
+        }
+
         function navigate(targetId) {
             const sections = document.querySelectorAll('.view-section');
             sections.forEach(sec => sec.classList.remove('active'));
@@ -1273,7 +1291,6 @@
                 }
             });
 
-            // LÓGICA DE PRE-CHECK-IN ÚNICO
             if (targetId === 'precheckin') {
                 const isCompleted = localStorage.getItem('precheckin_completado');
                 const form = document.getElementById('form-precheckin');
@@ -1290,9 +1307,8 @@
                 }
             }
 
-            // AUTO-RENDERIZAR CONTENIDO DINÁMICO SEGÚN LA VISTA
             if (targetId === 'recomendaciones') renderMainBanners();
-            if (targetId === 'rec-gastronomia') renderGastronomiaCards('restaurantes'); // default tab
+            if (targetId === 'rec-gastronomia') renderGastronomiaCards('restaurantes');
             if (targetId === 'rec-atracciones') renderAtracciones();
             if (targetId === 'rec-quehacer') renderQueHacer();
         }
@@ -1300,10 +1316,6 @@
         document.querySelector('.nav-item[data-target="home"]').classList.add('text-brand-primary');
         document.querySelector('.nav-item[data-target="home"]').classList.remove('text-gray-400');
 
-        // ==========================================
-        // LÓGICA DE GENERACIÓN DE TARJETAS (RECOMENDACIONES)
-        // ==========================================
-        
         function renderMainBanners() {
             const container = document.getElementById('rec-banners-container');
             container.innerHTML = `
@@ -1415,9 +1427,6 @@
             recomendaciones.quehacer.forEach(item => container.appendChild(createStandardCard(item)));
         }
 
-        // ==========================================
-        // LÓGICA DE MODALES DE INFO
-        // ==========================================
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             if(modal) modal.classList.add('active');
@@ -1434,9 +1443,6 @@
             }
         }
 
-        // ==========================================
-        // LÓGICA DE PREGUNTAS FRECUENTES (FAQ)
-        // ==========================================
         function toggleCategory(button) {
             const currentContent = button.nextElementSibling;
             const currentSign = button.querySelector('.icon-cat');
@@ -1471,14 +1477,19 @@
             }
         }
 
-        // ==========================================
-        // LÓGICA DE FORMULARIOS (Google Apps Script)
-        // ==========================================
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxUaSwSPUXQFktFklaCvYwtkMmgiOTlQkON3qvD1cyRG0joOLkpngK5Ih3SzeGm8ACavg/exec';
 
         async function handlePreCheckin(e) {
             e.preventDefault();
             const form = e.target;
+            
+            // Validación obligatoria de huéspedes
+            const huespedesVal = document.getElementById('huespedes-input').value;
+            if(!huespedesVal) {
+                alert('Por favor, seleccioná la cantidad total de huéspedes.');
+                return;
+            }
+
             const btnSubmit = document.getElementById('btn-submit-precheckin');
             const errorDiv = document.getElementById('error-precheckin');
             const originalBtnHtml = btnSubmit.innerHTML;
@@ -1565,9 +1576,6 @@
             }
         });
 
-        // ==========================================
-        // VALIDACIÓN DE NÚMEROS DE HABITACIÓN
-        // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
             const inputHabitacion = document.getElementById('input-habitacion');
 
@@ -1596,7 +1604,6 @@
                 });
             }
         });
-
     </script>
 </body>
 </html>
