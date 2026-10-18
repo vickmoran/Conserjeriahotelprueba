@@ -1235,7 +1235,8 @@
             ]
         };
 
-        let datosPreCheckinTemporal = null;
+        // RECUPERAR DATOS AL CARGAR LA PÁGINA (PERSISTENCIA DE DATOS)
+        let datosPreCheckinTemporal = JSON.parse(localStorage.getItem('datosPreCheckin')) || null;
 
         function setHuespedes(cantidad) {
             document.getElementById('huespedes-input').value = cantidad;
@@ -1514,6 +1515,9 @@
                 datosPreCheckinTemporal[key] = value;
             });
 
+            // GUARDAR DATOS EN LOCALSTORAGE PARA PERSISTENCIA
+            localStorage.setItem('datosPreCheckin', JSON.stringify(datosPreCheckinTemporal));
+
             try {
                 await fetch(SCRIPT_URL, {
                     method: 'POST',
@@ -1537,7 +1541,6 @@
             }
         }
 
-        // Función corregida para generar y compartir/descargar el PDF
         function generarYCompartirPDF() {
             if (!datosPreCheckinTemporal) {
                 alert('No se encontraron los datos del formulario. Por favor, recargá la página si es necesario.');
@@ -1574,7 +1577,7 @@
                 doc.text("Constancia de datos del pre check-in", 105, 36, { align: "center" });
 
                 doc.setLineWidth(0.5);
-                doc.setDrawColor(227, 211, 184); // Corregido de setStrokeColor a setDrawColor (compatible con jsPDF)
+                doc.setDrawColor(227, 211, 184);
                 doc.line(20, 42, 190, 42);
 
                 // Datos del Huésped Responsable
@@ -1639,6 +1642,24 @@
                 doc.setTextColor(74, 66, 56);
                 doc.text(d.observaciones ? d.observaciones : 'Ninguna', 25, y, { maxWidth: 160 });
                 y += (d.observaciones ? 12 : 7);
+
+                // ESPACIO PARA FIRMA Y ACLARACIÓN
+                y += 25; 
+                if (y > 260) {
+                    doc.addPage();
+                    y = 30;
+                }
+
+                doc.setDrawColor(120, 120, 120);
+                
+                // Línea para la firma
+                doc.line(30, y, 90, y);
+                doc.setFontSize(10);
+                doc.text("Firma", 60, y + 5, { align: "center" });
+
+                // Línea para la aclaración
+                doc.line(120, y, 180, y);
+                doc.text("Aclaración", 150, y + 5, { align: "center" });
 
                 // Pie de página con fecha y hora
                 doc.setFontSize(8);
